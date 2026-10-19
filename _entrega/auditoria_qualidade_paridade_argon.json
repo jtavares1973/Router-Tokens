@@ -1,0 +1,261 @@
+{
+  "gabarito_argon": {
+    "T1": {
+      "total_turmas": 25,
+      "turmas_por_dia": {
+        "QUARTA": 6,
+        "QUINTA": 5,
+        "SEGUNDA": 6,
+        "SÁBADO": 1,
+        "TERÇA": 7
+      },
+      "dia_com_mais_turmas": "TERÇA",
+      "salas_unicas_validas": [
+        "CPP ST6",
+        "CPP ST7",
+        "ERRO: 0",
+        "FAC IS1 PP1 PSI",
+        "FAC IS1 PSI",
+        "FHI NSC",
+        "FMO ST1",
+        "HFA ST4",
+        "I2N",
+        "IS1",
+        "JSP",
+        "NET NSC",
+        "PPPATENÇÃO: PP",
+        "PSI"
+      ]
+    },
+    "T2": {
+      "total_alunos_n1": 51,
+      "alunos_por_turma": {
+        "N1-PENDENTES": 2,
+        "T21A-AMON": 17,
+        "T21B-XESOSTRIS": 10,
+        "T21C-AMON2": 8,
+        "T31A-NUTH2": 6,
+        "T32D-ENOCH22": 1,
+        "T41A-NUTH": 2,
+        "T51A-ANUBIS": 5
+      },
+      "ingressos_2025": 3,
+      "ingressos_2026": 47,
+      "matriculas_duplicadas": 0
+    },
+    "T3": {
+      "total_alocacoes_escala": 56,
+      "total_professores_unicos": 17,
+      "media_alocacoes_por_professor": 3.29,
+      "professores_confirmados_em_n2": 13
+    }
+  },
+  "avaliacoes": [
+    {
+      "modelo": "qwen2.5-coder:7b",
+      "tarefa": "T1_Turmas_Salas",
+      "compilou": true,
+      "executou": true,
+      "nota_qualidade": 100.0,
+      "regressao_silenciosa": false,
+      "tempo_ms": 1093,
+      "tokens_in": 256,
+      "tokens_out": 200,
+      "divergencias": [],
+      "saida_modelo": {
+        "total_turmas": 25,
+        "turmas_por_dia": {
+          "TERÇA": 7,
+          "SEGUNDA": 6,
+          "QUARTA": 6,
+          "QUINTA": 5,
+          "SÁBADO": 1
+        },
+        "dia_com_mais_turmas": "TERÇA",
+        "salas_unicas_validas": [
+          "CPP ST6",
+          "CPP ST7",
+          "ERRO: 0",
+          "FAC IS1 PP1 PSI",
+          "FAC IS1 PSI",
+          "FHI NSC",
+          "FMO ST1",
+          "HFA ST4",
+          "I2N",
+          "IS1",
+          "JSP",
+          "NET NSC",
+          "PPPATENÇÃO: PP",
+          "PSI"
+        ]
+      }
+    },
+    {
+      "modelo": "qwen2.5-coder:7b",
+      "tarefa": "T2_Alunos_N1_Ingressos",
+      "compilou": false,
+      "executou": false,
+      "nota_qualidade": 0.0,
+      "regressao_silenciosa": false,
+      "tempo_ms": 994,
+      "divergencias": [
+        "Erro de Sintaxe (Pego no Portão A): unmatched ']' (<unknown>, line 6)"
+      ]
+    },
+    {
+      "modelo": "qwen2.5-coder:7b",
+      "tarefa": "T3_Cruzamento_Docentes_N2",
+      "compilou": true,
+      "executou": false,
+      "nota_qualidade": 0.0,
+      "regressao_silenciosa": false,
+      "tempo_ms": 1116,
+      "divergencias": [
+        "Erro em Tempo de Execução (Pego no Portão A): AttributeError: 'Series' object has no attribute 'upper'"
+      ]
+    },
+    {
+      "modelo": "qwen3.8-32k:latest",
+      "tarefa": "T1_Turmas_Salas",
+      "compilou": true,
+      "executou": false,
+      "nota_qualidade": 0.0,
+      "regressao_silenciosa": false,
+      "tempo_ms": 3022,
+      "divergencias": [
+        "Erro em Tempo de Execução (Pego no Portão A): NameError: name 'pd' is not defined"
+      ]
+    },
+    {
+      "modelo": "qwen3.8-32k:latest",
+      "tarefa": "T2_Alunos_N1_Ingressos",
+      "compilou": true,
+      "executou": true,
+      "nota_qualidade": 100.0,
+      "regressao_silenciosa": false,
+      "tempo_ms": 3461,
+      "tokens_in": 285,
+      "tokens_out": 432,
+      "divergencias": [],
+      "saida_modelo": {
+        "total_alunos_n1": 51,
+        "alunos_por_turma": {
+          "T21A-AMON": 17,
+          "T21B-XESOSTRIS": 10,
+          "T21C-AMON2": 8,
+          "T31A-NUTH2": 6,
+          "T51A-ANUBIS": 5,
+          "N1-PENDENTES": 2,
+          "T41A-NUTH": 2,
+          "T32D-ENOCH22": 1
+        },
+        "ingressos_2025": 3,
+        "ingressos_2026": 47,
+        "matriculas_duplicadas": 0
+      }
+    },
+    {
+      "modelo": "qwen3.8-32k:latest",
+      "tarefa": "T3_Cruzamento_Docentes_N2",
+      "compilou": true,
+      "executou": true,
+      "nota_qualidade": 100.0,
+      "regressao_silenciosa": false,
+      "tempo_ms": 5296,
+      "tokens_in": 310,
+      "tokens_out": 724,
+      "divergencias": [],
+      "saida_modelo": {
+        "total_alocacoes_escala": 56,
+        "total_professores_unicos": 17,
+        "media_alocacoes_por_professor": 3.29,
+        "professores_confirmados_em_n2": 13
+      }
+    },
+    {
+      "modelo": "deepseek-v4.1-flash:cloud",
+      "tarefa": "T1_Turmas_Salas",
+      "compilou": true,
+      "executou": true,
+      "nota_qualidade": 100.0,
+      "regressao_silenciosa": false,
+      "tempo_ms": 5322,
+      "tokens_in": 284,
+      "tokens_out": 1105,
+      "divergencias": [],
+      "saida_modelo": {
+        "total_turmas": 25,
+        "turmas_por_dia": {
+          "QUARTA": 6,
+          "QUINTA": 5,
+          "SEGUNDA": 6,
+          "SÁBADO": 1,
+          "TERÇA": 7
+        },
+        "dia_com_mais_turmas": "TERÇA",
+        "salas_unicas_validas": [
+          "CPP ST6",
+          "CPP ST7",
+          "ERRO: 0",
+          "FAC IS1 PP1 PSI",
+          "FAC IS1 PSI",
+          "FHI NSC",
+          "FMO ST1",
+          "HFA ST4",
+          "I2N",
+          "IS1",
+          "JSP",
+          "NET NSC",
+          "PPPATENÇÃO: PP",
+          "PSI"
+        ]
+      }
+    },
+    {
+      "modelo": "deepseek-v4.1-flash:cloud",
+      "tarefa": "T2_Alunos_N1_Ingressos",
+      "compilou": true,
+      "executou": true,
+      "nota_qualidade": 100.0,
+      "regressao_silenciosa": false,
+      "tempo_ms": 3388,
+      "tokens_in": 314,
+      "tokens_out": 609,
+      "divergencias": [],
+      "saida_modelo": {
+        "total_alunos_n1": 51,
+        "alunos_por_turma": {
+          "T21A-AMON": 17,
+          "T21B-XESOSTRIS": 10,
+          "T21C-AMON2": 8,
+          "T31A-NUTH2": 6,
+          "T51A-ANUBIS": 5,
+          "N1-PENDENTES": 2,
+          "T41A-NUTH": 2,
+          "T32D-ENOCH22": 1
+        },
+        "ingressos_2025": 3,
+        "ingressos_2026": 47,
+        "matriculas_duplicadas": 0
+      }
+    },
+    {
+      "modelo": "deepseek-v4.1-flash:cloud",
+      "tarefa": "T3_Cruzamento_Docentes_N2",
+      "compilou": true,
+      "executou": true,
+      "nota_qualidade": 100.0,
+      "regressao_silenciosa": false,
+      "tempo_ms": 3980,
+      "tokens_in": 360,
+      "tokens_out": 864,
+      "divergencias": [],
+      "saida_modelo": {
+        "total_alocacoes_escala": 56,
+        "total_professores_unicos": 17,
+        "media_alocacoes_por_professor": 3.29,
+        "professores_confirmados_em_n2": 13
+      }
+    }
+  ]
+}

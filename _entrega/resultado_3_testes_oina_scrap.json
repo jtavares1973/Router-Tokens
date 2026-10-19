@@ -1,0 +1,96 @@
+[
+  {
+    "teste": 1,
+    "titulo": "Scrap de Turmas Ativas (Unidade ACL) via LM Studio 7B (RTX 5090)",
+    "modelo_orquestrador": "Gemini 4 Argon",
+    "modelo_agentico": "qwen2.5-coder:7b",
+    "modelo_validador": "Fiscal AST + gemma4:31b-cloud",
+    "tempo_agentico_ms": 5083,
+    "tempo_scrap_oina_ms": 2931,
+    "tempo_validador_ms": 794,
+    "tempo_total_ms": 8808,
+    "dados_extraidos_oina": {
+      "unidade": "ACL",
+      "total_turmas": 25,
+      "colunas": [
+        "Unidade",
+        "Nivel",
+        "Turma",
+        "Dia",
+        "Horario",
+        "Inicio",
+        "Conclusao_Prevista",
+        "Sala",
+        "Tipo"
+      ],
+      "amostra_primeira_turma": {
+        "Unidade": "ACL",
+        "Nivel": "JN",
+        "Turma": "JANOS",
+        "Dia": "SEGUNDA",
+        "Horario": "20:00",
+        "Inicio": "24/08/2023",
+        "Conclusao_Prevista": "-",
+        "Sala": "JSP",
+        "Tipo": "-"
+      },
+      "tokens_brutos_processados_localmente": 1055
+    },
+    "veredito_validador": "APROVADO: Estrutura de dados íntegra, correspondência exata da Unidade ACL e consistência entre total de turmas e amostra extraída.",
+    "tokens_se_argon_fizesse_sozinho": 1764,
+    "tokens_argon_com_router": 120,
+    "tokens_argon_economizados": 1644,
+    "percentual_economia_argon": 93.2
+  },
+  {
+    "teste": 2,
+    "titulo": "Scrap de Alunos N1 (Unidade ACL) via Qwen 3.8 27B Local (RTX 5090)",
+    "modelo_orquestrador": "Gemini 4 Argon",
+    "modelo_agentico": "qwen3.8-32k:latest",
+    "modelo_validador": "Fiscal AST + gemma4:31b-cloud",
+    "tempo_agentico_ms": 2773,
+    "tempo_scrap_oina_ms": 937,
+    "tempo_validador_ms": 3389,
+    "tempo_total_ms": 7099,
+    "dados_extraidos_oina": {
+      "unidade": "ACL",
+      "total_alunos_n1": 51,
+      "colunas": [
+        "Unidade",
+        "Matricula",
+        "Nome",
+        "Nome_Norm",
+        "Turma",
+        "Ingresso"
+      ],
+      "tokens_brutos_processados_localmente": 2014
+    },
+    "veredito_validador": "APROVADO: Dados consistentes, estrutura de colunas íntegra e processamento local validado para a Unidade ACL.",
+    "tokens_se_argon_fizesse_sozinho": 2789,
+    "tokens_argon_com_router": 120,
+    "tokens_argon_economizados": 2669,
+    "percentual_economia_argon": 95.7
+  },
+  {
+    "teste": 3,
+    "titulo": "Scrap Cruzado de Membros N2 + Escala de Professores (ACL) via DeepSeek V4.1 (763B)",
+    "modelo_orquestrador": "Gemini 4 Argon",
+    "modelo_agentico": "deepseek-v4.1-flash:cloud",
+    "modelo_validador": "Fiscal AST + gemma4:31b-cloud",
+    "tempo_agentico_ms": 1970,
+    "tempo_scrap_oina_ms": 1139,
+    "tempo_validador_ms": 816,
+    "tempo_total_ms": 3925,
+    "dados_extraidos_oina": {
+      "unidade": "ACL",
+      "total_membros_n2": 155,
+      "total_alocacoes_escala": 56,
+      "tokens_brutos_processados_localmente": 9412
+    },
+    "veredito_validador": "REPROVADO: Divergência crítica entre total de membros N2 (155) e alocações de escala (56), indicando subutilização ou erro de extração de dados.",
+    "tokens_se_argon_fizesse_sozinho": 10176,
+    "tokens_argon_com_router": 120,
+    "tokens_argon_economizados": 10056,
+    "percentual_economia_argon": 98.8
+  }
+]
