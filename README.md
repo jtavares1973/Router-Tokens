@@ -24,7 +24,7 @@ Motor de roteamento em **Escada de 4 Degraus** com **Fiscal Validador Anti-Piora
 
 ### Passo 1: Clonar o repositório
 ```powershell
-git clone https://github.com/SEU_USUARIO/Router-Tokens.git
+git clone https://github.com/jtavares1973/Router-Tokens.git
 cd Router-Tokens
 pip install pytest hypothesis mcp
 ```
