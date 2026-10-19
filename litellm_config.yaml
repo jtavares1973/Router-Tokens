@@ -1,0 +1,79 @@
+# ==============================================================================
+# CONFIGURACAO CANONICA DO LITELLM PROXY - ESTACAO ZAMORA
+# POLITICA 90/10 + NVIDIA GEFORCE RTX 5090 (32 GB GDDR7) + OLLAMA LOCAL
+# ==============================================================================
+
+model_list:
+  # ----------------------------------------------------------------------------
+  # DEGRAU 1: EXECUTOR PRINCIPAL LOCAL (RTX 5090 - CUSTO ZERO, >= 90% DO VOLUME)
+  # ----------------------------------------------------------------------------
+  - model_name: zamora-executor-local
+    litellm_params:
+      model: ollama_chat/qwen2.5-coder:32b
+      api_base: http://127.0.0.1:11434
+      max_tokens: 4096
+      temperature: 0.1
+
+  - model_name: zamora-executor-7b
+    litellm_params:
+      model: ollama_chat/qwen2.5-coder:7b
+      api_base: http://127.0.0.1:11434
+      max_tokens: 2048
+      temperature: 0.1
+
+  # ----------------------------------------------------------------------------
+  # DEGRAU 2: AGENTICOS ECONOMICOS NO OLLAMA (PONTES DE NUVEM A CUSTO ZERO)
+  # ----------------------------------------------------------------------------
+  - model_name: zamora-agentic-deepseek
+    litellm_params:
+      model: ollama_chat/deepseek-v4.1-flash:cloud
+      api_base: http://127.0.0.1:11434
+      temperature: 0.2
+
+  - model_name: zamora-agentic-glm
+    litellm_params:
+      model: ollama_chat/glm-5.3:cloud
+      api_base: http://127.0.0.1:11434
+      temperature: 0.2
+
+  - model_name: zamora-agentic-glm-flash
+    litellm_params:
+      model: ollama_chat/glm-5.3-flash:cloud
+      api_base: http://127.0.0.1:11434
+      temperature: 0.2
+
+  # ----------------------------------------------------------------------------
+  # DEGRAU 3: ESCUDO DE NUVEM RAPIDO E ECONOMICO (GEMINI FLASH)
+  # ----------------------------------------------------------------------------
+  - model_name: zamora-nuvem-flash
+    litellm_params:
+      model: gemini/gemini-2.5-flash
+      api_key: os.environ/GEMINI_API_KEY
+      temperature: 0.2
+
+  # ----------------------------------------------------------------------------
+  # DEGRAU 4: ORQUESTRADOR CHEFE DE CUPULA (ARGON / PRO / OPUS - MAXIMO 10%)
+  # ----------------------------------------------------------------------------
+  - model_name: zamora-orquestrador-chefe
+    litellm_params:
+      model: gemini/gemini-2.5-pro
+      api_key: os.environ/GEMINI_API_KEY
+      temperature: 0.1
+
+# ------------------------------------------------------------------------------
+# CONFIGURACOES DO ROTEADOR E REGRAS DE REDUNDANCIA (FALLBACKS)
+# ------------------------------------------------------------------------------
+router_settings:
+  routing_strategy: "latency-based-routing"
+  num_retries: 2
+  timeout: 45
+  fallbacks:
+    - zamora-executor-local: ["zamora-agentic-deepseek", "zamora-agentic-glm"]
+    - zamora-agentic-deepseek: ["zamora-agentic-glm", "zamora-nuvem-flash"]
+
+# ------------------------------------------------------------------------------
+# PARAMETROS GERAIS DO PROXY LOCAL
+# ------------------------------------------------------------------------------
+general_settings:
+  master_key: "sk-zamora-pericial-5090"
+  database_url: null
