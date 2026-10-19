@@ -1,0 +1,59 @@
+{
+  "estacao": "ZAMORA",
+  "hardware": "NVIDIA GeForce RTX 5090 (32 GB GDDR7)",
+  "modelo_utilizado": "qwen2.5-coder:32b via LiteLLM Proxy:4000",
+  "metricas": {
+    "total_tokens_locais": 775,
+    "tokens_nuvem_consumidos": 0,
+    "economia_percentual_tokens": 100.0,
+    "custo_real_usd": 0.0,
+    "economia_opus_usd": 0.038805,
+    "economia_opus_brl": 0.22700924999999997,
+    "economia_argon_usd": 0.0058835,
+    "economia_argon_brl": 0.034418475
+  },
+  "casos_auditados": [
+    {
+      "caso": "Caso 1: Validador Matemático de Dígitos Verificadores de CPF",
+      "tempo_ms": 4884,
+      "tokens_entrada": 100,
+      "tokens_saida": 304,
+      "tokens_total": 404,
+      "ast_valida": true,
+      "assert_aprovado": true,
+      "erro": "",
+      "custo_real_pago_usd": 0.0,
+      "custo_evitado_opus_usd": 0.0243,
+      "custo_evitado_argon_usd": 0.003542,
+      "codigo_gerado": "def validar_cpf(cpf: str) -> bool:\n    # Remove caracteres não numéricos\n    cpf = ''.join(filter(str.isdigit, cpf))\n    \n    # Verifica se o CPF tem 11 dígitos\n    if len(cpf) != 11:\n        return False\n    \n    # Verifica se todos os dígitos são i..."
+    },
+    {
+      "caso": "Caso 2: Extrator Regex de Boletins de Ocorrência Policial",
+      "tempo_ms": 1902,
+      "tokens_entrada": 99,
+      "tokens_saida": 120,
+      "tokens_total": 219,
+      "ast_valida": true,
+      "assert_aprovado": true,
+      "erro": "",
+      "custo_real_pago_usd": 0.0,
+      "custo_evitado_opus_usd": 0.010485,
+      "custo_evitado_argon_usd": 0.0016065,
+      "codigo_gerado": "import re\n\ndef extrair_numero_bo(texto: str) -> str:\n    # Define o padrão regex para encontrar o número de ocorrência no formato 'NNNNN/AAAA'\n    padrao = r'\\b\\d{5}/\\d{4}\\b'\n    # Busca o padrão no texto fornecido\n    match = re.search(padrao, texto..."
+    },
+    {
+      "caso": "Caso 3: Normalizador de Matrícula e Sanitização de Dados",
+      "tempo_ms": 499,
+      "tokens_entrada": 123,
+      "tokens_saida": 29,
+      "tokens_total": 152,
+      "ast_valida": true,
+      "assert_aprovado": true,
+      "erro": "",
+      "custo_real_pago_usd": 0.0,
+      "custo_evitado_opus_usd": 0.00402,
+      "custo_evitado_argon_usd": 0.000735,
+      "codigo_gerado": "def formatar_matricula(num: int) -> str:\n    return f'POL-{num:08d}'"
+    }
+  ]
+}
