@@ -321,6 +321,43 @@ def test_17_bloqueio_falso_positivo_erro_infraestrutura_e_transporte():
     assert "REPROVADO_ERRO_INFRAESTRUTURA" in msg2
 
 
+# ==============================================================================
+# 9. TESTES DE AUDITORIA FORENSE VERSÃO 1.2 (CHANCELA OPUS 5.5)
+# ==============================================================================
+def test_18_portao_zero_com_payload_misto_bloco_e_erro():
+    """
+    Versão 1.2 (Ponto 1): Garante que texto misto (WinError + bloco de código markdown)
+    é barrado NO PORTÃO ZERO incondicional, antes mesmo de compilar a AST.
+    """
+    texto_misto = (
+        "Erro de transporte: [WinError 10061] Nenhuma conexão pôde ser feita\n"
+        "```python\ndef funcao_inutil():\n    return 42\n```"
+    )
+    aprovado, msg = validar_codigo_python(texto_misto)
+    assert aprovado is False
+    assert "REPROVADO_ERRO_INFRAESTRUTURA" in msg
+
+
+def test_19_contrato_semantico_status_execucao_v12():
+    """
+    Versão 1.2 (Ponto 3): Garante que delegações diretas externas não marcam sucesso=True.
+    """
+    res = executar_roteamento("Arquitetura de sistema distribuído", arquivos_envolvidos=6)
+    assert res.status_execucao == "ROTEADO_EXTERNO_DEGRAU_4"
+    assert res.sucesso is False
+    assert res.resposta == ""
+
+
+def test_20_desacoplamento_resposta_em_falha_transporte():
+    """
+    Versão 1.2 (Ponto 2): Garante que quando o transporte falha, o campo resposta fica vazio.
+    """
+    res_falha = executar_roteamento("Função teste", simular_falha_local=True)
+    # Na simulação de falha de código, o fiscal barrou
+    assert res_falha.sucesso is False
+    assert "REPROVADO" in res_falha.validacao_deterministica
+
+
 if __name__ == "__main__":
     sys.exit(pytest.main([__file__, "-v", "-s"]))
 

@@ -55,12 +55,14 @@ class ResultadoDecisaoGEV:
     modo_sistema: str
     tempo_ms: int
     modelo_decisor: str
+    diagnostico_erro: Optional[str] = None
 
 
 @dataclass
 class ResultadoRoteamento:
-    """Estrutura auditável de retorno do Router-Tokens."""
+    """Estrutura auditável de retorno do Router-Tokens (Versão 1.2)."""
     sucesso: bool
+    status_execucao: str
     camada_acionada: str
     motor_utilizado: str
     modelo_utilizado: str
@@ -74,6 +76,7 @@ class ResultadoRoteamento:
     tokens_saida: int
     custo_estimado_usd: float
     resposta: str
+    versao_motor: str = "1.2"
 
 
 # =====================================================================================
@@ -140,10 +143,14 @@ def decidir_gev_lite(
                 idx = 0
                 conf = 0.50
                 modo = "fallback_deterministico"
-    except Exception:
+    except Exception as exc:
         idx = 0
         conf = 0.50
         modo = "fallback_offline"
+        diag_erro = f"{type(exc).__name__}: {exc}"
+        sys.stderr.write(f"[AVISO_GEV_LITE] Falha no motor de decisão ({diag_erro}). Contingência offline acionada.\n")
+    else:
+        diag_erro = None
 
     tempo_ms = int((time.perf_counter() - t0) * 1000)
     return ResultadoDecisaoGEV(
@@ -154,6 +161,7 @@ def decidir_gev_lite(
         modo_sistema=modo,
         tempo_ms=tempo_ms,
         modelo_decisor=modelo_gev,
+        diagnostico_erro=diag_erro,
     )
 
 
@@ -367,28 +375,29 @@ def validar_codigo_python(
     codigo_original_referencia: Optional[str] = None,
 ) -> Tuple[bool, str]:
     """
-    Portão Determinístico Anti-Piora de Código (Fiscal 1 — 0 ms):
+    Portão Determinístico Anti-Piora de Código (Fiscal 1 — Versão 1.2 com Portão Zero):
     1. Garante que não é vazio;
-    2. Detecta corrupção de acentuação (Mojibake UTF-8/Latin-1);
+    2. Portão Zero Incondicional: barra falhas de infraestrutura e corrupção de acentuação no texto bruto;
     3. Trava Anti-Mutilação: barra códigos com '# ... resto do código' ou perda de funções originais;
     4. Compila AST (`ast.parse`);
-    5. Bloqueia `input()` interativo e comandos destrutivos de disco (`rmtree`, `remove`, `unlink`, `system`);
-    6. Executa asserções com disjuntor de tempo contra loop infinito (`while True`).
+    5. Bloqueia `input()` interativo e comandos destrutivos de disco;
+    6. Executa asserções com disjuntor de tempo contra loop infinito.
     """
     if not isinstance(texto_resposta, str) or not texto_resposta.strip():
         return False, "REPROVADO: Resposta vazia gerada pelo modelo."
 
-    # Trava 1: Detector de Mojibake (acentuação corrompida)
+    # Portão Zero Incondicional: Barramento absoluto antes de qualquer extração de bloco
+    texto_lower = str(texto_resposta).lower()
+    for erro_infra in PADROES_ERRO_INFRAESTRUTURA:
+        if erro_infra in texto_lower:
+            return False, f"REPROVADO_ERRO_INFRAESTRUTURA: Resposta contém falha de transporte ou erro de socket ('{erro_infra}')."
+
     for moj in PADROES_MOJIBAKE:
         if moj in texto_resposta:
             return False, f"REPROVADO_ENCODING: Detectada corrupção de acentuação ('{moj}') na resposta."
 
     codigo = extrair_bloco_python(texto_resposta)
     if not codigo:
-        texto_lower = str(texto_resposta).lower()
-        for erro_infra in PADROES_ERRO_INFRAESTRUTURA:
-            if erro_infra in texto_lower:
-                return False, f"REPROVADO_ERRO_INFRAESTRUTURA: Resposta contém falha de transporte ou erro de socket ('{erro_infra}')."
         if exigir_codigo_python or codigo_teste_assert:
             return False, "REPROVADO_SEM_CODIGO: A tarefa exigia código Python executável, mas nenhum bloco foi encontrado."
         return True, "APROVADO_TEXTO: Resposta textual validada."
@@ -455,8 +464,8 @@ def chamar_ollama(
     modelo: str = "deepseek-v4.1-flash:cloud",
     temperatura: float = 0.0,
     timeout_seg: int = 60,
-    max_tentativas: int = 2,
-    recuo_base_ms: int = 250,
+    max_tentativas: int = 3,
+    recuo_base_ms: int = 1500,
 ) -> Tuple[bool, str, int, int]:
     """Executa inferência no servidor Ollama (porta 11434 — RTX 5090 Local ou Cloud) com resiliência e retentativas."""
     carga = {
@@ -518,7 +527,8 @@ def executar_roteamento(
     if camada in ("DEGRAU_4_ARGON_ORQUESTRADOR", "CAMADA_B_ORQUESTRADOR"):
         tempo_total = int((time.perf_counter() - inicio) * 1000)
         res = ResultadoRoteamento(
-            sucesso=True,
+            sucesso=False,
+            status_execucao="ROTEADO_EXTERNO_DEGRAU_4",
             camada_acionada="DEGRAU_4_ARGON_ORQUESTRADOR",
             motor_utilizado="Orquestrador Chefe Argon",
             modelo_utilizado="gemini-4-argon",
@@ -526,12 +536,12 @@ def executar_roteamento(
             validacao_deterministica="ESCALONADO_DIRETO_DEGRAU_4",
             submeter_ao_38_flash=False,
             submeter_ao_argon=True,
-            diagnostico_escalonamento="Tarefa crítica/arquitetural (>=5 arquivos) enviada direto ao Orquestrador Argon.",
+            diagnostico_escalonamento="Tarefa crítica/arquitetural (>=5 arquivos) delegada ao Orquestrador Argon.",
             tempo_ms=tempo_total,
             tokens_entrada=0,
             tokens_saida=0,
             custo_estimado_usd=0.0,
-            resposta="Submissão direta ao Orquestrador Argon.",
+            resposta="",
         )
         registrar_auditoria(res)
         return res
@@ -540,7 +550,8 @@ def executar_roteamento(
     if camada == "DEGRAU_3_GEMINI_38_FLASH":
         tempo_total = int((time.perf_counter() - inicio) * 1000)
         res = ResultadoRoteamento(
-            sucesso=True,
+            sucesso=False,
+            status_execucao="ROTEADO_EXTERNO_DEGRAU_3",
             camada_acionada="DEGRAU_3_GEMINI_38_FLASH",
             motor_utilizado="Escudo Intermediário 3.8 Flash",
             modelo_utilizado="gemini-3.8-flash",
@@ -548,12 +559,12 @@ def executar_roteamento(
             validacao_deterministica="ESCALONADO_DIRETO_DEGRAU_3",
             submeter_ao_38_flash=True,
             submeter_ao_argon=False,
-            diagnostico_escalonamento="Tarefa multiarquivo moderada (3-4 arquivos) encaminhada ao 3.8 Flash (poupando o Argon).",
+            diagnostico_escalonamento="Tarefa multiarquivo moderada (3-4 arquivos) delegada ao 3.8 Flash.",
             tempo_ms=tempo_total,
             tokens_entrada=0,
             tokens_saida=0,
             custo_estimado_usd=0.0,
-            resposta="Submissão ao Gemini 3.8 Flash.",
+            resposta="",
         )
         registrar_auditoria(res)
         return res
@@ -610,6 +621,7 @@ def executar_roteamento(
                 tempo_total = int((time.perf_counter() - inicio) * 1000)
                 res_rec = ResultadoRoteamento(
                     sucesso=True,
+                    status_execucao="RECUPERADO_NO_DEGRAU_2",
                     camada_acionada=f"{camada} -> DEGRAU_2_DEEPSEEK_763B",
                     motor_utilizado=f"{motor_usado} -> DeepSeek 763B",
                     modelo_utilizado=f"{modelo_usado} -> deepseek-v4.1-flash:cloud",
@@ -630,8 +642,12 @@ def executar_roteamento(
     # Se ainda reprovou -> Sobe para o Degrau 3 (3.8 Flash) e sinaliza para o Orquestrador (Degrau 4 Argon)!
     if not aprovado:
         tempo_total = int((time.perf_counter() - inicio) * 1000)
+        # Se houve falha de transporte físico, limpa o campo de resposta desacoplando o erro
+        resposta_final = "" if not ok else resp
+        status_final = "FALHA_TRANSPORTE" if not ok else "REPROVADO_FISCAL"
         res_falha = ResultadoRoteamento(
             sucesso=False,
+            status_execucao=status_final,
             camada_acionada=f"{camada} -> ESCALONADO_DEGRAU_3_E_4",
             motor_utilizado=motor_usado,
             modelo_utilizado=modelo_usado,
@@ -640,14 +656,14 @@ def executar_roteamento(
             submeter_ao_38_flash=True,
             submeter_ao_argon=True,
             diagnostico_escalonamento=(
-                f"FISCAL BARROU [{msg_validacao}]. Circuito local cortado sem loop. "
+                f"FISCAL/TRANSPORTE BARROU [{msg_validacao}]. Circuito local cortado sem loop. "
                 "Acionando Degrau 3 (3.8 Flash) / Degrau 4 (Argon)."
             ),
             tempo_ms=tempo_total,
             tokens_entrada=t_in,
             tokens_saida=t_out,
             custo_estimado_usd=0.0,
-            resposta=resp,
+            resposta=resposta_final,
         )
         registrar_auditoria(res_falha)
         return res_falha
@@ -655,6 +671,7 @@ def executar_roteamento(
     tempo_total = int((time.perf_counter() - inicio) * 1000)
     res_ok = ResultadoRoteamento(
         sucesso=True,
+        status_execucao="EXECUTADO_LOCAL",
         camada_acionada=camada,
         motor_utilizado=motor_usado,
         modelo_utilizado=modelo_usado,
