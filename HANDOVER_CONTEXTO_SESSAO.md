@@ -1,8 +1,8 @@
 # HANDOVER DE CONTEXTO DA SESSÃO — PROJETO `Router-Tokens`
 
-**Última Atualização:** 20/10/2026 às 11:05 (Horário de Brasília)  
+**Última Atualização:** 20/10/2026 às 11:21 (Horário de Brasília)  
 **Estação:** `ZAMORA` (AMD Ryzen 9 7950X | NVIDIA GeForce RTX 5090 32 GB GDDR7 | 64 GB RAM)  
-**Status Global:** **EXPANSÃO COGNITIVA CONCLUÍDA — MODELO RACIOCINADOR DEEPSEEK-R1 32B INTEGRADO NA RTX 5090 (64.8 TOKENS/S) + TRÍADE DE HOMOLOGAÇÃO 100% PRESERVADA (ZERO REGRESSÃO)**
+**Status Global:** **VERSÃO 1.0 CANÔNICA CONCLUÍDA — INSTITUCIONALIZADA COMO REGRA GLOBAL PERMANENTE + TRÍADE DE HOMOLOGAÇÃO 100% PRESERVADA (ZERO REGRESSÃO)**
 
 ---
 
@@ -54,5 +54,16 @@
 
 ---
 
-## 4. Parecer do Orquestrador Chefe (Argon / Opus 5.5)
-- Arquitetura híbrida de execução local na RTX 5090 (Operário Preditivo Rápido + Operário Raciocinador Profundo) aprovada com distinção institucional.
+## 4. Institucionalização como Regra Global e Portabilidade
+
+1. **Diretriz Canônica Global (`C:\Users\canin\.gemini\GEMINI.md`):**
+   - Seção 6 atualizada para incluir a Política 90/10 com o LiteLLM Proxy na porta 4000 e o duplo operário local (Qwen 32B e DeepSeek R1 32B).
+2. **Regra Global no Ecossistema (`C:\Users\canin\.gemini\config\rules\politica-90-10-rtx5090-litellm.md`):**
+   - Regra universal permanente que orienta todos os agentes e subagentes do Antigravity.
+3. **Inicializador de Um Clique:** [`iniciar_zamora.bat`](file:///d:/___SCRIPT/Router-Tokens/iniciar_zamora.bat) para subida imediata do serviço com blindagem UTF-8.
+4. **Perfil Portátil do Trabalho (RTX 5070 16 GB):** [`litellm_config_trabalho_16gb.yaml`](file:///d:/___SCRIPT/Router-Tokens/litellm_config_trabalho_16gb.yaml) calibrado para `deepseek-r1:14b` e `qwen2.5-coder:7b`.
+
+---
+
+## 5. Parecer do Orquestrador Chefe (Argon / Opus 5.5)
+- Arquitetura de Roteamento Inteligente 90/10 chancelada em nível máximo de maturidade e simplicidade operacional.

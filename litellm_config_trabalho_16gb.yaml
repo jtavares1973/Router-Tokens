@@ -1,0 +1,82 @@
+# ==============================================================================
+# CONFIGURACAO CANONICA DO LITELLM PROXY - ESTACAO DO TRABALHO (RTX 5070 16 GB)
+# POLITICA 90/10 + NVIDIA GEFORCE RTX 5070 (16 GB GDDR7) + OLLAMA LOCAL
+# ==============================================================================
+
+model_list:
+  # ----------------------------------------------------------------------------
+  # DEGRAU 1: EXECUTORES LOCAIS (RTX 5070 - CUSTO ZERO, >= 90% DO VOLUME)
+  # ----------------------------------------------------------------------------
+  - model_name: zamora-raciocinador-14b
+    litellm_params:
+      model: ollama_chat/deepseek-r1:14b
+      api_base: http://127.0.0.1:11434
+      max_tokens: 2048
+      temperature: 0.6
+
+  - model_name: zamora-executor-local
+    litellm_params:
+      model: ollama_chat/qwen2.5-coder:14b
+      api_base: http://127.0.0.1:11434
+      max_tokens: 1024
+      temperature: 0.1
+
+  - model_name: zamora-executor-7b
+    litellm_params:
+      model: ollama_chat/qwen2.5-coder:7b
+      api_base: http://127.0.0.1:11434
+      max_tokens: 512
+      temperature: 0.1
+
+  # ----------------------------------------------------------------------------
+  # DEGRAU 2: AGENTICOS ECONOMICOS NO OLLAMA (PONTES DE NUVEM A CUSTO ZERO)
+  # ----------------------------------------------------------------------------
+  - model_name: zamora-agentic-deepseek
+    litellm_params:
+      model: ollama_chat/deepseek-v4.1-flash:cloud
+      api_base: http://127.0.0.1:11434
+      max_tokens: 1536
+      temperature: 0.2
+
+  - model_name: zamora-agentic-glm
+    litellm_params:
+      model: ollama_chat/glm-5.3:cloud
+      api_base: http://127.0.0.1:11434
+      max_tokens: 1536
+      temperature: 0.2
+
+  # ----------------------------------------------------------------------------
+  # DEGRAU 3: ESCUDO DE NUVEM RAPIDO E ECONOMICO (GEMINI FLASH)
+  # ----------------------------------------------------------------------------
+  - model_name: zamora-shield-flash
+    litellm_params:
+      model: gemini/gemini-2.5-flash
+      api_key: os.environ/GEMINI_API_KEY
+      max_tokens: 2048
+      temperature: 0.1
+
+  # ----------------------------------------------------------------------------
+  # DEGRAU 4: ORQUESTRADOR CHEFE (ARGON / OPUS - TETO MAXIMO DE 10%)
+  # ----------------------------------------------------------------------------
+  - model_name: zamora-orquestrador-chefe
+    litellm_params:
+      model: gemini/gemini-2.5-pro
+      api_key: os.environ/GEMINI_API_KEY
+      max_tokens: 4096
+      temperature: 0.1
+
+litellm_settings:
+  drop_params: true
+  set_verbose: false
+  request_timeout: 120
+  num_retries: 2
+  telemetry: false
+
+router_settings:
+  routing_strategy: latency-based-routing
+  routing_strategy_args:
+    ttl: 300
+
+general_settings:
+  master_key: "sk-zamora-pericial-5090"
+  store_model_in_db: false
