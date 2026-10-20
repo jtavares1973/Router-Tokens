@@ -302,6 +302,25 @@ def test_16_disjuntor_contra_loop_infinito():
     assert "REPROVADO_LOOP_INFINITO" in msg
 
 
+# ==============================================================================
+# 8. TRAVA ANTI-FALSO POSITIVO (CONDICIONANTE OPUS 5.5 / ARGON HOMOLOGADA)
+# ==============================================================================
+def test_17_bloqueio_falso_positivo_erro_infraestrutura_e_transporte():
+    """
+    Condicionante Opus 5.5: Impede que erros de transporte/socket do sistema operacional
+    sejam mascarados como sucesso ('APROVADO_TEXTO') em tarefas de normalização ou texto livre.
+    """
+    erro_socket = "Erro no LM Studio: <urlopen error [WinError 10061] Nenhuma conexão pôde ser feita>"
+    aprovado, msg = validar_codigo_python(erro_socket)
+    assert aprovado is False
+    assert "REPROVADO_ERRO_INFRAESTRUTURA" in msg
+
+    erro_ollama = "Erro no Ollama: Connection refused by host"
+    aprovado2, msg2 = validar_codigo_python(erro_ollama)
+    assert aprovado2 is False
+    assert "REPROVADO_ERRO_INFRAESTRUTURA" in msg2
+
+
 if __name__ == "__main__":
     sys.exit(pytest.main([__file__, "-v", "-s"]))
 

@@ -2,7 +2,7 @@
 """
 Motor de Roteamento Inteligente de Modelos — Estação ZAMORA (Política 90/10 + GEV-Lite)
 Conecta:
-- Degrau 1: Placa de Vídeo Local RTX 5090 (LM Studio 1234 / Ollama 11434: Qwen 7B, 27B, 32B)
+- Degrau 1: Placa de Vídeo Local RTX 5090 (Ollama 11434: Qwen 7B, 27B, 32B e DeepSeek R1 32B)
 - Degrau 2: DeepSeek V4.1 763B (Ollama Cloud)
 - Degrau 3: Gemini 3.8 Flash (Escudo Rápido de Baixo Custo)
 - Degrau 4: Gemini 4 Argon (Orquestrador Chefe - Camada B)
@@ -28,8 +28,7 @@ if hasattr(sys.stdout, "reconfigure"):
     except Exception:
         pass
 
-# Endereços dos servidores ativos na Estação ZAMORA
-URL_LM_STUDIO = "http://127.0.0.1:1234/v1/chat/completions"
+# Endereços dos servidores ativos na Estação ZAMORA (Soberania Ollama Local RTX 5090)
 URL_OLLAMA_CHAT = "http://127.0.0.1:11434/api/chat"
 URL_OLLAMA_GENERATE = "http://127.0.0.1:11434/api/generate"
 DIRETORIO_LOGS = Path(__file__).resolve().parent / "_entrega"
@@ -311,6 +310,21 @@ PADROES_PREGUICA_MUTILACAO = (
 
 PADROES_MOJIBAKE = ("Ã£", "Ã§", "Ã©", "Ã¡", "Ã³", "Ãº", "Ãª", "Ã´", "\ufffd")
 
+PADROES_ERRO_INFRAESTRUTURA = (
+    "[winerror ",
+    "urlopen error",
+    "connection refused",
+    "nenhuma conexão",
+    "conexão recusada",
+    "erro no ollama",
+    "erro no lm studio",
+    "traceback (most recent call last)",
+    "http error 5",
+    "http error 4",
+    "service unavailable",
+    "falha de transporte",
+)
+
 CHAMADAS_DESTRUTIVAS_PROIBIDAS = {
     "remove",
     "unlink",
@@ -371,6 +385,10 @@ def validar_codigo_python(
 
     codigo = extrair_bloco_python(texto_resposta)
     if not codigo:
+        texto_lower = str(texto_resposta).lower()
+        for erro_infra in PADROES_ERRO_INFRAESTRUTURA:
+            if erro_infra in texto_lower:
+                return False, f"REPROVADO_ERRO_INFRAESTRUTURA: Resposta contém falha de transporte ou erro de socket ('{erro_infra}')."
         if exigir_codigo_python or codigo_teste_assert:
             return False, "REPROVADO_SEM_CODIGO: A tarefa exigia código Python executável, mas nenhum bloco foi encontrado."
         return True, "APROVADO_TEXTO: Resposta textual validada."
@@ -432,49 +450,15 @@ def validar_com_juiz_gev_lite(tarefa: str, resposta_gerada: str) -> ResultadoDec
 # =====================================================================================
 # 4. CONECTORES DE EXECUÇÃO E ESCADA DE 4 DEGRAUS
 # =====================================================================================
-def chamar_lm_studio(
-    instrucao: str,
-    modelo: str = "qwen2.5-coder-7b-instruct",
-    temperatura: float = 0.0,
-    timeout_seg: int = 15,
-) -> Tuple[bool, str, int, int]:
-    """Executa inferência local a custo zero no servidor LM Studio (porta 1234)."""
-    carga = {
-        "model": modelo,
-        "messages": [
-            {
-                "role": "system",
-                "content": "Você é um executor cirúrgico de código da Estação ZAMORA. Responda sempre em Português Brasileiro. Entregue código limpo, enxuto e funcional.",
-            },
-            {"role": "user", "content": str(instrucao)},
-        ],
-        "temperature": temperatura,
-        "max_tokens": 1024,
-    }
-    dados = json.dumps(carga).encode("utf-8")
-    req = urllib.request.Request(
-        URL_LM_STUDIO,
-        data=dados,
-        headers={"Content-Type": "application/json"},
-        method="POST",
-    )
-    try:
-        with urllib.request.urlopen(req, timeout=timeout_seg) as resp:
-            corpo = json.loads(resp.read().decode("utf-8"))
-            conteudo = corpo["choices"][0]["message"]["content"]
-            uso = corpo.get("usage", {})
-            return True, conteudo, int(uso.get("prompt_tokens", 0)), int(uso.get("completion_tokens", 0))
-    except Exception as erro:
-        return False, f"Erro no LM Studio: {erro}", 0, 0
-
-
 def chamar_ollama(
     instrucao: str,
     modelo: str = "deepseek-v4.1-flash:cloud",
     temperatura: float = 0.0,
     timeout_seg: int = 60,
+    max_tentativas: int = 2,
+    recuo_base_ms: int = 250,
 ) -> Tuple[bool, str, int, int]:
-    """Executa inferência no servidor Ollama (porta 11434 — modelos locais RTX 5090 ou Ollama Cloud)."""
+    """Executa inferência no servidor Ollama (porta 11434 — RTX 5090 Local ou Cloud) com resiliência e retentativas."""
     carga = {
         "model": modelo,
         "messages": [
@@ -488,21 +472,28 @@ def chamar_ollama(
         "options": {"temperature": temperatura},
     }
     dados = json.dumps(carga).encode("utf-8")
-    req = urllib.request.Request(
-        URL_OLLAMA_CHAT,
-        data=dados,
-        headers={"Content-Type": "application/json"},
-        method="POST",
-    )
-    try:
-        with urllib.request.urlopen(req, timeout=timeout_seg) as resp:
-            corpo = json.loads(resp.read().decode("utf-8"))
-            conteudo = corpo.get("message", {}).get("content", "")
-            tokens_in = int(corpo.get("prompt_eval_count", 0))
-            tokens_out = int(corpo.get("eval_count", 0))
-            return True, conteudo, tokens_in, tokens_out
-    except Exception as erro:
-        return False, f"Erro no Ollama ({modelo}): {erro}", 0, 0
+    ultimo_erro = ""
+
+    for tentativa in range(1, max_tentativas + 1):
+        req = urllib.request.Request(
+            URL_OLLAMA_CHAT,
+            data=dados,
+            headers={"Content-Type": "application/json"},
+            method="POST",
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=timeout_seg) as resp:
+                corpo = json.loads(resp.read().decode("utf-8"))
+                conteudo = corpo.get("message", {}).get("content", "")
+                tokens_in = int(corpo.get("prompt_eval_count", 0))
+                tokens_out = int(corpo.get("eval_count", 0))
+                return True, conteudo, tokens_in, tokens_out
+        except Exception as erro:
+            ultimo_erro = str(erro)
+            if tentativa < max_tentativas:
+                time.sleep((recuo_base_ms * tentativa) / 1000.0)
+
+    return False, f"Erro no Ollama ({modelo}) após {max_tentativas} tentativas: {ultimo_erro}", 0, 0
 
 
 def executar_roteamento(
@@ -569,23 +560,36 @@ def executar_roteamento(
 
     # Degrau 1 ou Degrau 2
     if camada in ("DEGRAU_2_DEEPSEEK_763B", "CAMADA_C_ESPECIALISTA"):
-        ok, resp, t_in, t_out = chamar_ollama(instrucao=instrucao, modelo="deepseek-v4.1-flash:cloud")
+        ok, resp, t_in, t_out = chamar_ollama(
+            instrucao=instrucao,
+            modelo="deepseek-v4.1-flash:cloud",
+            max_tentativas=2,
+            timeout_seg=60,
+        )
         motor_usado = "Ollama Cloud (DeepSeek 763B)"
         modelo_usado = "deepseek-v4.1-flash:cloud"
     else:
-        ok, resp, t_in, t_out = chamar_ollama(instrucao=instrucao, modelo="qwen2.5-coder:7b")
+        ok, resp, t_in, t_out = chamar_ollama(
+            instrucao=instrucao,
+            modelo="qwen2.5-coder:7b",
+            max_tentativas=2,
+            timeout_seg=25,
+        )
         motor_usado = "Ollama Local RTX 5090"
         modelo_usado = "qwen2.5-coder:7b"
-        if not ok:
-            ok, resp, t_in, t_out = chamar_lm_studio(instrucao=instrucao, modelo="qwen2.5-coder-7b-instruct")
-            motor_usado = "LM Studio Local RTX 5090"
-            modelo_usado = "qwen2.5-coder-7b-instruct"
 
     if simular_falha_local:
         resp = "```python\ndef funcao_quebrada(\n    return 123\n```"
+        ok = True
 
-    # Fiscal Validador 1 (Portão Determinístico AST + Assert)
-    aprovado, msg_validacao = validar_codigo_python(resp, codigo_teste_assert)
+    # Trava Mandatória de Transporte Anti-Falso Positivo:
+    # Se a chamada de rede falhou, NUNCA submete o texto de erro ao validador sintático
+    if not ok:
+        aprovado = False
+        msg_validacao = f"FALHA_TRANSPORTE_LOCAL: {resp}"
+    else:
+        # Fiscal Validador 1 (Portão Determinístico AST + Assert + Anti-Infraestrutura)
+        aprovado, msg_validacao = validar_codigo_python(resp, codigo_teste_assert)
 
     # Se o Degrau 1 (RTX 5090) falhou e NÃO é simulação forçada de falha total -> Sobe para o Degrau 2 (DeepSeek 763B)
     if not aprovado and modelo_usado != "deepseek-v4.1-flash:cloud" and not simular_falha_local:
