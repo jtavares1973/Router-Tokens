@@ -1,0 +1,26 @@
+{
+  "data": "2026-10-20 11:02:45",
+  "desafio": "Reconciliação com janela temporal deslizante e empate de menor delta t",
+  "qwen2_5_coder_32b": {
+    "duracao_s": 8.09705810000014,
+    "tokens": 273,
+    "tps": 39.37775076307013,
+    "valido_ast": true,
+    "teste_funcional": {
+      "sucesso": true,
+      "motivo": "Todos os testes de casos de borda foram aprovados com sucesso!"
+    }
+  },
+  "deepseek_r1_32b": {
+    "duracao_s": 26.94422950000444,
+    "tokens": 1111,
+    "tps": 64.77890103964597,
+    "pensamento_presente": true,
+    "resumo_pensamento": "\nOkay, I need to write a Python function called reconciliar_transacoes that takes two lists of dictionaries, extrato_a and extrato_b, and a tolerance in seconds. The goal is to match transactions from each list that have the same absolute value and their timestamps are within the tolerance window. E",
+    "valido_ast": true,
+    "teste_funcional": {
+      "sucesso": true,
+      "motivo": "Todos os testes de casos de borda foram aprovados com sucesso!"
+    }
+  }
+}

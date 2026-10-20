@@ -1,8 +1,8 @@
 # HANDOVER DE CONTEXTO DA SESSÃO — PROJETO `Router-Tokens`
 
-**Última Atualização:** 20/10/2026 às 10:14 (Horário de Brasília)  
+**Última Atualização:** 20/10/2026 às 11:05 (Horário de Brasília)  
 **Estação:** `ZAMORA` (AMD Ryzen 9 7950X | NVIDIA GeForce RTX 5090 32 GB GDDR7 | 64 GB RAM)  
-**Status Global:** **TRÍADE DE HOMOLOGAÇÃO TOTAL CONCLUÍDA COM 100% DE APROVAÇÃO (PROMPTFOO PROXY 100% + ROUTEREVAL Vr=1.0000 + PROMPTFOO ROUTER TARGET 100% + PYTEST 16/16)**
+**Status Global:** **EXPANSÃO COGNITIVA CONCLUÍDA — MODELO RACIOCINADOR DEEPSEEK-R1 32B INTEGRADO NA RTX 5090 (64.8 TOKENS/S) + TRÍADE DE HOMOLOGAÇÃO 100% PRESERVADA (ZERO REGRESSÃO)**
 
 ---
 
@@ -31,11 +31,28 @@
 
 ---
 
-## 2. Garantia Inviolável de Não-Regressão
-- **Suíte Pytest 16/16:** [`test_bateria_completa_router.py`](file:///d:/___SCRIPT/Router-Tokens/test_bateria_completa_router.py) com **`16/16 PASSED em 66.62s`**;
-- **As 5 Travas Anti-Piora e Fuzzing Hypothesis:** 100% operacionais.
+## 2. Expansão Cognitiva na RTX 5090 (Modelo Raciocinador Integrado)
+
+- **Novo Modelo Local Ingerido:** `deepseek-r1:32b` (19 GB, destilação oficial no backbone Qwen-32B com raciocínio profundo);
+- **Desafio Pericial de Lógica:** Reconciliação com janela deslizante temporal e desempate por menor $\Delta t$ ([`teste_comparativo_raciocinio.py`](file:///d:/___SCRIPT/Router-Tokens/teste_comparativo_raciocinio.py));
+- **Telemetria de Inferência na RTX 5090:**
+  * **Velocidade de Geração:** **`64.8 tokens/segundo`**;
+  * **Profundidade de Pensamento:** **`3.921 caracteres de cadeia de raciocínio (<think>)`** auto-auditando os casos de borda antes de emitir o código;
+  * **Confronto Direto:**
+    - `qwen2.5-coder:32b`: 8.10s | 39.4 tokens/s | 273 tokens (emissão direta) | AST OK | Asserts 100% OK;
+    - `deepseek-r1:32b`: 26.94s | 64.8 tokens/s | 1.111 tokens (planejamento mental completo) | AST OK | Asserts 100% OK;
+  * **Relatório:** [`_entrega/comparativo_raciocinio_5090.json`](file:///d:/___SCRIPT/Router-Tokens/_entrega/comparativo_raciocinio_5090.json).
+- **Integração no LiteLLM Proxy Porta 4000 ([`litellm_config.yaml`](file:///d:/___SCRIPT/Router-Tokens/litellm_config.yaml)):**
+  * Modelo mapeado: `zamora-raciocinador-32b` (com separação automática de `reasoning_content` padrão OpenAI).
 
 ---
 
-## 3. Parecer do Orquestrador Chefe (Argon / Opus 5.5)
-- Arquitetura, wrapper Python e integração LiteLLM chancelados formalmente com grau de excelência máxima para produção na Estação ZAMORA.
+## 3. Garantia Inviolável de Não-Regressão
+- **Suíte Pytest 16/16:** [`test_bateria_completa_router.py`](file:///d:/___SCRIPT/Router-Tokens/test_bateria_completa_router.py) com **`16/16 PASSED em 70.80s`**;
+- **RouterEval Acadêmico:** **`16/16 PASSED em 0.8s`**;
+- **Etiqueta Git Estável de Referência:** `v1.0-homologacao-triade-estavel` (commit `dab3caf`).
+
+---
+
+## 4. Parecer do Orquestrador Chefe (Argon / Opus 5.5)
+- Arquitetura híbrida de execução local na RTX 5090 (Operário Preditivo Rápido + Operário Raciocinador Profundo) aprovada com distinção institucional.

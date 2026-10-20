@@ -5,7 +5,7 @@
 
 model_list:
   # ----------------------------------------------------------------------------
-  # DEGRAU 1: EXECUTOR PRINCIPAL LOCAL (RTX 5090 - CUSTO ZERO, >= 90% DO VOLUME)
+  # DEGRAU 1: EXECUTORES LOCAIS (RTX 5090 - CUSTO ZERO, >= 90% DO VOLUME)
   # ----------------------------------------------------------------------------
   - model_name: zamora-executor-local
     litellm_params:
@@ -13,6 +13,13 @@ model_list:
       api_base: http://127.0.0.1:11434
       max_tokens: 1024
       temperature: 0.1
+
+  - model_name: zamora-raciocinador-32b
+    litellm_params:
+      model: ollama_chat/deepseek-r1:32b
+      api_base: http://127.0.0.1:11434
+      max_tokens: 2048
+      temperature: 0.6
 
   - model_name: zamora-executor-7b
     litellm_params:
