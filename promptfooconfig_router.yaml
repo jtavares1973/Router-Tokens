@@ -1,0 +1,60 @@
+# ==============================================================================
+# CONFIGURACAO PROMPTFOO PARA AVALIACAO DO ROTEADOR LOCAL (ROUTER_TARGET.PY)
+# VALIDA METADADOS DE ROTEAMENTO: LOCAL_GPU VS ANTIGRAVITY_CLOUD
+# ==============================================================================
+
+description: "Auditoria de Decisao de Roteamento Router-Tokens via Promptfoo"
+
+evaluateOptions:
+  maxConcurrency: 1
+
+providers:
+  - id: "python:router_target.py"
+    label: "Roteador Inteligente Estacao ZAMORA"
+
+tests:
+  # ----------------------------------------------------------------------------
+  # CASO 1: TAREFA SIMPLES LOCAL -> DEVE IR PARA A GPU LOCAL (LOCAL_GPU)
+  # ----------------------------------------------------------------------------
+  - vars:
+      prompt: "Escreva uma funcao Python def normalizar_cpf(cpf: str) -> str: que limpe caracteres especiais."
+      arquivos: 1
+    assert:
+      - type: javascript
+        value: "const d = JSON.parse(output); d.routed_to === 'local_gpu'"
+      - type: javascript
+        value: "const d = JSON.parse(output); d.economizou_nuvem === true"
+      - type: contains
+        value: "def normalizar_cpf"
+
+  # ----------------------------------------------------------------------------
+  # CASO 2: TAREFA MODERADA MULTIARQUIVO -> DEVE IR PARA O ESCUDO FLASH (ANTIGRAVITY_FAST)
+  # ----------------------------------------------------------------------------
+  - vars:
+      prompt: "Refatorar repositório moderado com 3 arquivos de regras de negócios."
+      arquivos: 3
+    assert:
+      - type: javascript
+        value: "const d = JSON.parse(output); d.routed_to === 'antigravity_fast'"
+
+  # ----------------------------------------------------------------------------
+  # CASO 3: TAREFA SISTEMICA COMPLEXA (>= 5 ARQUIVOS) -> DEVE IR AO ORQUESTRADOR ARGON
+  # ----------------------------------------------------------------------------
+  - vars:
+      prompt: "Arquitetura distribuída de microsserviços do sistema procedural em 6 módulos integrados."
+      arquivos: 6
+    assert:
+      - type: javascript
+        value: "const d = JSON.parse(output); d.routed_to === 'antigravity_cloud'"
+      - type: javascript
+        value: "const d = JSON.parse(output); d.modelo_utilizado.includes('argon')"
+
+  # ----------------------------------------------------------------------------
+  # CASO 4: ALGORITMO DENSO (2 ARQUIVOS) -> DEVE IR PARA O DEEPSEEK (AGENTIC_DEEPSEEK)
+  # ----------------------------------------------------------------------------
+  - vars:
+      prompt: "Desenvolva algoritmo complexo de programação dinâmica e cruzamento relacional forense."
+      arquivos: 2
+    assert:
+      - type: javascript
+        value: "const d = JSON.parse(output); d.routed_to === 'agentic_deepseek'"

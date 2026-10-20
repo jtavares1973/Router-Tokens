@@ -1,0 +1,733 @@
+{
+  "evalId": "eval-ATt-2026-10-20T13:12:04",
+  "results": {
+    "version": 3,
+    "timestamp": "2026-10-20T13:12:04.134Z",
+    "prompts": [
+      {
+        "id": "effa18501e44aafd9bc42a2f64ffc9b6350f94025520ca2ed382f9bdc4b6e982",
+        "raw": "{{prompt}}",
+        "label": "{{prompt}}",
+        "provider": "Roteador Inteligente Estacao ZAMORA",
+        "metrics": {
+          "score": 4,
+          "testPassCount": 4,
+          "testFailCount": 0,
+          "testErrorCount": 0,
+          "assertPassCount": 7,
+          "assertFailCount": 0,
+          "totalLatencyMs": 18182,
+          "tokenUsage": {
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "total": 0,
+            "numRequests": 4,
+            "completionDetails": {
+              "reasoning": 0,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0
+            },
+            "assertions": {
+              "total": 0,
+              "prompt": 0,
+              "completion": 0,
+              "cached": 0,
+              "numRequests": 0,
+              "completionDetails": {
+                "reasoning": 0,
+                "acceptedPrediction": 0,
+                "rejectedPrediction": 0,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0
+              }
+            }
+          },
+          "namedScores": {},
+          "namedScoresCount": {},
+          "namedScoreWeights": {},
+          "cost": 0
+        }
+      }
+    ],
+    "results": [
+      {
+        "cost": 0,
+        "gradingResult": {
+          "pass": true,
+          "score": 1,
+          "reason": "All assertions passed",
+          "namedScores": {},
+          "tokensUsed": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 0
+          },
+          "componentResults": [
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "javascript",
+                "value": "const d = JSON.parse(output); d.routed_to === 'local_gpu'"
+              }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "javascript",
+                "value": "const d = JSON.parse(output); d.economizou_nuvem === true"
+              }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "contains",
+                "value": "def normalizar_cpf"
+              }
+            }
+          ]
+        },
+        "id": "62ad4441-7f97-4f72-818a-0394f0055bb3",
+        "latencyMs": 1155,
+        "namedScores": {},
+        "prompt": {
+          "raw": "Escreva uma funcao Python def normalizar_cpf(cpf: str) -> str: que limpe caracteres especiais.",
+          "label": "{{prompt}}",
+          "config": {}
+        },
+        "promptId": "effa18501e44aafd9bc42a2f64ffc9b6350f94025520ca2ed382f9bdc4b6e982",
+        "promptIdx": 0,
+        "provider": {
+          "id": "python:router_target.py",
+          "label": "Roteador Inteligente Estacao ZAMORA"
+        },
+        "response": {
+          "output": "{\"resposta\": \"Claro, aqui está a função `normalizar_cpf` que limpa caracteres especiais de um CPF:\\n\\n```python\\ndef normalizar_cpf(cpf: str) -> str:\\n    # Remove todos os caracteres que não sejam dígitos\\n    cpf = ''.join(filter(str.isdigit, cpf))\\n    return cpf\\n\\n# Exemplo de uso:\\ncpf_limpo = normalizar_cpf(\\\"123.456-789\\\")\\nprint(cpf_limpo)  # Saída: 123456789\\n```\\n\\nEsta função usa a função `filter` para remover todos os caracteres que não são dígitos, garantindo que o CPF resultante contenha apenas números.\", \"routed_to\": \"local_gpu\", \"camada_oficial\": \"DEGRAU_1_RTX5090_LOCAL\", \"modelo_utilizado\": \"qwen2.5-coder:7b\", \"motor_utilizado\": \"Ollama Local RTX 5090\", \"sucesso\": true, \"validacao_deterministica\": \"APROVADO_SINTAXE: Árvore sintática Python (AST) e travas Anti-Piora validadas sem erros.\", \"tempo_ms\": 948, \"tokens_entrada\": 74, \"tokens_saida\": 154, \"custo_usd\": 0.0, \"economizou_nuvem\": true}",
+          "metadata": {
+            "resposta": "Claro, aqui está a função `normalizar_cpf` que limpa caracteres especiais de um CPF:\n\n```python\ndef normalizar_cpf(cpf: str) -> str:\n    # Remove todos os caracteres que não sejam dígitos\n    cpf = ''.join(filter(str.isdigit, cpf))\n    return cpf\n\n# Exemplo de uso:\ncpf_limpo = normalizar_cpf(\"123.456-789\")\nprint(cpf_limpo)  # Saída: 123456789\n```\n\nEsta função usa a função `filter` para remover todos os caracteres que não são dígitos, garantindo que o CPF resultante contenha apenas números.",
+            "routed_to": "local_gpu",
+            "camada_oficial": "DEGRAU_1_RTX5090_LOCAL",
+            "modelo_utilizado": "qwen2.5-coder:7b",
+            "motor_utilizado": "Ollama Local RTX 5090",
+            "sucesso": true,
+            "validacao_deterministica": "APROVADO_SINTAXE: Árvore sintática Python (AST) e travas Anti-Piora validadas sem erros.",
+            "tempo_ms": 948,
+            "tokens_entrada": 74,
+            "tokens_saida": 154,
+            "custo_usd": 0,
+            "economizou_nuvem": true
+          },
+          "cached": false
+        },
+        "score": 1,
+        "success": true,
+        "testCase": {
+          "vars": {
+            "prompt": "Escreva uma funcao Python def normalizar_cpf(cpf: str) -> str: que limpe caracteres especiais.",
+            "arquivos": 1
+          },
+          "assert": [
+            {
+              "type": "javascript",
+              "value": "const d = JSON.parse(output); d.routed_to === 'local_gpu'"
+            },
+            {
+              "type": "javascript",
+              "value": "const d = JSON.parse(output); d.economizou_nuvem === true"
+            },
+            {
+              "type": "contains",
+              "value": "def normalizar_cpf"
+            }
+          ],
+          "options": {},
+          "metadata": {}
+        },
+        "testIdx": 0,
+        "tokenUsage": {
+          "prompt": 0,
+          "completion": 0,
+          "cached": 0,
+          "total": 0,
+          "numRequests": 1,
+          "completionDetails": {
+            "reasoning": 0,
+            "acceptedPrediction": 0,
+            "rejectedPrediction": 0,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0
+          },
+          "assertions": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 0,
+            "completionDetails": {
+              "reasoning": 0,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0
+            }
+          }
+        },
+        "vars": {
+          "prompt": "Escreva uma funcao Python def normalizar_cpf(cpf: str) -> str: que limpe caracteres especiais.",
+          "arquivos": 1
+        },
+        "metadata": {
+          "resposta": "Claro, aqui está a função `normalizar_cpf` que limpa caracteres especiais de um CPF:\n\n```python\ndef normalizar_cpf(cpf: str) -> str:\n    # Remove todos os caracteres que não sejam dígitos\n    cpf = ''.join(filter(str.isdigit, cpf))\n    return cpf\n\n# Exemplo de uso:\ncpf_limpo = normalizar_cpf(\"123.456-789\")\nprint(cpf_limpo)  # Saída: 123456789\n```\n\nEsta função usa a função `filter` para remover todos os caracteres que não são dígitos, garantindo que o CPF resultante contenha apenas números.",
+          "routed_to": "local_gpu",
+          "camada_oficial": "DEGRAU_1_RTX5090_LOCAL",
+          "modelo_utilizado": "qwen2.5-coder:7b",
+          "motor_utilizado": "Ollama Local RTX 5090",
+          "sucesso": true,
+          "validacao_deterministica": "APROVADO_SINTAXE: Árvore sintática Python (AST) e travas Anti-Piora validadas sem erros.",
+          "tempo_ms": 948,
+          "tokens_entrada": 74,
+          "tokens_saida": 154,
+          "custo_usd": 0,
+          "economizou_nuvem": true,
+          "_promptfooFileMetadata": {}
+        },
+        "failureReason": 0
+      },
+      {
+        "cost": 0,
+        "gradingResult": {
+          "pass": true,
+          "score": 1,
+          "reason": "All assertions passed",
+          "namedScores": {},
+          "tokensUsed": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 0
+          },
+          "componentResults": [
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "javascript",
+                "value": "const d = JSON.parse(output); d.routed_to === 'antigravity_fast'"
+              }
+            }
+          ]
+        },
+        "id": "7f1d0175-52a8-4059-816e-3db71e754d27",
+        "latencyMs": 6,
+        "namedScores": {},
+        "prompt": {
+          "raw": "Refatorar repositório moderado com 3 arquivos de regras de negócios.",
+          "label": "{{prompt}}",
+          "config": {}
+        },
+        "promptId": "effa18501e44aafd9bc42a2f64ffc9b6350f94025520ca2ed382f9bdc4b6e982",
+        "promptIdx": 0,
+        "provider": {
+          "id": "python:router_target.py",
+          "label": "Roteador Inteligente Estacao ZAMORA"
+        },
+        "response": {
+          "output": "{\"resposta\": \"Submissão ao Gemini 3.8 Flash.\", \"routed_to\": \"antigravity_fast\", \"camada_oficial\": \"DEGRAU_3_GEMINI_38_FLASH\", \"modelo_utilizado\": \"gemini-3.8-flash\", \"motor_utilizado\": \"Escudo Intermediário 3.8 Flash\", \"sucesso\": true, \"validacao_deterministica\": \"ESCALONADO_DIRETO_DEGRAU_3\", \"tempo_ms\": 0, \"tokens_entrada\": 0, \"tokens_saida\": 0, \"custo_usd\": 0.0, \"economizou_nuvem\": false}",
+          "metadata": {
+            "resposta": "Submissão ao Gemini 3.8 Flash.",
+            "routed_to": "antigravity_fast",
+            "camada_oficial": "DEGRAU_3_GEMINI_38_FLASH",
+            "modelo_utilizado": "gemini-3.8-flash",
+            "motor_utilizado": "Escudo Intermediário 3.8 Flash",
+            "sucesso": true,
+            "validacao_deterministica": "ESCALONADO_DIRETO_DEGRAU_3",
+            "tempo_ms": 0,
+            "tokens_entrada": 0,
+            "tokens_saida": 0,
+            "custo_usd": 0,
+            "economizou_nuvem": false
+          },
+          "cached": false
+        },
+        "score": 1,
+        "success": true,
+        "testCase": {
+          "vars": {
+            "prompt": "Refatorar repositório moderado com 3 arquivos de regras de negócios.",
+            "arquivos": 3
+          },
+          "assert": [
+            {
+              "type": "javascript",
+              "value": "const d = JSON.parse(output); d.routed_to === 'antigravity_fast'"
+            }
+          ],
+          "options": {},
+          "metadata": {}
+        },
+        "testIdx": 1,
+        "tokenUsage": {
+          "prompt": 0,
+          "completion": 0,
+          "cached": 0,
+          "total": 0,
+          "numRequests": 1,
+          "completionDetails": {
+            "reasoning": 0,
+            "acceptedPrediction": 0,
+            "rejectedPrediction": 0,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0
+          },
+          "assertions": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 0,
+            "completionDetails": {
+              "reasoning": 0,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0
+            }
+          }
+        },
+        "vars": {
+          "prompt": "Refatorar repositório moderado com 3 arquivos de regras de negócios.",
+          "arquivos": 3
+        },
+        "metadata": {
+          "resposta": "Submissão ao Gemini 3.8 Flash.",
+          "routed_to": "antigravity_fast",
+          "camada_oficial": "DEGRAU_3_GEMINI_38_FLASH",
+          "modelo_utilizado": "gemini-3.8-flash",
+          "motor_utilizado": "Escudo Intermediário 3.8 Flash",
+          "sucesso": true,
+          "validacao_deterministica": "ESCALONADO_DIRETO_DEGRAU_3",
+          "tempo_ms": 0,
+          "tokens_entrada": 0,
+          "tokens_saida": 0,
+          "custo_usd": 0,
+          "economizou_nuvem": false,
+          "_promptfooFileMetadata": {}
+        },
+        "failureReason": 0
+      },
+      {
+        "cost": 0,
+        "gradingResult": {
+          "pass": true,
+          "score": 1,
+          "reason": "All assertions passed",
+          "namedScores": {},
+          "tokensUsed": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 0
+          },
+          "componentResults": [
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "javascript",
+                "value": "const d = JSON.parse(output); d.routed_to === 'antigravity_cloud'"
+              }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "javascript",
+                "value": "const d = JSON.parse(output); d.modelo_utilizado.includes('argon')"
+              }
+            }
+          ]
+        },
+        "id": "95a7366c-b4fa-44f4-999e-9b99edaf7041",
+        "latencyMs": 6,
+        "namedScores": {},
+        "prompt": {
+          "raw": "Arquitetura distribuída de microsserviços do sistema procedural em 6 módulos integrados.",
+          "label": "{{prompt}}",
+          "config": {}
+        },
+        "promptId": "effa18501e44aafd9bc42a2f64ffc9b6350f94025520ca2ed382f9bdc4b6e982",
+        "promptIdx": 0,
+        "provider": {
+          "id": "python:router_target.py",
+          "label": "Roteador Inteligente Estacao ZAMORA"
+        },
+        "response": {
+          "output": "{\"resposta\": \"Submissão direta ao Orquestrador Argon.\", \"routed_to\": \"antigravity_cloud\", \"camada_oficial\": \"DEGRAU_4_ARGON_ORQUESTRADOR\", \"modelo_utilizado\": \"gemini-4-argon\", \"motor_utilizado\": \"Orquestrador Chefe Argon\", \"sucesso\": true, \"validacao_deterministica\": \"ESCALONADO_DIRETO_DEGRAU_4\", \"tempo_ms\": 0, \"tokens_entrada\": 0, \"tokens_saida\": 0, \"custo_usd\": 0.0, \"economizou_nuvem\": false}",
+          "metadata": {
+            "resposta": "Submissão direta ao Orquestrador Argon.",
+            "routed_to": "antigravity_cloud",
+            "camada_oficial": "DEGRAU_4_ARGON_ORQUESTRADOR",
+            "modelo_utilizado": "gemini-4-argon",
+            "motor_utilizado": "Orquestrador Chefe Argon",
+            "sucesso": true,
+            "validacao_deterministica": "ESCALONADO_DIRETO_DEGRAU_4",
+            "tempo_ms": 0,
+            "tokens_entrada": 0,
+            "tokens_saida": 0,
+            "custo_usd": 0,
+            "economizou_nuvem": false
+          },
+          "cached": false
+        },
+        "score": 1,
+        "success": true,
+        "testCase": {
+          "vars": {
+            "prompt": "Arquitetura distribuída de microsserviços do sistema procedural em 6 módulos integrados.",
+            "arquivos": 6
+          },
+          "assert": [
+            {
+              "type": "javascript",
+              "value": "const d = JSON.parse(output); d.routed_to === 'antigravity_cloud'"
+            },
+            {
+              "type": "javascript",
+              "value": "const d = JSON.parse(output); d.modelo_utilizado.includes('argon')"
+            }
+          ],
+          "options": {},
+          "metadata": {}
+        },
+        "testIdx": 2,
+        "tokenUsage": {
+          "prompt": 0,
+          "completion": 0,
+          "cached": 0,
+          "total": 0,
+          "numRequests": 1,
+          "completionDetails": {
+            "reasoning": 0,
+            "acceptedPrediction": 0,
+            "rejectedPrediction": 0,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0
+          },
+          "assertions": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 0,
+            "completionDetails": {
+              "reasoning": 0,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0
+            }
+          }
+        },
+        "vars": {
+          "prompt": "Arquitetura distribuída de microsserviços do sistema procedural em 6 módulos integrados.",
+          "arquivos": 6
+        },
+        "metadata": {
+          "resposta": "Submissão direta ao Orquestrador Argon.",
+          "routed_to": "antigravity_cloud",
+          "camada_oficial": "DEGRAU_4_ARGON_ORQUESTRADOR",
+          "modelo_utilizado": "gemini-4-argon",
+          "motor_utilizado": "Orquestrador Chefe Argon",
+          "sucesso": true,
+          "validacao_deterministica": "ESCALONADO_DIRETO_DEGRAU_4",
+          "tempo_ms": 0,
+          "tokens_entrada": 0,
+          "tokens_saida": 0,
+          "custo_usd": 0,
+          "economizou_nuvem": false,
+          "_promptfooFileMetadata": {}
+        },
+        "failureReason": 0
+      },
+      {
+        "cost": 0,
+        "gradingResult": {
+          "pass": true,
+          "score": 1,
+          "reason": "All assertions passed",
+          "namedScores": {},
+          "tokensUsed": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 0
+          },
+          "componentResults": [
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "javascript",
+                "value": "const d = JSON.parse(output); d.routed_to === 'agentic_deepseek'"
+              }
+            }
+          ]
+        },
+        "id": "0ffd6d41-bb7e-4bba-b0e7-392b5eef24a5",
+        "latencyMs": 17015,
+        "namedScores": {},
+        "prompt": {
+          "raw": "Desenvolva algoritmo complexo de programação dinâmica e cruzamento relacional forense.",
+          "label": "{{prompt}}",
+          "config": {}
+        },
+        "promptId": "effa18501e44aafd9bc42a2f64ffc9b6350f94025520ca2ed382f9bdc4b6e982",
+        "promptIdx": 0,
+        "provider": {
+          "id": "python:router_target.py",
+          "label": "Roteador Inteligente Estacao ZAMORA"
+        },
+        "response": {
+          "output": "{\"resposta\": \"# Estação ZAMORA — Núcleo de Engenharia\\n## Algoritmo de Programação Dinâmica + Cruzamento Relacional Forense (DP-FRC)\\n\\n> **Nota de escopo:** \\\"cruzamento relacional forense\\\" admite duas leituras — (a) *record linkage* entre bases heterogêneas e (b) *link analysis* sobre o grafo resultante. O algoritmo abaixo cobre as duas em pipeline único. Se o domínio for específico (fraude contábil, telecom, DNA, logs de acesso), calibro os módulos 2 e 4.\\n\\n---\\n\\n## 1. Formalização\\n\\nSejam bases \\\\(D_1,\\\\dots,D_k\\\\) com registros \\\\(r = (f_1,\\\\dots,f_m)\\\\). Objetivo: partição \\\\(\\\\mathcal{P}\\\\) de \\\\(V=\\\\bigcup D_i\\\\) (clusters de entidades) que maximize\\n\\n\\\\[\\n\\\\mathcal{J}(\\\\mathcal{P}) = \\\\sum_{(u,v)\\\\in E} w_{uv}\\\\,\\\\mathbb{1}[u \\\\equiv_{\\\\mathcal{P}} v] \\\\;-\\\\; \\\\sum_{(u,v)\\\\in C} \\\\lambda_{uv}\\\\,\\\\mathbb{1}[u \\\\equiv_{\\\\mathcal{P}} v]\\n\\\\]\\n\\nonde \\\\(E\\\\) = arestas de similaridade, \\\\(C\\\\) = pares com **restrição dura de inconsistência** (ex.: mesmo documento apontando para pessoas distintas). É *correlation clustering* — NP-difícil; resolvemos por aglomeração gulosa + busca local com propagação de restrições.\\n\\n---\\n\\n## 2. Pipeline\\n\\n```\\n[1] Normalização + Bloqueio\\n[2] Similaridade por DP (campos + linha do tempo)\\n[3] Agregação Fellegi–Sunter → w_uv\\n[4] Cruzamento relacional (grafo + propagação + clustering)\\n[5] Link analysis (caminhos, centralidade, motivos temporais)\\n[6] Auditoria (hash, trilha, contraprova)\\n```\\n\\n---\\n\\n## 3. Módulo 2 — Programação Dinâmica\\n\\n### 3.1 Alinhamento de strings com gaps afins (Gotoh)\\n\\nPara nomes/endereços normalizados \\\\(a\\\\) (len \\\\(n\\\\)) e \\\\(b\\\\) (len \\\\(m\\\\)):\\n\\n```\\nM[i][j] = max(M[i-1][j-1], X[i-1][j-1], Y[i-1][j-1]) + s(a_i, b_j)\\nX[i][j] = max(M[i-1][j] + g_open, X[i-1][j] + g_ext)   # gap em b\\nY[i][j] = max(M[i][j-1] + g_open, Y[i][j-1] + g_ext)   # gap em a\\n```\\n\\ncom \\\\(s(a,b)=+2\\\\) match, \\\\(-1\\\\) mismatch; \\\\(g_{open}=-2\\\\), \\\\(g_{ext}=-0.5\\\\). Similaridade normalizada:\\n\\n\\\\[\\n\\\\text{sim}(a,b) = \\\\frac{\\\\max(M[n][m],X[n][m],Y[n][m])}{2\\\\max(n,m)}\\n\\\\]\\n\\nComplexidade \\\\(O(nm)\\\\) tempo, \\\\(O(m)\\\\) espaço (Hirschberg para reconstruir alinhamento).\\n\\n### 3.2 Alinhamento de linha do tempo (Needleman–Wunsch temporal)\\n\\nEventos \\\\(e_i=(t_i, \\\\tau_i)\\\\). Score de pareamento:\\n\\n\\\\[\\ns(e_i,e_j) = \\\\kappa(\\\\tau_i,\\\\tau_j)\\\\cdot \\\\exp\\\\!\\\\left(-\\\\frac{(t_i-t_j)^2}{2\\\\sigma^2}\\\\right)\\n\\\\]\\n\\n\\\\(\\\\kappa\\\\) = compatibilidade de tipo (0/1 ou matriz). Mesma recorrência do Gotoh com \\\\(g_{open}\\\\) maior (eventos ausentes são comuns). Saída: score + conjunto de pares alinhados (usado como evidência no relatório).\\n\\n---\\n\\n## 4. Módulo 3 — Agregação\\n\\n\\\\[\\nw_{uv} = \\\\sigma\\\\!\\\\left(\\\\beta_0 + \\\\sum_{f} \\\\beta_f \\\\cdot \\\\text{sim}_f(u,v) + \\\\sum_{c} \\\\gamma_c \\\\cdot \\\\text{consist}_c(u,v)\\\\right)\\n\\\\]\\n\\n\\\\(\\\\beta\\\\) calibrados por regressão logística sobre pares rotulados (ou priors de Fellegi–Sunter: \\\\(w = \\\\log\\\\frac{m_f}{u_f}\\\\)). Saída: arestas com \\\\(w_{uv} \\\\ge \\\\tau\\\\) (default 0.5).\\n\\n---\\n\\n## 5. Módulo 4 — Cruzamento Relacional\\n\\n### 5.1 Grafo e restrições\\n\\n- **Nós:** registros. **Arestas:** candidatos com peso \\\\(w_{uv}\\\\).\\n- **Restrições duras:** mesmo documento válido → *must-link*; documentos válidos distintos → *cannot-link*; datas de nascimento incompatíveis → *cannot-link*.\\n- **Restrições suaves:** plausibilidade demográfica, coerência de endereço.\\n\\n### 5.2 Propagação coletiva (loopy BP / ICM)\\n\\n\\\\[\\np_{uv}^{(t+1)} = \\\\sigma\\\\!\\\\left(\\\\alpha\\\\, w_{uv} + \\\\beta\\\\!\\\\!\\\\sum_{u'\\\\in N(u),\\\\,v'\\\\in N(v)}\\\\!\\\\! \\\\omega_{u'v'}\\\\, p_{u'v'}^{(t)}\\\\right)\\n\\\\]\\n\\nItera até \\\\(\\\\|p^{(t+1)}-p^{(t)}\\\\|_\\\\infty < 10^{-4}\\\\) ou 50 iterações. Isso captura o efeito \\\"vizinhos em comum reforçam o vínculo\\\" — o núcleo do *cruzamento relacional*.\\n\\n### 5.3 Clustering com restrições\\n\\n```\\nclusters = singletons\\nwhile existe aresta (u,v) com w_uv >= tau:\\n    (u,v) = argmax w\\n    if not viola(cannot_link, clusters[u], clusters[v]):\\n        merge(clusters[u], clusters[v])\\n        propaga must_link transitivo\\n        atualiza w das arestas incidentes (média intra-cluster)\\nbusca_local: tenta mover nós de borda se melhora J\\n```\\n\\n### 5.4 Link analysis (pós-cluster)\\n\\nSobre o grafo de entidades: caminhos de comprimento \\\\(\\\\le 3\\\\) entre entidades de interesse, centralidade de intermediação, e detecção de motivos temporais (ex.: \\\\(A \\\\to B \\\\to C\\\\) em janela \\\\(\\\\Delta t\\\\)). Saída ranqueada por *lift* estatístico.\\n\\n---\\n\\n## 6. Pseudocódigo integrado\\n\\n```python\\ndef dp_frc(bases, tau=0.5, max_iter=50):\\n    V = normaliza(bases)\\n    pares = bloqueio(V)                      # O(n) via chaves fonéticas + q-gram\\n    E = {}\\n    for (u, v) in pares:\\n        s_campos = {f: gotoh(u[f], v[f]) for f in CAMPOS}\\n        s_tempo  = needleman_wunsch(u.eventos, v.eventos)\\n        w = modelo_logistico(s_campos, s_tempo)\\n        if w >= tau: E[(u, v)] = w\\n    C = restricoes_duras(V)                  # cannot-link\\n    p = {e: E[e] for e in E}\\n    for _ in range(max_iter):\\n        p_novo = {e: sigma(alpha*E[e] + beta*vizinhanca(e, p)) for e in E}\\n        if max(abs(p_novo[e]-p[e]) for e in E) < 1e-4: break\\n        p = p_novo\\n    clusters = aglomeracao_com_restricoes(p, C)\\n    clusters = busca_local(clusters, p, C)\\n    return clusters, trilha_auditoria(V, E, p, clusters)\\n```\\n\\n---\\n\\n## 7. Complexidade\\n\\n| Etapa | Tempo | Espaço |\\n|---|---|---|\\n| Bloqueio | \\\\(O(n)\\\\) | \\\\(O(n)\\\\) |\\n| DP por par | \\\\(O(nm)\\\\) | \\\\(O(m)\\\\) |\\n| Propagação | \\\\(O(|E|\\\\cdot d^2 \\\\cdot T)\\\\) | \\\\(O(|E|)\\\\) |\\n| Clustering | \\\\(O(|E|\\\\log|E|)\\\\) | \\\\(O(|V|)\\\\) |\\n\\nGargalo: DP por par. Mitigação: poda por *canopy* (só roda DP se similaridade de q-gram \\\\(\\\\ge 0.3\\\\)) e paralelização por bloco.\\n\\n---\\n\\n## 8. Invariantes forenses (não negociáveis)\\n\\n1. **Reprodutibilidade:** hash SHA-256 de cada base de entrada e da semente do modelo registrados no laudo.\\n2. **Trilha de auditoria:** para cada merge, gravar aresta, peso, evidências DP (alinhamentos) e restrições aplicadas.\\n3. **Human-in-the-loop:** nenhum cluster com \\\\(p < 0.9\\\\) pode fundamentar conclusão pericial isoladamente.\\n4. **LGPD / legalidade:** base legal explícita, minimização de dados, registro de acesso. Cruzamento sem base legal é nulo.\\n5. **Contraprova:** rodar com \\\\(\\\\tau\\\\) e \\\\(\\\\beta\\\\) perturbados (\\\\(\\\\pm 10\\\\%\\\\)) e reportar estabilidade dos clusters.\\n\\n---\\n\\n## 9. Calibração necessária\\n\\nPara fechar o artefato, preciso de três parâmetros do senhor:\\n\\n1. **Domínio** (define campos, \\\\(\\\\kappa\\\\) e restrições duras).\\n2. **Volume** \\\\(n\\\\) por base (define se bloqueio precisa de LSH).\\n3. **Taxa de erro tolerável** (define \\\\(\\\\tau\\\\) e o critério de parada da busca local).\\n\\nCom esses três, entrego a implementação executável e o plano de validação (precision/recall em amostra rotulada + curva de estabilidade).\", \"routed_to\": \"agentic_deepseek\", \"camada_oficial\": \"DEGRAU_2_DEEPSEEK_763B\", \"modelo_utilizado\": \"deepseek-v4.1-flash:cloud\", \"motor_utilizado\": \"Ollama Cloud (DeepSeek 763B)\", \"sucesso\": true, \"validacao_deterministica\": \"APROVADO_SINTAXE: Árvore sintática Python (AST) e travas Anti-Piora validadas sem erros.\", \"tempo_ms\": 17007, \"tokens_entrada\": 85, \"tokens_saida\": 3829, \"custo_usd\": 0.0, \"economizou_nuvem\": true}",
+          "metadata": {
+            "resposta": "# Estação ZAMORA — Núcleo de Engenharia\n## Algoritmo de Programação Dinâmica + Cruzamento Relacional Forense (DP-FRC)\n\n> **Nota de escopo:** \"cruzamento relacional forense\" admite duas leituras — (a) *record linkage* entre bases heterogêneas e (b) *link analysis* sobre o grafo resultante. O algoritmo abaixo cobre as duas em pipeline único. Se o domínio for específico (fraude contábil, telecom, DNA, logs de acesso), calibro os módulos 2 e 4.\n\n---\n\n## 1. Formalização\n\nSejam bases \\(D_1,\\dots,D_k\\) com registros \\(r = (f_1,\\dots,f_m)\\). Objetivo: partição \\(\\mathcal{P}\\) de \\(V=\\bigcup D_i\\) (clusters de entidades) que maximize\n\n\\[\n\\mathcal{J}(\\mathcal{P}) = \\sum_{(u,v)\\in E} w_{uv}\\,\\mathbb{1}[u \\equiv_{\\mathcal{P}} v] \\;-\\; \\sum_{(u,v)\\in C} \\lambda_{uv}\\,\\mathbb{1}[u \\equiv_{\\mathcal{P}} v]\n\\]\n\nonde \\(E\\) = arestas de similaridade, \\(C\\) = pares com **restrição dura de inconsistência** (ex.: mesmo documento apontando para pessoas distintas). É *correlation clustering* — NP-difícil; resolvemos por aglomeração gulosa + busca local com propagação de restrições.\n\n---\n\n## 2. Pipeline\n\n```\n[1] Normalização + Bloqueio\n[2] Similaridade por DP (campos + linha do tempo)\n[3] Agregação Fellegi–Sunter → w_uv\n[4] Cruzamento relacional (grafo + propagação + clustering)\n[5] Link analysis (caminhos, centralidade, motivos temporais)\n[6] Auditoria (hash, trilha, contraprova)\n```\n\n---\n\n## 3. Módulo 2 — Programação Dinâmica\n\n### 3.1 Alinhamento de strings com gaps afins (Gotoh)\n\nPara nomes/endereços normalizados \\(a\\) (len \\(n\\)) e \\(b\\) (len \\(m\\)):\n\n```\nM[i][j] = max(M[i-1][j-1], X[i-1][j-1], Y[i-1][j-1]) + s(a_i, b_j)\nX[i][j] = max(M[i-1][j] + g_open, X[i-1][j] + g_ext)   # gap em b\nY[i][j] = max(M[i][j-1] + g_open, Y[i][j-1] + g_ext)   # gap em a\n```\n\ncom \\(s(a,b)=+2\\) match, \\(-1\\) mismatch; \\(g_{open}=-2\\), \\(g_{ext}=-0.5\\). Similaridade normalizada:\n\n\\[\n\\text{sim}(a,b) = \\frac{\\max(M[n][m],X[n][m],Y[n][m])}{2\\max(n,m)}\n\\]\n\nComplexidade \\(O(nm)\\) tempo, \\(O(m)\\) espaço (Hirschberg para reconstruir alinhamento).\n\n### 3.2 Alinhamento de linha do tempo (Needleman–Wunsch temporal)\n\nEventos \\(e_i=(t_i, \\tau_i)\\). Score de pareamento:\n\n\\[\ns(e_i,e_j) = \\kappa(\\tau_i,\\tau_j)\\cdot \\exp\\!\\left(-\\frac{(t_i-t_j)^2}{2\\sigma^2}\\right)\n\\]\n\n\\(\\kappa\\) = compatibilidade de tipo (0/1 ou matriz). Mesma recorrência do Gotoh com \\(g_{open}\\) maior (eventos ausentes são comuns). Saída: score + conjunto de pares alinhados (usado como evidência no relatório).\n\n---\n\n## 4. Módulo 3 — Agregação\n\n\\[\nw_{uv} = \\sigma\\!\\left(\\beta_0 + \\sum_{f} \\beta_f \\cdot \\text{sim}_f(u,v) + \\sum_{c} \\gamma_c \\cdot \\text{consist}_c(u,v)\\right)\n\\]\n\n\\(\\beta\\) calibrados por regressão logística sobre pares rotulados (ou priors de Fellegi–Sunter: \\(w = \\log\\frac{m_f}{u_f}\\)). Saída: arestas com \\(w_{uv} \\ge \\tau\\) (default 0.5).\n\n---\n\n## 5. Módulo 4 — Cruzamento Relacional\n\n### 5.1 Grafo e restrições\n\n- **Nós:** registros. **Arestas:** candidatos com peso \\(w_{uv}\\).\n- **Restrições duras:** mesmo documento válido → *must-link*; documentos válidos distintos → *cannot-link*; datas de nascimento incompatíveis → *cannot-link*.\n- **Restrições suaves:** plausibilidade demográfica, coerência de endereço.\n\n### 5.2 Propagação coletiva (loopy BP / ICM)\n\n\\[\np_{uv}^{(t+1)} = \\sigma\\!\\left(\\alpha\\, w_{uv} + \\beta\\!\\!\\sum_{u'\\in N(u),\\,v'\\in N(v)}\\!\\! \\omega_{u'v'}\\, p_{u'v'}^{(t)}\\right)\n\\]\n\nItera até \\(\\|p^{(t+1)}-p^{(t)}\\|_\\infty < 10^{-4}\\) ou 50 iterações. Isso captura o efeito \"vizinhos em comum reforçam o vínculo\" — o núcleo do *cruzamento relacional*.\n\n### 5.3 Clustering com restrições\n\n```\nclusters = singletons\nwhile existe aresta (u,v) com w_uv >= tau:\n    (u,v) = argmax w\n    if not viola(cannot_link, clusters[u], clusters[v]):\n        merge(clusters[u], clusters[v])\n        propaga must_link transitivo\n        atualiza w das arestas incidentes (média intra-cluster)\nbusca_local: tenta mover nós de borda se melhora J\n```\n\n### 5.4 Link analysis (pós-cluster)\n\nSobre o grafo de entidades: caminhos de comprimento \\(\\le 3\\) entre entidades de interesse, centralidade de intermediação, e detecção de motivos temporais (ex.: \\(A \\to B \\to C\\) em janela \\(\\Delta t\\)). Saída ranqueada por *lift* estatístico.\n\n---\n\n## 6. Pseudocódigo integrado\n\n```python\ndef dp_frc(bases, tau=0.5, max_iter=50):\n    V = normaliza(bases)\n    pares = bloqueio(V)                      # O(n) via chaves fonéticas + q-gram\n    E = {}\n    for (u, v) in pares:\n        s_campos = {f: gotoh(u[f], v[f]) for f in CAMPOS}\n        s_tempo  = needleman_wunsch(u.eventos, v.eventos)\n        w = modelo_logistico(s_campos, s_tempo)\n        if w >= tau: E[(u, v)] = w\n    C = restricoes_duras(V)                  # cannot-link\n    p = {e: E[e] for e in E}\n    for _ in range(max_iter):\n        p_novo = {e: sigma(alpha*E[e] + beta*vizinhanca(e, p)) for e in E}\n        if max(abs(p_novo[e]-p[e]) for e in E) < 1e-4: break\n        p = p_novo\n    clusters = aglomeracao_com_restricoes(p, C)\n    clusters = busca_local(clusters, p, C)\n    return clusters, trilha_auditoria(V, E, p, clusters)\n```\n\n---\n\n## 7. Complexidade\n\n| Etapa | Tempo | Espaço |\n|---|---|---|\n| Bloqueio | \\(O(n)\\) | \\(O(n)\\) |\n| DP por par | \\(O(nm)\\) | \\(O(m)\\) |\n| Propagação | \\(O(|E|\\cdot d^2 \\cdot T)\\) | \\(O(|E|)\\) |\n| Clustering | \\(O(|E|\\log|E|)\\) | \\(O(|V|)\\) |\n\nGargalo: DP por par. Mitigação: poda por *canopy* (só roda DP se similaridade de q-gram \\(\\ge 0.3\\)) e paralelização por bloco.\n\n---\n\n## 8. Invariantes forenses (não negociáveis)\n\n1. **Reprodutibilidade:** hash SHA-256 de cada base de entrada e da semente do modelo registrados no laudo.\n2. **Trilha de auditoria:** para cada merge, gravar aresta, peso, evidências DP (alinhamentos) e restrições aplicadas.\n3. **Human-in-the-loop:** nenhum cluster com \\(p < 0.9\\) pode fundamentar conclusão pericial isoladamente.\n4. **LGPD / legalidade:** base legal explícita, minimização de dados, registro de acesso. Cruzamento sem base legal é nulo.\n5. **Contraprova:** rodar com \\(\\tau\\) e \\(\\beta\\) perturbados (\\(\\pm 10\\%\\)) e reportar estabilidade dos clusters.\n\n---\n\n## 9. Calibração necessária\n\nPara fechar o artefato, preciso de três parâmetros do senhor:\n\n1. **Domínio** (define campos, \\(\\kappa\\) e restrições duras).\n2. **Volume** \\(n\\) por base (define se bloqueio precisa de LSH).\n3. **Taxa de erro tolerável** (define \\(\\tau\\) e o critério de parada da busca local).\n\nCom esses três, entrego a implementação executável e o plano de validação (precision/recall em amostra rotulada + curva de estabilidade).",
+            "routed_to": "agentic_deepseek",
+            "camada_oficial": "DEGRAU_2_DEEPSEEK_763B",
+            "modelo_utilizado": "deepseek-v4.1-flash:cloud",
+            "motor_utilizado": "Ollama Cloud (DeepSeek 763B)",
+            "sucesso": true,
+            "validacao_deterministica": "APROVADO_SINTAXE: Árvore sintática Python (AST) e travas Anti-Piora validadas sem erros.",
+            "tempo_ms": 17007,
+            "tokens_entrada": 85,
+            "tokens_saida": 3829,
+            "custo_usd": 0,
+            "economizou_nuvem": true
+          },
+          "cached": false
+        },
+        "score": 1,
+        "success": true,
+        "testCase": {
+          "vars": {
+            "prompt": "Desenvolva algoritmo complexo de programação dinâmica e cruzamento relacional forense.",
+            "arquivos": 2
+          },
+          "assert": [
+            {
+              "type": "javascript",
+              "value": "const d = JSON.parse(output); d.routed_to === 'agentic_deepseek'"
+            }
+          ],
+          "options": {},
+          "metadata": {}
+        },
+        "testIdx": 3,
+        "tokenUsage": {
+          "prompt": 0,
+          "completion": 0,
+          "cached": 0,
+          "total": 0,
+          "numRequests": 1,
+          "completionDetails": {
+            "reasoning": 0,
+            "acceptedPrediction": 0,
+            "rejectedPrediction": 0,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0
+          },
+          "assertions": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 0,
+            "completionDetails": {
+              "reasoning": 0,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0
+            }
+          }
+        },
+        "vars": {
+          "prompt": "Desenvolva algoritmo complexo de programação dinâmica e cruzamento relacional forense.",
+          "arquivos": 2
+        },
+        "metadata": {
+          "resposta": "# Estação ZAMORA — Núcleo de Engenharia\n## Algoritmo de Programação Dinâmica + Cruzamento Relacional Forense (DP-FRC)\n\n> **Nota de escopo:** \"cruzamento relacional forense\" admite duas leituras — (a) *record linkage* entre bases heterogêneas e (b) *link analysis* sobre o grafo resultante. O algoritmo abaixo cobre as duas em pipeline único. Se o domínio for específico (fraude contábil, telecom, DNA, logs de acesso), calibro os módulos 2 e 4.\n\n---\n\n## 1. Formalização\n\nSejam bases \\(D_1,\\dots,D_k\\) com registros \\(r = (f_1,\\dots,f_m)\\). Objetivo: partição \\(\\mathcal{P}\\) de \\(V=\\bigcup D_i\\) (clusters de entidades) que maximize\n\n\\[\n\\mathcal{J}(\\mathcal{P}) = \\sum_{(u,v)\\in E} w_{uv}\\,\\mathbb{1}[u \\equiv_{\\mathcal{P}} v] \\;-\\; \\sum_{(u,v)\\in C} \\lambda_{uv}\\,\\mathbb{1}[u \\equiv_{\\mathcal{P}} v]\n\\]\n\nonde \\(E\\) = arestas de similaridade, \\(C\\) = pares com **restrição dura de inconsistência** (ex.: mesmo documento apontando para pessoas distintas). É *correlation clustering* — NP-difícil; resolvemos por aglomeração gulosa + busca local com propagação de restrições.\n\n---\n\n## 2. Pipeline\n\n```\n[1] Normalização + Bloqueio\n[2] Similaridade por DP (campos + linha do tempo)\n[3] Agregação Fellegi–Sunter → w_uv\n[4] Cruzamento relacional (grafo + propagação + clustering)\n[5] Link analysis (caminhos, centralidade, motivos temporais)\n[6] Auditoria (hash, trilha, contraprova)\n```\n\n---\n\n## 3. Módulo 2 — Programação Dinâmica\n\n### 3.1 Alinhamento de strings com gaps afins (Gotoh)\n\nPara nomes/endereços normalizados \\(a\\) (len \\(n\\)) e \\(b\\) (len \\(m\\)):\n\n```\nM[i][j] = max(M[i-1][j-1], X[i-1][j-1], Y[i-1][j-1]) + s(a_i, b_j)\nX[i][j] = max(M[i-1][j] + g_open, X[i-1][j] + g_ext)   # gap em b\nY[i][j] = max(M[i][j-1] + g_open, Y[i][j-1] + g_ext)   # gap em a\n```\n\ncom \\(s(a,b)=+2\\) match, \\(-1\\) mismatch; \\(g_{open}=-2\\), \\(g_{ext}=-0.5\\). Similaridade normalizada:\n\n\\[\n\\text{sim}(a,b) = \\frac{\\max(M[n][m],X[n][m],Y[n][m])}{2\\max(n,m)}\n\\]\n\nComplexidade \\(O(nm)\\) tempo, \\(O(m)\\) espaço (Hirschberg para reconstruir alinhamento).\n\n### 3.2 Alinhamento de linha do tempo (Needleman–Wunsch temporal)\n\nEventos \\(e_i=(t_i, \\tau_i)\\). Score de pareamento:\n\n\\[\ns(e_i,e_j) = \\kappa(\\tau_i,\\tau_j)\\cdot \\exp\\!\\left(-\\frac{(t_i-t_j)^2}{2\\sigma^2}\\right)\n\\]\n\n\\(\\kappa\\) = compatibilidade de tipo (0/1 ou matriz). Mesma recorrência do Gotoh com \\(g_{open}\\) maior (eventos ausentes são comuns). Saída: score + conjunto de pares alinhados (usado como evidência no relatório).\n\n---\n\n## 4. Módulo 3 — Agregação\n\n\\[\nw_{uv} = \\sigma\\!\\left(\\beta_0 + \\sum_{f} \\beta_f \\cdot \\text{sim}_f(u,v) + \\sum_{c} \\gamma_c \\cdot \\text{consist}_c(u,v)\\right)\n\\]\n\n\\(\\beta\\) calibrados por regressão logística sobre pares rotulados (ou priors de Fellegi–Sunter: \\(w = \\log\\frac{m_f}{u_f}\\)). Saída: arestas com \\(w_{uv} \\ge \\tau\\) (default 0.5).\n\n---\n\n## 5. Módulo 4 — Cruzamento Relacional\n\n### 5.1 Grafo e restrições\n\n- **Nós:** registros. **Arestas:** candidatos com peso \\(w_{uv}\\).\n- **Restrições duras:** mesmo documento válido → *must-link*; documentos válidos distintos → *cannot-link*; datas de nascimento incompatíveis → *cannot-link*.\n- **Restrições suaves:** plausibilidade demográfica, coerência de endereço.\n\n### 5.2 Propagação coletiva (loopy BP / ICM)\n\n\\[\np_{uv}^{(t+1)} = \\sigma\\!\\left(\\alpha\\, w_{uv} + \\beta\\!\\!\\sum_{u'\\in N(u),\\,v'\\in N(v)}\\!\\! \\omega_{u'v'}\\, p_{u'v'}^{(t)}\\right)\n\\]\n\nItera até \\(\\|p^{(t+1)}-p^{(t)}\\|_\\infty < 10^{-4}\\) ou 50 iterações. Isso captura o efeito \"vizinhos em comum reforçam o vínculo\" — o núcleo do *cruzamento relacional*.\n\n### 5.3 Clustering com restrições\n\n```\nclusters = singletons\nwhile existe aresta (u,v) com w_uv >= tau:\n    (u,v) = argmax w\n    if not viola(cannot_link, clusters[u], clusters[v]):\n        merge(clusters[u], clusters[v])\n        propaga must_link transitivo\n        atualiza w das arestas incidentes (média intra-cluster)\nbusca_local: tenta mover nós de borda se melhora J\n```\n\n### 5.4 Link analysis (pós-cluster)\n\nSobre o grafo de entidades: caminhos de comprimento \\(\\le 3\\) entre entidades de interesse, centralidade de intermediação, e detecção de motivos temporais (ex.: \\(A \\to B \\to C\\) em janela \\(\\Delta t\\)). Saída ranqueada por *lift* estatístico.\n\n---\n\n## 6. Pseudocódigo integrado\n\n```python\ndef dp_frc(bases, tau=0.5, max_iter=50):\n    V = normaliza(bases)\n    pares = bloqueio(V)                      # O(n) via chaves fonéticas + q-gram\n    E = {}\n    for (u, v) in pares:\n        s_campos = {f: gotoh(u[f], v[f]) for f in CAMPOS}\n        s_tempo  = needleman_wunsch(u.eventos, v.eventos)\n        w = modelo_logistico(s_campos, s_tempo)\n        if w >= tau: E[(u, v)] = w\n    C = restricoes_duras(V)                  # cannot-link\n    p = {e: E[e] for e in E}\n    for _ in range(max_iter):\n        p_novo = {e: sigma(alpha*E[e] + beta*vizinhanca(e, p)) for e in E}\n        if max(abs(p_novo[e]-p[e]) for e in E) < 1e-4: break\n        p = p_novo\n    clusters = aglomeracao_com_restricoes(p, C)\n    clusters = busca_local(clusters, p, C)\n    return clusters, trilha_auditoria(V, E, p, clusters)\n```\n\n---\n\n## 7. Complexidade\n\n| Etapa | Tempo | Espaço |\n|---|---|---|\n| Bloqueio | \\(O(n)\\) | \\(O(n)\\) |\n| DP por par | \\(O(nm)\\) | \\(O(m)\\) |\n| Propagação | \\(O(|E|\\cdot d^2 \\cdot T)\\) | \\(O(|E|)\\) |\n| Clustering | \\(O(|E|\\log|E|)\\) | \\(O(|V|)\\) |\n\nGargalo: DP por par. Mitigação: poda por *canopy* (só roda DP se similaridade de q-gram \\(\\ge 0.3\\)) e paralelização por bloco.\n\n---\n\n## 8. Invariantes forenses (não negociáveis)\n\n1. **Reprodutibilidade:** hash SHA-256 de cada base de entrada e da semente do modelo registrados no laudo.\n2. **Trilha de auditoria:** para cada merge, gravar aresta, peso, evidências DP (alinhamentos) e restrições aplicadas.\n3. **Human-in-the-loop:** nenhum cluster com \\(p < 0.9\\) pode fundamentar conclusão pericial isoladamente.\n4. **LGPD / legalidade:** base legal explícita, minimização de dados, registro de acesso. Cruzamento sem base legal é nulo.\n5. **Contraprova:** rodar com \\(\\tau\\) e \\(\\beta\\) perturbados (\\(\\pm 10\\%\\)) e reportar estabilidade dos clusters.\n\n---\n\n## 9. Calibração necessária\n\nPara fechar o artefato, preciso de três parâmetros do senhor:\n\n1. **Domínio** (define campos, \\(\\kappa\\) e restrições duras).\n2. **Volume** \\(n\\) por base (define se bloqueio precisa de LSH).\n3. **Taxa de erro tolerável** (define \\(\\tau\\) e o critério de parada da busca local).\n\nCom esses três, entrego a implementação executável e o plano de validação (precision/recall em amostra rotulada + curva de estabilidade).",
+          "routed_to": "agentic_deepseek",
+          "camada_oficial": "DEGRAU_2_DEEPSEEK_763B",
+          "modelo_utilizado": "deepseek-v4.1-flash:cloud",
+          "motor_utilizado": "Ollama Cloud (DeepSeek 763B)",
+          "sucesso": true,
+          "validacao_deterministica": "APROVADO_SINTAXE: Árvore sintática Python (AST) e travas Anti-Piora validadas sem erros.",
+          "tempo_ms": 17007,
+          "tokens_entrada": 85,
+          "tokens_saida": 3829,
+          "custo_usd": 0,
+          "economizou_nuvem": true,
+          "_promptfooFileMetadata": {}
+        },
+        "failureReason": 0
+      }
+    ],
+    "stats": {
+      "successes": 4,
+      "failures": 0,
+      "errors": 0,
+      "tokenUsage": {
+        "prompt": 0,
+        "completion": 0,
+        "cached": 0,
+        "total": 0,
+        "numRequests": 4,
+        "completionDetails": {
+          "reasoning": 0,
+          "acceptedPrediction": 0,
+          "rejectedPrediction": 0,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0
+        },
+        "assertions": {
+          "total": 0,
+          "prompt": 0,
+          "completion": 0,
+          "cached": 0,
+          "numRequests": 0,
+          "completionDetails": {
+            "reasoning": 0,
+            "acceptedPrediction": 0,
+            "rejectedPrediction": 0,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0
+          }
+        }
+      },
+      "durationMs": 18234,
+      "evaluationDurationMs": 18234
+    }
+  },
+  "config": {
+    "tags": {},
+    "description": "Auditoria de Decisao de Roteamento Router-Tokens via Promptfoo",
+    "prompts": [
+      "{{prompt}}"
+    ],
+    "providers": [
+      {
+        "id": "python:router_target.py",
+        "label": "Roteador Inteligente Estacao ZAMORA"
+      }
+    ],
+    "tests": [
+      {
+        "vars": {
+          "prompt": "Escreva uma funcao Python def normalizar_cpf(cpf: str) -> str: que limpe caracteres especiais.",
+          "arquivos": 1
+        },
+        "assert": [
+          {
+            "type": "javascript",
+            "value": "const d = JSON.parse(output); d.routed_to === 'local_gpu'"
+          },
+          {
+            "type": "javascript",
+            "value": "const d = JSON.parse(output); d.economizou_nuvem === true"
+          },
+          {
+            "type": "contains",
+            "value": "def normalizar_cpf"
+          }
+        ]
+      },
+      {
+        "vars": {
+          "prompt": "Refatorar repositório moderado com 3 arquivos de regras de negócios.",
+          "arquivos": 3
+        },
+        "assert": [
+          {
+            "type": "javascript",
+            "value": "const d = JSON.parse(output); d.routed_to === 'antigravity_fast'"
+          }
+        ]
+      },
+      {
+        "vars": {
+          "prompt": "Arquitetura distribuída de microsserviços do sistema procedural em 6 módulos integrados.",
+          "arquivos": 6
+        },
+        "assert": [
+          {
+            "type": "javascript",
+            "value": "const d = JSON.parse(output); d.routed_to === 'antigravity_cloud'"
+          },
+          {
+            "type": "javascript",
+            "value": "const d = JSON.parse(output); d.modelo_utilizado.includes('argon')"
+          }
+        ]
+      },
+      {
+        "vars": {
+          "prompt": "Desenvolva algoritmo complexo de programação dinâmica e cruzamento relacional forense.",
+          "arquivos": 2
+        },
+        "assert": [
+          {
+            "type": "javascript",
+            "value": "const d = JSON.parse(output); d.routed_to === 'agentic_deepseek'"
+          }
+        ]
+      }
+    ],
+    "env": {},
+    "outputPath": [
+      "d:\\___SCRIPT\\Router-Tokens\\_entrega\\promptfoo_router_resultado.json"
+    ],
+    "extensions": [],
+    "metadata": {},
+    "evaluateOptions": {
+      "maxConcurrency": 1
+    },
+    "basePath": "D:\\___SCRIPT\\Router-Tokens"
+  },
+  "shareableUrl": null,
+  "metadata": {
+    "promptfooVersion": "0.124.1",
+    "nodeVersion": "v24.19.0",
+    "platform": "win32",
+    "arch": "x64",
+    "exportedAt": "2026-10-20T13:12:22.432Z",
+    "evaluationCreatedAt": "2026-10-20T13:12:04.134Z"
+  },
+  "vars": [
+    "prompt",
+    "arquivos"
+  ],
+  "runtimeOptions": {
+    "maxConcurrency": 1,
+    "showProgressBar": true,
+    "eventSource": "cli",
+    "repeat": 1,
+    "cache": false
+  }
+}
