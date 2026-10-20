@@ -1,5 +1,5 @@
 # ==============================================================================
-# CONFIGURACAO CANONICA DO LITELLM PROXY - ESTACAO ZAMORA
+# CONFIGURACAO CANONICA DO LITELLM PROXY - ESTACAO ZAMORA (OTIMIZADA)
 # POLITICA 90/10 + NVIDIA GEFORCE RTX 5090 (32 GB GDDR7) + OLLAMA LOCAL
 # ==============================================================================
 
@@ -11,14 +11,14 @@ model_list:
     litellm_params:
       model: ollama_chat/qwen2.5-coder:32b
       api_base: http://127.0.0.1:11434
-      max_tokens: 4096
+      max_tokens: 1024
       temperature: 0.1
 
   - model_name: zamora-executor-7b
     litellm_params:
       model: ollama_chat/qwen2.5-coder:7b
       api_base: http://127.0.0.1:11434
-      max_tokens: 2048
+      max_tokens: 512
       temperature: 0.1
 
   # ----------------------------------------------------------------------------
@@ -28,18 +28,21 @@ model_list:
     litellm_params:
       model: ollama_chat/deepseek-v4.1-flash:cloud
       api_base: http://127.0.0.1:11434
+      max_tokens: 1536
       temperature: 0.2
 
   - model_name: zamora-agentic-glm
     litellm_params:
       model: ollama_chat/glm-5.3:cloud
       api_base: http://127.0.0.1:11434
+      max_tokens: 1536
       temperature: 0.2
 
   - model_name: zamora-agentic-glm-flash
     litellm_params:
       model: ollama_chat/glm-5.3-flash:cloud
       api_base: http://127.0.0.1:11434
+      max_tokens: 1024
       temperature: 0.2
 
   # ----------------------------------------------------------------------------
@@ -49,6 +52,7 @@ model_list:
     litellm_params:
       model: gemini/gemini-2.5-flash
       api_key: os.environ/GEMINI_API_KEY
+      max_tokens: 2048
       temperature: 0.2
 
   # ----------------------------------------------------------------------------
@@ -58,6 +62,7 @@ model_list:
     litellm_params:
       model: gemini/gemini-2.5-pro
       api_key: os.environ/GEMINI_API_KEY
+      max_tokens: 4096
       temperature: 0.1
 
 # ------------------------------------------------------------------------------
@@ -66,7 +71,7 @@ model_list:
 router_settings:
   routing_strategy: "latency-based-routing"
   num_retries: 2
-  timeout: 45
+  timeout: 30
   fallbacks:
     - zamora-executor-local: ["zamora-agentic-deepseek", "zamora-agentic-glm"]
     - zamora-agentic-deepseek: ["zamora-agentic-glm", "zamora-nuvem-flash"]

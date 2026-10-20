@@ -1,27 +1,27 @@
 {
-  "evalId": "eval-3cr-2026-10-20T13:00:18",
+  "evalId": "eval-Ctz-2026-10-20T13:03:49",
   "results": {
     "version": 3,
-    "timestamp": "2026-10-20T13:00:18.262Z",
+    "timestamp": "2026-10-20T13:03:49.963Z",
     "prompts": [
       {
-        "id": "9f091deefdef683790d5b41749e770d880c8f62d094b15fa905f78547ab6c6be",
-        "raw": "{{instrucao}}",
-        "label": "{{instrucao}}",
+        "id": "b5f9e68a144038ccd3d9cb9969e8e16475ca96ca92ced1780ddea11f68c19f35",
+        "raw": "Você é um desenvolvedor cirúrgico da Estação ZAMORA. Responda APENAS com o código Python dentro do bloco ```python ... ``` sem texto introdutório nem explicativo.\n\nTAREFA: {{instrucao}}",
+        "label": "Você é um desenvolvedor cirúrgico da Estação ZAMORA. Responda APENAS com o código Python dentro do bloco ```python ... ``` sem texto introdutório nem explicativo.\n\nTAREFA: {{instrucao}}",
         "provider": "openai:chat:zamora-executor-local",
         "metrics": {
-          "score": 4.666666666666666,
-          "testPassCount": 4,
-          "testFailCount": 1,
+          "score": 5,
+          "testPassCount": 5,
+          "testFailCount": 0,
           "testErrorCount": 0,
-          "assertPassCount": 13,
-          "assertFailCount": 1,
-          "totalLatencyMs": 56769,
+          "assertPassCount": 16,
+          "assertFailCount": 0,
+          "totalLatencyMs": 10011,
           "tokenUsage": {
-            "prompt": 353,
-            "completion": 825,
+            "prompt": 581,
+            "completion": 279,
             "cached": 0,
-            "total": 1178,
+            "total": 860,
             "numRequests": 5,
             "completionDetails": {
               "reasoning": 0,
@@ -52,23 +52,23 @@
         }
       },
       {
-        "id": "9f091deefdef683790d5b41749e770d880c8f62d094b15fa905f78547ab6c6be",
-        "raw": "{{instrucao}}",
-        "label": "{{instrucao}}",
+        "id": "b5f9e68a144038ccd3d9cb9969e8e16475ca96ca92ced1780ddea11f68c19f35",
+        "raw": "Você é um desenvolvedor cirúrgico da Estação ZAMORA. Responda APENAS com o código Python dentro do bloco ```python ... ``` sem texto introdutório nem explicativo.\n\nTAREFA: {{instrucao}}",
+        "label": "Você é um desenvolvedor cirúrgico da Estação ZAMORA. Responda APENAS com o código Python dentro do bloco ```python ... ``` sem texto introdutório nem explicativo.\n\nTAREFA: {{instrucao}}",
         "provider": "openai:chat:zamora-executor-7b",
         "metrics": {
-          "score": 4.333333333333333,
-          "testPassCount": 3,
-          "testFailCount": 2,
+          "score": 5,
+          "testPassCount": 5,
+          "testFailCount": 0,
           "testErrorCount": 0,
-          "assertPassCount": 12,
-          "assertFailCount": 2,
-          "totalLatencyMs": 34867,
+          "assertPassCount": 16,
+          "assertFailCount": 0,
+          "totalLatencyMs": 1647,
           "tokenUsage": {
-            "prompt": 353,
-            "completion": 440,
+            "prompt": 581,
+            "completion": 316,
             "cached": 0,
-            "total": 793,
+            "total": 897,
             "numRequests": 5,
             "completionDetails": {
               "reasoning": 0,
@@ -102,212 +102,6 @@
     "results": [
       {
         "cost": 0,
-        "error": "Latency 7068ms is greater than threshold 5000ms",
-        "gradingResult": {
-          "pass": false,
-          "score": 0.6666666666666666,
-          "reason": "Latency 7068ms is greater than threshold 5000ms",
-          "namedScores": {},
-          "tokensUsed": {
-            "total": 0,
-            "prompt": 0,
-            "completion": 0,
-            "cached": 0,
-            "numRequests": 0
-          },
-          "componentResults": [
-            {
-              "pass": true,
-              "score": 1,
-              "reason": "Assertion passed",
-              "assertion": {
-                "type": "contains",
-                "value": "def limpar_documento"
-              }
-            },
-            {
-              "pass": true,
-              "score": 1,
-              "reason": "Assertion passed",
-              "assertion": {
-                "type": "javascript",
-                "value": "output.includes('isdigit') || output.includes('re.sub') || output.includes('filter')"
-              }
-            },
-            {
-              "pass": false,
-              "score": 0,
-              "reason": "Latency 7068ms is greater than threshold 5000ms",
-              "assertion": {
-                "type": "latency",
-                "threshold": 5000
-              }
-            }
-          ]
-        },
-        "id": "3fd14d06-403d-4b7b-b4fa-7047fa3a18dc",
-        "latencyMs": 7068,
-        "namedScores": {},
-        "prompt": {
-          "raw": "Escreva apenas um bloco ```python``` com a funcao `def limpar_documento(doc: str) -> str:` que remove qualquer caractere nao numerico.",
-          "label": "{{instrucao}}",
-          "config": {}
-        },
-        "promptId": "9f091deefdef683790d5b41749e770d880c8f62d094b15fa905f78547ab6c6be",
-        "promptIdx": 1,
-        "provider": {
-          "id": "openai:chat:zamora-executor-7b",
-          "label": ""
-        },
-        "response": {
-          "output": "```python\ndef limpar_documento(doc: str) -> str:\n    return ''.join(filter(str.isdigit, doc))\n```",
-          "tokenUsage": {
-            "prompt": 64,
-            "completion": 26,
-            "cached": 0,
-            "total": 90,
-            "numRequests": 1,
-            "completionDetails": {
-              "reasoning": 0,
-              "acceptedPrediction": 0,
-              "rejectedPrediction": 0,
-              "cacheReadInputTokens": 0,
-              "cacheCreationInputTokens": 0
-            },
-            "assertions": {
-              "total": 0,
-              "prompt": 0,
-              "completion": 0,
-              "cached": 0,
-              "numRequests": 0,
-              "completionDetails": {
-                "reasoning": 0,
-                "acceptedPrediction": 0,
-                "rejectedPrediction": 0,
-                "cacheReadInputTokens": 0,
-                "cacheCreationInputTokens": 0
-              }
-            }
-          },
-          "cached": false,
-          "latencyMs": 7068,
-          "finishReason": "stop",
-          "guardrails": {
-            "flagged": false
-          },
-          "metadata": {
-            "http": {
-              "status": 200,
-              "statusText": "OK",
-              "headers": {
-                "content-length": "392",
-                "content-security-policy": "frame-ancestors 'none'",
-                "content-type": "application/json",
-                "date": "Tue, 20 Oct 2026 13:00:18 GMT",
-                "x-content-type-options": "nosniff",
-                "x-frame-options": "DENY",
-                "x-litellm-attempted-fallbacks": "0",
-                "x-litellm-attempted-retries": "0",
-                "x-litellm-call-id": "c6d0cefb-01f1-40d3-83fc-cb8612a3bdd6",
-                "x-litellm-callback-duration-ms": "0.0",
-                "x-litellm-key-spend": "0.0",
-                "x-litellm-model-api-base": "http://127.0.0.1:11434",
-                "x-litellm-model-group": "zamora-executor-7b",
-                "x-litellm-model-id": "79b8cf66137cd37635efc8803fe8843dc150dcf0fde7998dbab15537001be839",
-                "x-litellm-model-name": "ollama_chat/qwen2.5-coder:7b",
-                "x-litellm-overhead-duration-ms": "26.4552",
-                "x-litellm-response-duration-ms": "7046.110153198242",
-                "x-litellm-version": "1.106.0"
-              }
-            }
-          }
-        },
-        "score": 0.6666666666666666,
-        "success": false,
-        "testCase": {
-          "vars": {
-            "instrucao": "Escreva apenas um bloco ```python``` com a funcao `def limpar_documento(doc: str) -> str:` que remove qualquer caractere nao numerico."
-          },
-          "assert": [
-            {
-              "type": "contains",
-              "value": "def limpar_documento"
-            },
-            {
-              "type": "javascript",
-              "value": "output.includes('isdigit') || output.includes('re.sub') || output.includes('filter')"
-            },
-            {
-              "type": "latency",
-              "threshold": 5000
-            }
-          ],
-          "options": {},
-          "metadata": {}
-        },
-        "testIdx": 0,
-        "tokenUsage": {
-          "prompt": 64,
-          "completion": 26,
-          "cached": 0,
-          "total": 90,
-          "numRequests": 1,
-          "completionDetails": {
-            "reasoning": 0,
-            "acceptedPrediction": 0,
-            "rejectedPrediction": 0,
-            "cacheReadInputTokens": 0,
-            "cacheCreationInputTokens": 0
-          },
-          "assertions": {
-            "total": 0,
-            "prompt": 0,
-            "completion": 0,
-            "cached": 0,
-            "numRequests": 0,
-            "completionDetails": {
-              "reasoning": 0,
-              "acceptedPrediction": 0,
-              "rejectedPrediction": 0,
-              "cacheReadInputTokens": 0,
-              "cacheCreationInputTokens": 0
-            }
-          }
-        },
-        "vars": {
-          "instrucao": "Escreva apenas um bloco ```python``` com a funcao `def limpar_documento(doc: str) -> str:` que remove qualquer caractere nao numerico."
-        },
-        "metadata": {
-          "http": {
-            "status": 200,
-            "statusText": "OK",
-            "headers": {
-              "content-length": "392",
-              "content-security-policy": "frame-ancestors 'none'",
-              "content-type": "application/json",
-              "date": "Tue, 20 Oct 2026 13:00:18 GMT",
-              "x-content-type-options": "nosniff",
-              "x-frame-options": "DENY",
-              "x-litellm-attempted-fallbacks": "0",
-              "x-litellm-attempted-retries": "0",
-              "x-litellm-call-id": "c6d0cefb-01f1-40d3-83fc-cb8612a3bdd6",
-              "x-litellm-callback-duration-ms": "0.0",
-              "x-litellm-key-spend": "0.0",
-              "x-litellm-model-api-base": "http://127.0.0.1:11434",
-              "x-litellm-model-group": "zamora-executor-7b",
-              "x-litellm-model-id": "79b8cf66137cd37635efc8803fe8843dc150dcf0fde7998dbab15537001be839",
-              "x-litellm-model-name": "ollama_chat/qwen2.5-coder:7b",
-              "x-litellm-overhead-duration-ms": "26.4552",
-              "x-litellm-response-duration-ms": "7046.110153198242",
-              "x-litellm-version": "1.106.0"
-            }
-          },
-          "_promptfooFileMetadata": {}
-        },
-        "failureReason": 1
-      },
-      {
-        "cost": 0,
         "gradingResult": {
           "pass": true,
           "score": 1,
@@ -345,20 +139,20 @@
               "reason": "Assertion passed",
               "assertion": {
                 "type": "latency",
-                "threshold": 5000
+                "threshold": 8000
               }
             }
           ]
         },
-        "id": "fec0c1bf-7be3-4bdb-aafd-fa5bc2d66844",
-        "latencyMs": 1617,
+        "id": "75bbf22b-bbcd-42bb-a4cf-e4ddb0aa2ae5",
+        "latencyMs": 1442,
         "namedScores": {},
         "prompt": {
-          "raw": "Escreva apenas um bloco ```python``` com a funcao `def limpar_documento(doc: str) -> str:` que remove qualquer caractere nao numerico.",
-          "label": "{{instrucao}}",
+          "raw": "Você é um desenvolvedor cirúrgico da Estação ZAMORA. Responda APENAS com o código Python dentro do bloco ```python ... ``` sem texto introdutório nem explicativo.\n\nTAREFA: Escreva a funcao `def limpar_documento(doc: str) -> str:` que remove qualquer caractere nao numerico da string.",
+          "label": "Você é um desenvolvedor cirúrgico da Estação ZAMORA. Responda APENAS com o código Python dentro do bloco ```python ... ``` sem texto introdutório nem explicativo.\n\nTAREFA: {{instrucao}}",
           "config": {}
         },
-        "promptId": "9f091deefdef683790d5b41749e770d880c8f62d094b15fa905f78547ab6c6be",
+        "promptId": "b5f9e68a144038ccd3d9cb9969e8e16475ca96ca92ced1780ddea11f68c19f35",
         "promptIdx": 0,
         "provider": {
           "id": "openai:chat:zamora-executor-local",
@@ -367,10 +161,10 @@
         "response": {
           "output": "```python\ndef limpar_documento(doc: str) -> str:\n    return ''.join(filter(str.isdigit, doc))\n```",
           "tokenUsage": {
-            "prompt": 64,
+            "prompt": 107,
             "completion": 26,
             "cached": 0,
-            "total": 90,
+            "total": 133,
             "numRequests": 1,
             "completionDetails": {
               "reasoning": 0,
@@ -395,7 +189,7 @@
             }
           },
           "cached": false,
-          "latencyMs": 1617,
+          "latencyMs": 1442,
           "finishReason": "stop",
           "guardrails": {
             "flagged": false
@@ -405,23 +199,23 @@
               "status": 200,
               "statusText": "OK",
               "headers": {
-                "content-length": "395",
+                "content-length": "397",
                 "content-security-policy": "frame-ancestors 'none'",
                 "content-type": "application/json",
-                "date": "Tue, 20 Oct 2026 13:00:18 GMT",
+                "date": "Tue, 20 Oct 2026 13:03:49 GMT",
                 "x-content-type-options": "nosniff",
                 "x-frame-options": "DENY",
                 "x-litellm-attempted-fallbacks": "0",
                 "x-litellm-attempted-retries": "0",
-                "x-litellm-call-id": "ecc48b01-1323-4a72-90f6-ef540b3c9c06",
+                "x-litellm-call-id": "0c10afc7-a6fa-4759-a5d3-e6c13d98ceae",
                 "x-litellm-callback-duration-ms": "0.0",
                 "x-litellm-key-spend": "0.0",
                 "x-litellm-model-api-base": "http://127.0.0.1:11434",
                 "x-litellm-model-group": "zamora-executor-local",
                 "x-litellm-model-id": "500ee7063aa19bb762bd1da9500bf375ed0ea1de0a05b6bebd79712e569a7d2a",
                 "x-litellm-model-name": "ollama_chat/qwen2.5-coder:32b",
-                "x-litellm-overhead-duration-ms": "25.943",
-                "x-litellm-response-duration-ms": "1594.208002090454",
+                "x-litellm-overhead-duration-ms": "8.0111",
+                "x-litellm-response-duration-ms": "1423.4960079193115",
                 "x-litellm-version": "1.106.0"
               }
             }
@@ -431,7 +225,7 @@
         "success": true,
         "testCase": {
           "vars": {
-            "instrucao": "Escreva apenas um bloco ```python``` com a funcao `def limpar_documento(doc: str) -> str:` que remove qualquer caractere nao numerico."
+            "instrucao": "Escreva a funcao `def limpar_documento(doc: str) -> str:` que remove qualquer caractere nao numerico da string."
           },
           "assert": [
             {
@@ -444,7 +238,7 @@
             },
             {
               "type": "latency",
-              "threshold": 5000
+              "threshold": 8000
             }
           ],
           "options": {},
@@ -452,10 +246,10 @@
         },
         "testIdx": 0,
         "tokenUsage": {
-          "prompt": 64,
+          "prompt": 107,
           "completion": 26,
           "cached": 0,
-          "total": 90,
+          "total": 133,
           "numRequests": 1,
           "completionDetails": {
             "reasoning": 0,
@@ -480,30 +274,30 @@
           }
         },
         "vars": {
-          "instrucao": "Escreva apenas um bloco ```python``` com a funcao `def limpar_documento(doc: str) -> str:` que remove qualquer caractere nao numerico."
+          "instrucao": "Escreva a funcao `def limpar_documento(doc: str) -> str:` que remove qualquer caractere nao numerico da string."
         },
         "metadata": {
           "http": {
             "status": 200,
             "statusText": "OK",
             "headers": {
-              "content-length": "395",
+              "content-length": "397",
               "content-security-policy": "frame-ancestors 'none'",
               "content-type": "application/json",
-              "date": "Tue, 20 Oct 2026 13:00:18 GMT",
+              "date": "Tue, 20 Oct 2026 13:03:49 GMT",
               "x-content-type-options": "nosniff",
               "x-frame-options": "DENY",
               "x-litellm-attempted-fallbacks": "0",
               "x-litellm-attempted-retries": "0",
-              "x-litellm-call-id": "ecc48b01-1323-4a72-90f6-ef540b3c9c06",
+              "x-litellm-call-id": "0c10afc7-a6fa-4759-a5d3-e6c13d98ceae",
               "x-litellm-callback-duration-ms": "0.0",
               "x-litellm-key-spend": "0.0",
               "x-litellm-model-api-base": "http://127.0.0.1:11434",
               "x-litellm-model-group": "zamora-executor-local",
               "x-litellm-model-id": "500ee7063aa19bb762bd1da9500bf375ed0ea1de0a05b6bebd79712e569a7d2a",
               "x-litellm-model-name": "ollama_chat/qwen2.5-coder:32b",
-              "x-litellm-overhead-duration-ms": "25.943",
-              "x-litellm-response-duration-ms": "1594.208002090454",
+              "x-litellm-overhead-duration-ms": "8.0111",
+              "x-litellm-response-duration-ms": "1423.4960079193115",
               "x-litellm-version": "1.106.0"
             }
           },
@@ -513,11 +307,10 @@
       },
       {
         "cost": 0,
-        "error": "Latency 8784ms is greater than threshold 8000ms",
         "gradingResult": {
-          "pass": false,
-          "score": 0.6666666666666666,
-          "reason": "Latency 8784ms is greater than threshold 8000ms",
+          "pass": true,
+          "score": 1,
+          "reason": "All assertions passed",
           "namedScores": {},
           "tokensUsed": {
             "total": 0,
@@ -533,7 +326,7 @@
               "reason": "Assertion passed",
               "assertion": {
                 "type": "contains",
-                "value": "def validar_data_br"
+                "value": "def limpar_documento"
               }
             },
             {
@@ -542,13 +335,13 @@
               "reason": "Assertion passed",
               "assertion": {
                 "type": "javascript",
-                "value": "output.includes('datetime') || output.includes('strptime') || output.includes('re.')"
+                "value": "output.includes('isdigit') || output.includes('re.sub') || output.includes('filter')"
               }
             },
             {
-              "pass": false,
-              "score": 0,
-              "reason": "Latency 8784ms is greater than threshold 8000ms",
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
               "assertion": {
                 "type": "latency",
                 "threshold": 8000
@@ -556,27 +349,27 @@
             }
           ]
         },
-        "id": "6ccf8034-1de3-4543-86d4-d0ff634da1a0",
-        "latencyMs": 8784,
+        "id": "a459d2d6-1210-47b9-95c2-5aed733bfc23",
+        "latencyMs": 179,
         "namedScores": {},
         "prompt": {
-          "raw": "Escreva apenas um bloco ```python``` com a funcao `def validar_data_br(data_str: str) -> bool:` que valida se a data esta no formato DD/MM/AAAA e se eh uma data valida.",
-          "label": "{{instrucao}}",
+          "raw": "Você é um desenvolvedor cirúrgico da Estação ZAMORA. Responda APENAS com o código Python dentro do bloco ```python ... ``` sem texto introdutório nem explicativo.\n\nTAREFA: Escreva a funcao `def limpar_documento(doc: str) -> str:` que remove qualquer caractere nao numerico da string.",
+          "label": "Você é um desenvolvedor cirúrgico da Estação ZAMORA. Responda APENAS com o código Python dentro do bloco ```python ... ``` sem texto introdutório nem explicativo.\n\nTAREFA: {{instrucao}}",
           "config": {}
         },
-        "promptId": "9f091deefdef683790d5b41749e770d880c8f62d094b15fa905f78547ab6c6be",
+        "promptId": "b5f9e68a144038ccd3d9cb9969e8e16475ca96ca92ced1780ddea11f68c19f35",
         "promptIdx": 1,
         "provider": {
           "id": "openai:chat:zamora-executor-7b",
           "label": ""
         },
         "response": {
-          "output": "```python\nfrom datetime import datetime\n\ndef validar_data_br(data_str: str) -> bool:\n    try:\n        datetime.strptime(data_str, '%d/%m/%Y')\n        return True\n    except ValueError:\n        return False\n```",
+          "output": "```python\ndef limpar_documento(doc: str) -> str:\n    return ''.join(filter(str.isdigit, doc))\n```",
           "tokenUsage": {
-            "prompt": 75,
-            "completion": 50,
+            "prompt": 107,
+            "completion": 26,
             "cached": 0,
-            "total": 125,
+            "total": 133,
             "numRequests": 1,
             "completionDetails": {
               "reasoning": 0,
@@ -601,7 +394,7 @@
             }
           },
           "cached": false,
-          "latencyMs": 8784,
+          "latencyMs": 179,
           "finishReason": "stop",
           "guardrails": {
             "flagged": false
@@ -611,42 +404,42 @@
               "status": 200,
               "statusText": "OK",
               "headers": {
+                "content-length": "394",
                 "content-security-policy": "frame-ancestors 'none'",
                 "content-type": "application/json",
-                "date": "Tue, 20 Oct 2026 13:00:18 GMT",
-                "vary": "Accept-Encoding",
+                "date": "Tue, 20 Oct 2026 13:03:51 GMT",
                 "x-content-type-options": "nosniff",
                 "x-frame-options": "DENY",
                 "x-litellm-attempted-fallbacks": "0",
                 "x-litellm-attempted-retries": "0",
-                "x-litellm-call-id": "82a8adf3-aac1-436f-a69d-b383d765610a",
+                "x-litellm-call-id": "ce9d0351-cd6e-47b2-b3a5-6d5d6b04fb78",
                 "x-litellm-callback-duration-ms": "0.0",
                 "x-litellm-key-spend": "0.0",
                 "x-litellm-model-api-base": "http://127.0.0.1:11434",
                 "x-litellm-model-group": "zamora-executor-7b",
                 "x-litellm-model-id": "79b8cf66137cd37635efc8803fe8843dc150dcf0fde7998dbab15537001be839",
                 "x-litellm-model-name": "ollama_chat/qwen2.5-coder:7b",
-                "x-litellm-overhead-duration-ms": "23.0391",
-                "x-litellm-response-duration-ms": "8752.361059188843",
+                "x-litellm-overhead-duration-ms": "8.229",
+                "x-litellm-response-duration-ms": "163.15293312072754",
                 "x-litellm-version": "1.106.0"
               }
             }
           }
         },
-        "score": 0.6666666666666666,
-        "success": false,
+        "score": 1,
+        "success": true,
         "testCase": {
           "vars": {
-            "instrucao": "Escreva apenas um bloco ```python``` com a funcao `def validar_data_br(data_str: str) -> bool:` que valida se a data esta no formato DD/MM/AAAA e se eh uma data valida."
+            "instrucao": "Escreva a funcao `def limpar_documento(doc: str) -> str:` que remove qualquer caractere nao numerico da string."
           },
           "assert": [
             {
               "type": "contains",
-              "value": "def validar_data_br"
+              "value": "def limpar_documento"
             },
             {
               "type": "javascript",
-              "value": "output.includes('datetime') || output.includes('strptime') || output.includes('re.')"
+              "value": "output.includes('isdigit') || output.includes('re.sub') || output.includes('filter')"
             },
             {
               "type": "latency",
@@ -656,12 +449,12 @@
           "options": {},
           "metadata": {}
         },
-        "testIdx": 1,
+        "testIdx": 0,
         "tokenUsage": {
-          "prompt": 75,
-          "completion": 50,
+          "prompt": 107,
+          "completion": 26,
           "cached": 0,
-          "total": 125,
+          "total": 133,
           "numRequests": 1,
           "completionDetails": {
             "reasoning": 0,
@@ -686,36 +479,36 @@
           }
         },
         "vars": {
-          "instrucao": "Escreva apenas um bloco ```python``` com a funcao `def validar_data_br(data_str: str) -> bool:` que valida se a data esta no formato DD/MM/AAAA e se eh uma data valida."
+          "instrucao": "Escreva a funcao `def limpar_documento(doc: str) -> str:` que remove qualquer caractere nao numerico da string."
         },
         "metadata": {
           "http": {
             "status": 200,
             "statusText": "OK",
             "headers": {
+              "content-length": "394",
               "content-security-policy": "frame-ancestors 'none'",
               "content-type": "application/json",
-              "date": "Tue, 20 Oct 2026 13:00:18 GMT",
-              "vary": "Accept-Encoding",
+              "date": "Tue, 20 Oct 2026 13:03:51 GMT",
               "x-content-type-options": "nosniff",
               "x-frame-options": "DENY",
               "x-litellm-attempted-fallbacks": "0",
               "x-litellm-attempted-retries": "0",
-              "x-litellm-call-id": "82a8adf3-aac1-436f-a69d-b383d765610a",
+              "x-litellm-call-id": "ce9d0351-cd6e-47b2-b3a5-6d5d6b04fb78",
               "x-litellm-callback-duration-ms": "0.0",
               "x-litellm-key-spend": "0.0",
               "x-litellm-model-api-base": "http://127.0.0.1:11434",
               "x-litellm-model-group": "zamora-executor-7b",
               "x-litellm-model-id": "79b8cf66137cd37635efc8803fe8843dc150dcf0fde7998dbab15537001be839",
               "x-litellm-model-name": "ollama_chat/qwen2.5-coder:7b",
-              "x-litellm-overhead-duration-ms": "23.0391",
-              "x-litellm-response-duration-ms": "8752.361059188843",
+              "x-litellm-overhead-duration-ms": "8.229",
+              "x-litellm-response-duration-ms": "163.15293312072754",
               "x-litellm-version": "1.106.0"
             }
           },
           "_promptfooFileMetadata": {}
         },
-        "failureReason": 1
+        "failureReason": 0
       },
       {
         "cost": 0,
@@ -761,15 +554,15 @@
             }
           ]
         },
-        "id": "0d502203-17e1-49e4-9885-f5011751f79f",
-        "latencyMs": 3159,
+        "id": "099064de-4108-4e27-a848-e121ecec8956",
+        "latencyMs": 1752,
         "namedScores": {},
         "prompt": {
-          "raw": "Escreva apenas um bloco ```python``` com a funcao `def validar_data_br(data_str: str) -> bool:` que valida se a data esta no formato DD/MM/AAAA e se eh uma data valida.",
-          "label": "{{instrucao}}",
+          "raw": "Você é um desenvolvedor cirúrgico da Estação ZAMORA. Responda APENAS com o código Python dentro do bloco ```python ... ``` sem texto introdutório nem explicativo.\n\nTAREFA: Escreva a funcao `def validar_data_br(data_str: str) -> bool:` que valida se a data esta no formato DD/MM/AAAA e se eh uma data valida.",
+          "label": "Você é um desenvolvedor cirúrgico da Estação ZAMORA. Responda APENAS com o código Python dentro do bloco ```python ... ``` sem texto introdutório nem explicativo.\n\nTAREFA: {{instrucao}}",
           "config": {}
         },
-        "promptId": "9f091deefdef683790d5b41749e770d880c8f62d094b15fa905f78547ab6c6be",
+        "promptId": "b5f9e68a144038ccd3d9cb9969e8e16475ca96ca92ced1780ddea11f68c19f35",
         "promptIdx": 0,
         "provider": {
           "id": "openai:chat:zamora-executor-local",
@@ -778,10 +571,10 @@
         "response": {
           "output": "```python\nfrom datetime import datetime\n\ndef validar_data_br(data_str: str) -> bool:\n    try:\n        datetime.strptime(data_str, '%d/%m/%Y')\n        return True\n    except ValueError:\n        return False\n```",
           "tokenUsage": {
-            "prompt": 75,
+            "prompt": 116,
             "completion": 50,
             "cached": 0,
-            "total": 125,
+            "total": 166,
             "numRequests": 1,
             "completionDetails": {
               "reasoning": 0,
@@ -806,7 +599,7 @@
             }
           },
           "cached": false,
-          "latencyMs": 3159,
+          "latencyMs": 1752,
           "finishReason": "stop",
           "guardrails": {
             "flagged": false
@@ -818,21 +611,21 @@
               "headers": {
                 "content-security-policy": "frame-ancestors 'none'",
                 "content-type": "application/json",
-                "date": "Tue, 20 Oct 2026 13:00:18 GMT",
+                "date": "Tue, 20 Oct 2026 13:03:51 GMT",
                 "vary": "Accept-Encoding",
                 "x-content-type-options": "nosniff",
                 "x-frame-options": "DENY",
                 "x-litellm-attempted-fallbacks": "0",
                 "x-litellm-attempted-retries": "0",
-                "x-litellm-call-id": "6180d03f-0a9c-4685-bc70-342bb38de354",
+                "x-litellm-call-id": "3c6c7315-e5c1-4198-8368-f3244460e21d",
                 "x-litellm-callback-duration-ms": "0.0",
                 "x-litellm-key-spend": "0.0",
                 "x-litellm-model-api-base": "http://127.0.0.1:11434",
                 "x-litellm-model-group": "zamora-executor-local",
                 "x-litellm-model-id": "500ee7063aa19bb762bd1da9500bf375ed0ea1de0a05b6bebd79712e569a7d2a",
                 "x-litellm-model-name": "ollama_chat/qwen2.5-coder:32b",
-                "x-litellm-overhead-duration-ms": "24.0102",
-                "x-litellm-response-duration-ms": "3131.925106048584",
+                "x-litellm-overhead-duration-ms": "6.5141",
+                "x-litellm-response-duration-ms": "1735.814094543457",
                 "x-litellm-version": "1.106.0"
               }
             }
@@ -842,7 +635,7 @@
         "success": true,
         "testCase": {
           "vars": {
-            "instrucao": "Escreva apenas um bloco ```python``` com a funcao `def validar_data_br(data_str: str) -> bool:` que valida se a data esta no formato DD/MM/AAAA e se eh uma data valida."
+            "instrucao": "Escreva a funcao `def validar_data_br(data_str: str) -> bool:` que valida se a data esta no formato DD/MM/AAAA e se eh uma data valida."
           },
           "assert": [
             {
@@ -863,10 +656,10 @@
         },
         "testIdx": 1,
         "tokenUsage": {
-          "prompt": 75,
+          "prompt": 116,
           "completion": 50,
           "cached": 0,
-          "total": 125,
+          "total": 166,
           "numRequests": 1,
           "completionDetails": {
             "reasoning": 0,
@@ -891,7 +684,7 @@
           }
         },
         "vars": {
-          "instrucao": "Escreva apenas um bloco ```python``` com a funcao `def validar_data_br(data_str: str) -> bool:` que valida se a data esta no formato DD/MM/AAAA e se eh uma data valida."
+          "instrucao": "Escreva a funcao `def validar_data_br(data_str: str) -> bool:` que valida se a data esta no formato DD/MM/AAAA e se eh uma data valida."
         },
         "metadata": {
           "http": {
@@ -900,21 +693,226 @@
             "headers": {
               "content-security-policy": "frame-ancestors 'none'",
               "content-type": "application/json",
-              "date": "Tue, 20 Oct 2026 13:00:18 GMT",
+              "date": "Tue, 20 Oct 2026 13:03:51 GMT",
               "vary": "Accept-Encoding",
               "x-content-type-options": "nosniff",
               "x-frame-options": "DENY",
               "x-litellm-attempted-fallbacks": "0",
               "x-litellm-attempted-retries": "0",
-              "x-litellm-call-id": "6180d03f-0a9c-4685-bc70-342bb38de354",
+              "x-litellm-call-id": "3c6c7315-e5c1-4198-8368-f3244460e21d",
               "x-litellm-callback-duration-ms": "0.0",
               "x-litellm-key-spend": "0.0",
               "x-litellm-model-api-base": "http://127.0.0.1:11434",
               "x-litellm-model-group": "zamora-executor-local",
               "x-litellm-model-id": "500ee7063aa19bb762bd1da9500bf375ed0ea1de0a05b6bebd79712e569a7d2a",
               "x-litellm-model-name": "ollama_chat/qwen2.5-coder:32b",
-              "x-litellm-overhead-duration-ms": "24.0102",
-              "x-litellm-response-duration-ms": "3131.925106048584",
+              "x-litellm-overhead-duration-ms": "6.5141",
+              "x-litellm-response-duration-ms": "1735.814094543457",
+              "x-litellm-version": "1.106.0"
+            }
+          },
+          "_promptfooFileMetadata": {}
+        },
+        "failureReason": 0
+      },
+      {
+        "cost": 0,
+        "gradingResult": {
+          "pass": true,
+          "score": 1,
+          "reason": "All assertions passed",
+          "namedScores": {},
+          "tokensUsed": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 0
+          },
+          "componentResults": [
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "contains",
+                "value": "def validar_data_br"
+              }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "javascript",
+                "value": "output.includes('datetime') || output.includes('strptime') || output.includes('re.')"
+              }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "latency",
+                "threshold": 8000
+              }
+            }
+          ]
+        },
+        "id": "8d39317d-da39-45d5-96ef-ea1943da19e5",
+        "latencyMs": 271,
+        "namedScores": {},
+        "prompt": {
+          "raw": "Você é um desenvolvedor cirúrgico da Estação ZAMORA. Responda APENAS com o código Python dentro do bloco ```python ... ``` sem texto introdutório nem explicativo.\n\nTAREFA: Escreva a funcao `def validar_data_br(data_str: str) -> bool:` que valida se a data esta no formato DD/MM/AAAA e se eh uma data valida.",
+          "label": "Você é um desenvolvedor cirúrgico da Estação ZAMORA. Responda APENAS com o código Python dentro do bloco ```python ... ``` sem texto introdutório nem explicativo.\n\nTAREFA: {{instrucao}}",
+          "config": {}
+        },
+        "promptId": "b5f9e68a144038ccd3d9cb9969e8e16475ca96ca92ced1780ddea11f68c19f35",
+        "promptIdx": 1,
+        "provider": {
+          "id": "openai:chat:zamora-executor-7b",
+          "label": ""
+        },
+        "response": {
+          "output": "```python\nfrom datetime import datetime\n\ndef validar_data_br(data_str: str) -> bool:\n    try:\n        datetime.strptime(data_str, '%d/%m/%Y')\n        return True\n    except ValueError:\n        return False\n```",
+          "tokenUsage": {
+            "prompt": 116,
+            "completion": 50,
+            "cached": 0,
+            "total": 166,
+            "numRequests": 1,
+            "completionDetails": {
+              "reasoning": 0,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0
+            },
+            "assertions": {
+              "total": 0,
+              "prompt": 0,
+              "completion": 0,
+              "cached": 0,
+              "numRequests": 0,
+              "completionDetails": {
+                "reasoning": 0,
+                "acceptedPrediction": 0,
+                "rejectedPrediction": 0,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0
+              }
+            }
+          },
+          "cached": false,
+          "latencyMs": 271,
+          "finishReason": "stop",
+          "guardrails": {
+            "flagged": false
+          },
+          "metadata": {
+            "http": {
+              "status": 200,
+              "statusText": "OK",
+              "headers": {
+                "content-security-policy": "frame-ancestors 'none'",
+                "content-type": "application/json",
+                "date": "Tue, 20 Oct 2026 13:03:52 GMT",
+                "vary": "Accept-Encoding",
+                "x-content-type-options": "nosniff",
+                "x-frame-options": "DENY",
+                "x-litellm-attempted-fallbacks": "0",
+                "x-litellm-attempted-retries": "0",
+                "x-litellm-call-id": "94e7a032-377b-4d5f-b6c0-349dce3926c0",
+                "x-litellm-callback-duration-ms": "0.0",
+                "x-litellm-key-spend": "0.0",
+                "x-litellm-model-api-base": "http://127.0.0.1:11434",
+                "x-litellm-model-group": "zamora-executor-7b",
+                "x-litellm-model-id": "79b8cf66137cd37635efc8803fe8843dc150dcf0fde7998dbab15537001be839",
+                "x-litellm-model-name": "ollama_chat/qwen2.5-coder:7b",
+                "x-litellm-overhead-duration-ms": "8.2469",
+                "x-litellm-response-duration-ms": "255.13887405395508",
+                "x-litellm-version": "1.106.0"
+              }
+            }
+          }
+        },
+        "score": 1,
+        "success": true,
+        "testCase": {
+          "vars": {
+            "instrucao": "Escreva a funcao `def validar_data_br(data_str: str) -> bool:` que valida se a data esta no formato DD/MM/AAAA e se eh uma data valida."
+          },
+          "assert": [
+            {
+              "type": "contains",
+              "value": "def validar_data_br"
+            },
+            {
+              "type": "javascript",
+              "value": "output.includes('datetime') || output.includes('strptime') || output.includes('re.')"
+            },
+            {
+              "type": "latency",
+              "threshold": 8000
+            }
+          ],
+          "options": {},
+          "metadata": {}
+        },
+        "testIdx": 1,
+        "tokenUsage": {
+          "prompt": 116,
+          "completion": 50,
+          "cached": 0,
+          "total": 166,
+          "numRequests": 1,
+          "completionDetails": {
+            "reasoning": 0,
+            "acceptedPrediction": 0,
+            "rejectedPrediction": 0,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0
+          },
+          "assertions": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 0,
+            "completionDetails": {
+              "reasoning": 0,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0
+            }
+          }
+        },
+        "vars": {
+          "instrucao": "Escreva a funcao `def validar_data_br(data_str: str) -> bool:` que valida se a data esta no formato DD/MM/AAAA e se eh uma data valida."
+        },
+        "metadata": {
+          "http": {
+            "status": 200,
+            "statusText": "OK",
+            "headers": {
+              "content-security-policy": "frame-ancestors 'none'",
+              "content-type": "application/json",
+              "date": "Tue, 20 Oct 2026 13:03:52 GMT",
+              "vary": "Accept-Encoding",
+              "x-content-type-options": "nosniff",
+              "x-frame-options": "DENY",
+              "x-litellm-attempted-fallbacks": "0",
+              "x-litellm-attempted-retries": "0",
+              "x-litellm-call-id": "94e7a032-377b-4d5f-b6c0-349dce3926c0",
+              "x-litellm-callback-duration-ms": "0.0",
+              "x-litellm-key-spend": "0.0",
+              "x-litellm-model-api-base": "http://127.0.0.1:11434",
+              "x-litellm-model-group": "zamora-executor-7b",
+              "x-litellm-model-id": "79b8cf66137cd37635efc8803fe8843dc150dcf0fde7998dbab15537001be839",
+              "x-litellm-model-name": "ollama_chat/qwen2.5-coder:7b",
+              "x-litellm-overhead-duration-ms": "8.2469",
+              "x-litellm-response-duration-ms": "255.13887405395508",
               "x-litellm-version": "1.106.0"
             }
           },
@@ -963,30 +961,39 @@
                 "type": "contains",
                 "value": "hexdigest"
               }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "latency",
+                "threshold": 8000
+              }
             }
           ]
         },
-        "id": "bee2813f-5699-4da2-8f1f-d6c040c0e4b5",
-        "latencyMs": 3059,
+        "id": "9a5b07e8-c893-4b52-bf85-6166f782927f",
+        "latencyMs": 1291,
         "namedScores": {},
         "prompt": {
-          "raw": "Escreva apenas um bloco ```python``` com a funcao `def gerar_hash_pericial(arquivo_bytes: bytes) -> str:` que calcule o hash SHA-256 em hexadecimal.",
-          "label": "{{instrucao}}",
+          "raw": "Você é um desenvolvedor cirúrgico da Estação ZAMORA. Responda APENAS com o código Python dentro do bloco ```python ... ``` sem texto introdutório nem explicativo.\n\nTAREFA: Escreva a funcao `def gerar_hash_pericial(arquivo_bytes: bytes) -> str:` que calcule o hash SHA-256 em formato hexadecimal.",
+          "label": "Você é um desenvolvedor cirúrgico da Estação ZAMORA. Responda APENAS com o código Python dentro do bloco ```python ... ``` sem texto introdutório nem explicativo.\n\nTAREFA: {{instrucao}}",
           "config": {}
         },
-        "promptId": "9f091deefdef683790d5b41749e770d880c8f62d094b15fa905f78547ab6c6be",
+        "promptId": "b5f9e68a144038ccd3d9cb9969e8e16475ca96ca92ced1780ddea11f68c19f35",
         "promptIdx": 0,
         "provider": {
           "id": "openai:chat:zamora-executor-local",
           "label": ""
         },
         "response": {
-          "output": "```python\nimport hashlib\n\ndef gerar_hash_pericial(arquivo_bytes: bytes) -> str:\n    hash_sha256 = hashlib.sha256(arquivo_bytes).hexdigest()\n    return hash_sha256\n```",
+          "output": "```python\nimport hashlib\n\ndef gerar_hash_pericial(arquivo_bytes: bytes) -> str:\n    return hashlib.sha256(arquivo_bytes).hexdigest()\n```",
           "tokenUsage": {
-            "prompt": 72,
-            "completion": 49,
+            "prompt": 114,
+            "completion": 36,
             "cached": 0,
-            "total": 121,
+            "total": 150,
             "numRequests": 1,
             "completionDetails": {
               "reasoning": 0,
@@ -1011,7 +1018,7 @@
             }
           },
           "cached": false,
-          "latencyMs": 3059,
+          "latencyMs": 1291,
           "finishReason": "stop",
           "guardrails": {
             "flagged": false
@@ -1021,23 +1028,23 @@
               "status": 200,
               "statusText": "OK",
               "headers": {
-                "content-length": "468",
+                "content-length": "438",
                 "content-security-policy": "frame-ancestors 'none'",
                 "content-type": "application/json",
-                "date": "Tue, 20 Oct 2026 13:00:19 GMT",
+                "date": "Tue, 20 Oct 2026 13:03:53 GMT",
                 "x-content-type-options": "nosniff",
                 "x-frame-options": "DENY",
                 "x-litellm-attempted-fallbacks": "0",
                 "x-litellm-attempted-retries": "0",
-                "x-litellm-call-id": "7312fccc-81a9-481f-a8e4-90d46f4daf82",
+                "x-litellm-call-id": "81a2e95e-29b3-4cc5-9f17-47f4195a3735",
                 "x-litellm-callback-duration-ms": "0.0",
                 "x-litellm-key-spend": "0.0",
                 "x-litellm-model-api-base": "http://127.0.0.1:11434",
                 "x-litellm-model-group": "zamora-executor-local",
                 "x-litellm-model-id": "500ee7063aa19bb762bd1da9500bf375ed0ea1de0a05b6bebd79712e569a7d2a",
                 "x-litellm-model-name": "ollama_chat/qwen2.5-coder:32b",
-                "x-litellm-overhead-duration-ms": "11.384",
-                "x-litellm-response-duration-ms": "3040.497064590454",
+                "x-litellm-overhead-duration-ms": "8.0378",
+                "x-litellm-response-duration-ms": "1274.1689682006836",
                 "x-litellm-version": "1.106.0"
               }
             }
@@ -1047,7 +1054,7 @@
         "success": true,
         "testCase": {
           "vars": {
-            "instrucao": "Escreva apenas um bloco ```python``` com a funcao `def gerar_hash_pericial(arquivo_bytes: bytes) -> str:` que calcule o hash SHA-256 em hexadecimal."
+            "instrucao": "Escreva a funcao `def gerar_hash_pericial(arquivo_bytes: bytes) -> str:` que calcule o hash SHA-256 em formato hexadecimal."
           },
           "assert": [
             {
@@ -1061,6 +1068,10 @@
             {
               "type": "contains",
               "value": "hexdigest"
+            },
+            {
+              "type": "latency",
+              "threshold": 8000
             }
           ],
           "options": {},
@@ -1068,10 +1079,10 @@
         },
         "testIdx": 2,
         "tokenUsage": {
-          "prompt": 72,
-          "completion": 49,
+          "prompt": 114,
+          "completion": 36,
           "cached": 0,
-          "total": 121,
+          "total": 150,
           "numRequests": 1,
           "completionDetails": {
             "reasoning": 0,
@@ -1096,30 +1107,30 @@
           }
         },
         "vars": {
-          "instrucao": "Escreva apenas um bloco ```python``` com a funcao `def gerar_hash_pericial(arquivo_bytes: bytes) -> str:` que calcule o hash SHA-256 em hexadecimal."
+          "instrucao": "Escreva a funcao `def gerar_hash_pericial(arquivo_bytes: bytes) -> str:` que calcule o hash SHA-256 em formato hexadecimal."
         },
         "metadata": {
           "http": {
             "status": 200,
             "statusText": "OK",
             "headers": {
-              "content-length": "468",
+              "content-length": "438",
               "content-security-policy": "frame-ancestors 'none'",
               "content-type": "application/json",
-              "date": "Tue, 20 Oct 2026 13:00:19 GMT",
+              "date": "Tue, 20 Oct 2026 13:03:53 GMT",
               "x-content-type-options": "nosniff",
               "x-frame-options": "DENY",
               "x-litellm-attempted-fallbacks": "0",
               "x-litellm-attempted-retries": "0",
-              "x-litellm-call-id": "7312fccc-81a9-481f-a8e4-90d46f4daf82",
+              "x-litellm-call-id": "81a2e95e-29b3-4cc5-9f17-47f4195a3735",
               "x-litellm-callback-duration-ms": "0.0",
               "x-litellm-key-spend": "0.0",
               "x-litellm-model-api-base": "http://127.0.0.1:11434",
               "x-litellm-model-group": "zamora-executor-local",
               "x-litellm-model-id": "500ee7063aa19bb762bd1da9500bf375ed0ea1de0a05b6bebd79712e569a7d2a",
               "x-litellm-model-name": "ollama_chat/qwen2.5-coder:32b",
-              "x-litellm-overhead-duration-ms": "11.384",
-              "x-litellm-response-duration-ms": "3040.497064590454",
+              "x-litellm-overhead-duration-ms": "8.0378",
+              "x-litellm-response-duration-ms": "1274.1689682006836",
               "x-litellm-version": "1.106.0"
             }
           },
@@ -1168,18 +1179,27 @@
                 "type": "contains",
                 "value": "hexdigest"
               }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "latency",
+                "threshold": 8000
+              }
             }
           ]
         },
-        "id": "a165fc9f-5325-4333-80f7-df151b254d27",
-        "latencyMs": 7220,
+        "id": "7ef02b30-8e62-4a1d-aacc-4244e3060751",
+        "latencyMs": 303,
         "namedScores": {},
         "prompt": {
-          "raw": "Escreva apenas um bloco ```python``` com a funcao `def gerar_hash_pericial(arquivo_bytes: bytes) -> str:` que calcule o hash SHA-256 em hexadecimal.",
-          "label": "{{instrucao}}",
+          "raw": "Você é um desenvolvedor cirúrgico da Estação ZAMORA. Responda APENAS com o código Python dentro do bloco ```python ... ``` sem texto introdutório nem explicativo.\n\nTAREFA: Escreva a funcao `def gerar_hash_pericial(arquivo_bytes: bytes) -> str:` que calcule o hash SHA-256 em formato hexadecimal.",
+          "label": "Você é um desenvolvedor cirúrgico da Estação ZAMORA. Responda APENAS com o código Python dentro do bloco ```python ... ``` sem texto introdutório nem explicativo.\n\nTAREFA: {{instrucao}}",
           "config": {}
         },
-        "promptId": "9f091deefdef683790d5b41749e770d880c8f62d094b15fa905f78547ab6c6be",
+        "promptId": "b5f9e68a144038ccd3d9cb9969e8e16475ca96ca92ced1780ddea11f68c19f35",
         "promptIdx": 1,
         "provider": {
           "id": "openai:chat:zamora-executor-7b",
@@ -1188,10 +1208,10 @@
         "response": {
           "output": "```python\nimport hashlib\n\ndef gerar_hash_pericial(arquivo_bytes: bytes) -> str:\n    hash_sha256 = hashlib.sha256()\n    hash_sha256.update(arquivo_bytes)\n    return hash_sha256.hexdigest()\n```",
           "tokenUsage": {
-            "prompt": 72,
+            "prompt": 114,
             "completion": 57,
             "cached": 0,
-            "total": 129,
+            "total": 171,
             "numRequests": 1,
             "completionDetails": {
               "reasoning": 0,
@@ -1216,7 +1236,7 @@
             }
           },
           "cached": false,
-          "latencyMs": 7220,
+          "latencyMs": 303,
           "finishReason": "stop",
           "guardrails": {
             "flagged": false
@@ -1226,23 +1246,23 @@
               "status": 200,
               "statusText": "OK",
               "headers": {
-                "content-length": "491",
+                "content-length": "492",
                 "content-security-policy": "frame-ancestors 'none'",
                 "content-type": "application/json",
-                "date": "Tue, 20 Oct 2026 13:00:21 GMT",
+                "date": "Tue, 20 Oct 2026 13:03:54 GMT",
                 "x-content-type-options": "nosniff",
                 "x-frame-options": "DENY",
                 "x-litellm-attempted-fallbacks": "0",
                 "x-litellm-attempted-retries": "0",
-                "x-litellm-call-id": "8ee2556c-5953-4fbe-af68-03ef74d5e7be",
+                "x-litellm-call-id": "0bec5823-3f40-47c7-9949-dc7695115834",
                 "x-litellm-callback-duration-ms": "0.0",
                 "x-litellm-key-spend": "0.0",
                 "x-litellm-model-api-base": "http://127.0.0.1:11434",
                 "x-litellm-model-group": "zamora-executor-7b",
                 "x-litellm-model-id": "79b8cf66137cd37635efc8803fe8843dc150dcf0fde7998dbab15537001be839",
                 "x-litellm-model-name": "ollama_chat/qwen2.5-coder:7b",
-                "x-litellm-overhead-duration-ms": "11.5361",
-                "x-litellm-response-duration-ms": "7203.006029129028",
+                "x-litellm-overhead-duration-ms": "8.7357",
+                "x-litellm-response-duration-ms": "287.1358394622803",
                 "x-litellm-version": "1.106.0"
               }
             }
@@ -1252,7 +1272,7 @@
         "success": true,
         "testCase": {
           "vars": {
-            "instrucao": "Escreva apenas um bloco ```python``` com a funcao `def gerar_hash_pericial(arquivo_bytes: bytes) -> str:` que calcule o hash SHA-256 em hexadecimal."
+            "instrucao": "Escreva a funcao `def gerar_hash_pericial(arquivo_bytes: bytes) -> str:` que calcule o hash SHA-256 em formato hexadecimal."
           },
           "assert": [
             {
@@ -1266,6 +1286,10 @@
             {
               "type": "contains",
               "value": "hexdigest"
+            },
+            {
+              "type": "latency",
+              "threshold": 8000
             }
           ],
           "options": {},
@@ -1273,10 +1297,10 @@
         },
         "testIdx": 2,
         "tokenUsage": {
-          "prompt": 72,
+          "prompt": 114,
           "completion": 57,
           "cached": 0,
-          "total": 129,
+          "total": 171,
           "numRequests": 1,
           "completionDetails": {
             "reasoning": 0,
@@ -1301,30 +1325,30 @@
           }
         },
         "vars": {
-          "instrucao": "Escreva apenas um bloco ```python``` com a funcao `def gerar_hash_pericial(arquivo_bytes: bytes) -> str:` que calcule o hash SHA-256 em hexadecimal."
+          "instrucao": "Escreva a funcao `def gerar_hash_pericial(arquivo_bytes: bytes) -> str:` que calcule o hash SHA-256 em formato hexadecimal."
         },
         "metadata": {
           "http": {
             "status": 200,
             "statusText": "OK",
             "headers": {
-              "content-length": "491",
+              "content-length": "492",
               "content-security-policy": "frame-ancestors 'none'",
               "content-type": "application/json",
-              "date": "Tue, 20 Oct 2026 13:00:21 GMT",
+              "date": "Tue, 20 Oct 2026 13:03:54 GMT",
               "x-content-type-options": "nosniff",
               "x-frame-options": "DENY",
               "x-litellm-attempted-fallbacks": "0",
               "x-litellm-attempted-retries": "0",
-              "x-litellm-call-id": "8ee2556c-5953-4fbe-af68-03ef74d5e7be",
+              "x-litellm-call-id": "0bec5823-3f40-47c7-9949-dc7695115834",
               "x-litellm-callback-duration-ms": "0.0",
               "x-litellm-key-spend": "0.0",
               "x-litellm-model-api-base": "http://127.0.0.1:11434",
               "x-litellm-model-group": "zamora-executor-7b",
               "x-litellm-model-id": "79b8cf66137cd37635efc8803fe8843dc150dcf0fde7998dbab15537001be839",
               "x-litellm-model-name": "ollama_chat/qwen2.5-coder:7b",
-              "x-litellm-overhead-duration-ms": "11.5361",
-              "x-litellm-response-duration-ms": "7203.006029129028",
+              "x-litellm-overhead-duration-ms": "8.7357",
+              "x-litellm-response-duration-ms": "287.1358394622803",
               "x-litellm-version": "1.106.0"
             }
           },
@@ -1334,11 +1358,10 @@
       },
       {
         "cost": 0,
-        "error": "Latency 20690ms is greater than threshold 12000ms",
         "gradingResult": {
-          "pass": false,
-          "score": 0.6666666666666666,
-          "reason": "Latency 20690ms is greater than threshold 12000ms",
+          "pass": true,
+          "score": 1,
+          "reason": "All assertions passed",
           "namedScores": {},
           "tokensUsed": {
             "total": 0,
@@ -1367,37 +1390,37 @@
               }
             },
             {
-              "pass": false,
-              "score": 0,
-              "reason": "Latency 20690ms is greater than threshold 12000ms",
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
               "assertion": {
                 "type": "latency",
-                "threshold": 12000
+                "threshold": 15000
               }
             }
           ]
         },
-        "id": "bd7336af-d67a-452d-82a7-1ab45193bf77",
-        "latencyMs": 20690,
+        "id": "821abe0c-0bde-49f0-8759-c5a84d48dfec",
+        "latencyMs": 3650,
         "namedScores": {},
         "prompt": {
-          "raw": "Escreva uma funcao ```python def parse_ocorrencia(texto: str) -> dict:``` que extraia 'numero_bo', 'ano' e 'delegacia' de um texto procedural da PCDF e retorne um dicionario com essas chaves.",
-          "label": "{{instrucao}}",
+          "raw": "Você é um desenvolvedor cirúrgico da Estação ZAMORA. Responda APENAS com o código Python dentro do bloco ```python ... ``` sem texto introdutório nem explicativo.\n\nTAREFA: Escreva a funcao `def parse_ocorrencia(texto: str) -> dict:` que extraia 'numero_bo', 'ano' e 'delegacia' do texto e retorne um dicionario com essas chaves.",
+          "label": "Você é um desenvolvedor cirúrgico da Estação ZAMORA. Responda APENAS com o código Python dentro do bloco ```python ... ``` sem texto introdutório nem explicativo.\n\nTAREFA: {{instrucao}}",
           "config": {}
         },
-        "promptId": "9f091deefdef683790d5b41749e770d880c8f62d094b15fa905f78547ab6c6be",
+        "promptId": "b5f9e68a144038ccd3d9cb9969e8e16475ca96ca92ced1780ddea11f68c19f35",
         "promptIdx": 0,
         "provider": {
           "id": "openai:chat:zamora-executor-local",
           "label": ""
         },
         "response": {
-          "output": "Para criar a função `parse_ocorrencia`, precisamos identificar padrões no texto que correspondam ao número do boletim de ocorrência (BO), ao ano e à delegacia. Vamos supor que o texto segue um formato padrão, como:\n\n```\nBO: 123456/2023 - Delegacia: 13º DPQD\n```\n\nNeste exemplo, o número do BO é `123456`, o ano é `2023` e a delegacia é `13º DPQD`. Vamos usar expressões regulares para extrair essas informações.\n\nAqui está a implementação da função:\n\n```python\nimport re\n\ndef parse_ocorrencia(texto: str) -> dict:\n    # Expressão regular para extrair o número do BO e o ano\n    bo_match = re.search(r'BO:\\s*(\\d+)/(\\d{4})', texto)\n    # Expressão regular para extrair a delegacia\n    delegacia_match = re.search(r'Delegacia:\\s*(.+)', texto)\n    \n    if bo_match and delegacia_match:\n        numero_bo = bo_match.group(1)\n        ano = bo_match.group(2)\n        delegacia = delegacia_match.group(1)\n        return {\n            'numero_bo': numero_bo,\n            'ano': ano,\n            'delegacia': delegacia\n        }\n    else:\n        return {\n            'numero_bo': None,\n            'ano': None,\n            'delegacia': None\n        }\n\n# Exemplo de uso\ntexto = \"BO: 123",
+          "output": "```python\nimport re\n\ndef parse_ocorrencia(texto: str) -> dict:\n    numero_bo = re.search(r'Número do BO: (\\d+)', texto).group(1)\n    ano = re.search(r'Ano: (\\d{4})', texto).group(1)\n    delegacia = re.search(r'Delegacia: ([^,]+)', texto).group(1).strip()\n    return {'numero_bo': numero_bo, 'ano': ano, 'delegacia': delegacia}\n```",
           "tokenUsage": {
-            "prompt": 87,
-            "completion": 350,
+            "prompt": 129,
+            "completion": 112,
             "cached": 0,
-            "total": 437,
+            "total": 241,
             "numRequests": 1,
             "completionDetails": {
               "reasoning": 0,
@@ -1422,408 +1445,7 @@
             }
           },
           "cached": false,
-          "latencyMs": 20690,
-          "finishReason": "length",
-          "guardrails": {
-            "flagged": false
-          },
-          "metadata": {
-            "http": {
-              "status": 200,
-              "statusText": "OK",
-              "headers": {
-                "content-security-policy": "frame-ancestors 'none'",
-                "content-type": "application/json",
-                "date": "Tue, 20 Oct 2026 13:00:22 GMT",
-                "vary": "Accept-Encoding",
-                "x-content-type-options": "nosniff",
-                "x-frame-options": "DENY",
-                "x-litellm-attempted-fallbacks": "0",
-                "x-litellm-attempted-retries": "0",
-                "x-litellm-call-id": "7bebd8d4-53e7-4463-8156-498cc7fa4bfc",
-                "x-litellm-callback-duration-ms": "0.0",
-                "x-litellm-key-spend": "0.0",
-                "x-litellm-model-api-base": "http://127.0.0.1:11434",
-                "x-litellm-model-group": "zamora-executor-local",
-                "x-litellm-model-id": "500ee7063aa19bb762bd1da9500bf375ed0ea1de0a05b6bebd79712e569a7d2a",
-                "x-litellm-model-name": "ollama_chat/qwen2.5-coder:32b",
-                "x-litellm-overhead-duration-ms": "9.0322",
-                "x-litellm-response-duration-ms": "20673.56514930725",
-                "x-litellm-version": "1.106.0"
-              }
-            }
-          }
-        },
-        "score": 0.6666666666666666,
-        "success": false,
-        "testCase": {
-          "vars": {
-            "instrucao": "Escreva uma funcao ```python def parse_ocorrencia(texto: str) -> dict:``` que extraia 'numero_bo', 'ano' e 'delegacia' de um texto procedural da PCDF e retorne um dicionario com essas chaves."
-          },
-          "assert": [
-            {
-              "type": "contains",
-              "value": "def parse_ocorrencia"
-            },
-            {
-              "type": "javascript",
-              "value": "output.includes('numero_bo') && output.includes('ano') && output.includes('delegacia')"
-            },
-            {
-              "type": "latency",
-              "threshold": 12000
-            }
-          ],
-          "options": {},
-          "metadata": {}
-        },
-        "testIdx": 3,
-        "tokenUsage": {
-          "prompt": 87,
-          "completion": 350,
-          "cached": 0,
-          "total": 437,
-          "numRequests": 1,
-          "completionDetails": {
-            "reasoning": 0,
-            "acceptedPrediction": 0,
-            "rejectedPrediction": 0,
-            "cacheReadInputTokens": 0,
-            "cacheCreationInputTokens": 0
-          },
-          "assertions": {
-            "total": 0,
-            "prompt": 0,
-            "completion": 0,
-            "cached": 0,
-            "numRequests": 0,
-            "completionDetails": {
-              "reasoning": 0,
-              "acceptedPrediction": 0,
-              "rejectedPrediction": 0,
-              "cacheReadInputTokens": 0,
-              "cacheCreationInputTokens": 0
-            }
-          }
-        },
-        "vars": {
-          "instrucao": "Escreva uma funcao ```python def parse_ocorrencia(texto: str) -> dict:``` que extraia 'numero_bo', 'ano' e 'delegacia' de um texto procedural da PCDF e retorne um dicionario com essas chaves."
-        },
-        "metadata": {
-          "http": {
-            "status": 200,
-            "statusText": "OK",
-            "headers": {
-              "content-security-policy": "frame-ancestors 'none'",
-              "content-type": "application/json",
-              "date": "Tue, 20 Oct 2026 13:00:22 GMT",
-              "vary": "Accept-Encoding",
-              "x-content-type-options": "nosniff",
-              "x-frame-options": "DENY",
-              "x-litellm-attempted-fallbacks": "0",
-              "x-litellm-attempted-retries": "0",
-              "x-litellm-call-id": "7bebd8d4-53e7-4463-8156-498cc7fa4bfc",
-              "x-litellm-callback-duration-ms": "0.0",
-              "x-litellm-key-spend": "0.0",
-              "x-litellm-model-api-base": "http://127.0.0.1:11434",
-              "x-litellm-model-group": "zamora-executor-local",
-              "x-litellm-model-id": "500ee7063aa19bb762bd1da9500bf375ed0ea1de0a05b6bebd79712e569a7d2a",
-              "x-litellm-model-name": "ollama_chat/qwen2.5-coder:32b",
-              "x-litellm-overhead-duration-ms": "9.0322",
-              "x-litellm-response-duration-ms": "20673.56514930725",
-              "x-litellm-version": "1.106.0"
-            }
-          },
-          "_promptfooFileMetadata": {}
-        },
-        "failureReason": 1
-      },
-      {
-        "cost": 0,
-        "gradingResult": {
-          "pass": true,
-          "score": 1,
-          "reason": "All assertions passed",
-          "namedScores": {},
-          "tokensUsed": {
-            "total": 0,
-            "prompt": 0,
-            "completion": 0,
-            "cached": 0,
-            "numRequests": 0
-          },
-          "componentResults": [
-            {
-              "pass": true,
-              "score": 1,
-              "reason": "Assertion passed",
-              "assertion": {
-                "type": "contains",
-                "value": "def parse_ocorrencia"
-              }
-            },
-            {
-              "pass": true,
-              "score": 1,
-              "reason": "Assertion passed",
-              "assertion": {
-                "type": "javascript",
-                "value": "output.includes('numero_bo') && output.includes('ano') && output.includes('delegacia')"
-              }
-            },
-            {
-              "pass": true,
-              "score": 1,
-              "reason": "Assertion passed",
-              "assertion": {
-                "type": "latency",
-                "threshold": 12000
-              }
-            }
-          ]
-        },
-        "id": "d1948449-e3cb-4c58-8595-c450c9e969a5",
-        "latencyMs": 6657,
-        "namedScores": {},
-        "prompt": {
-          "raw": "Escreva uma funcao ```python def parse_ocorrencia(texto: str) -> dict:``` que extraia 'numero_bo', 'ano' e 'delegacia' de um texto procedural da PCDF e retorne um dicionario com essas chaves.",
-          "label": "{{instrucao}}",
-          "config": {}
-        },
-        "promptId": "9f091deefdef683790d5b41749e770d880c8f62d094b15fa905f78547ab6c6be",
-        "promptIdx": 1,
-        "provider": {
-          "id": "openai:chat:zamora-executor-7b",
-          "label": ""
-        },
-        "response": {
-          "output": "Para extrair as informações 'numero_bo', 'ano' e 'delegacia' de um texto procedural da Polícia Civil do Distrito Federal (PCDF), podemos usar técnicas de processamento de linguagem natural (NLP) e expressões regulares. Vamos criar uma função `parse_ocorrencia` que utilize essas técnicas para extrair as informações desejadas.\n\nAqui está um exemplo de como a função pode ser implementada:\n\n```python\nimport re\n\ndef parse_ocorrencia(texto: str) -> dict:\n    resultado = {\n        'numero_bo': None,\n        'ano': None,\n        'delegacia': None\n    }\n    \n    # Expressão regular para extrair o número do BO\n    numero_bo_pattern = r'BO(?P<numero>\\d{4})'\n    match = re.search(numero_bo_pattern, texto)\n    if match:\n        resultado['numero_bo'] = match.group('numero')\n    \n",
-          "tokenUsage": {
-            "prompt": 87,
-            "completion": 200,
-            "cached": 0,
-            "total": 287,
-            "numRequests": 1,
-            "completionDetails": {
-              "reasoning": 0,
-              "acceptedPrediction": 0,
-              "rejectedPrediction": 0,
-              "cacheReadInputTokens": 0,
-              "cacheCreationInputTokens": 0
-            },
-            "assertions": {
-              "total": 0,
-              "prompt": 0,
-              "completion": 0,
-              "cached": 0,
-              "numRequests": 0,
-              "completionDetails": {
-                "reasoning": 0,
-                "acceptedPrediction": 0,
-                "rejectedPrediction": 0,
-                "cacheReadInputTokens": 0,
-                "cacheCreationInputTokens": 0
-              }
-            }
-          },
-          "cached": false,
-          "latencyMs": 6657,
-          "finishReason": "length",
-          "guardrails": {
-            "flagged": false
-          },
-          "metadata": {
-            "http": {
-              "status": 200,
-              "statusText": "OK",
-              "headers": {
-                "content-security-policy": "frame-ancestors 'none'",
-                "content-type": "application/json",
-                "date": "Tue, 20 Oct 2026 13:00:24 GMT",
-                "vary": "Accept-Encoding",
-                "x-content-type-options": "nosniff",
-                "x-frame-options": "DENY",
-                "x-litellm-attempted-fallbacks": "0",
-                "x-litellm-attempted-retries": "0",
-                "x-litellm-call-id": "eaf9eafb-0edc-46be-bae7-cb3724e5c9ca",
-                "x-litellm-callback-duration-ms": "0.0",
-                "x-litellm-key-spend": "0.0",
-                "x-litellm-model-api-base": "http://127.0.0.1:11434",
-                "x-litellm-model-group": "zamora-executor-7b",
-                "x-litellm-model-id": "79b8cf66137cd37635efc8803fe8843dc150dcf0fde7998dbab15537001be839",
-                "x-litellm-model-name": "ollama_chat/qwen2.5-coder:7b",
-                "x-litellm-overhead-duration-ms": "11.373",
-                "x-litellm-response-duration-ms": "6641.506910324097",
-                "x-litellm-version": "1.106.0"
-              }
-            }
-          }
-        },
-        "score": 1,
-        "success": true,
-        "testCase": {
-          "vars": {
-            "instrucao": "Escreva uma funcao ```python def parse_ocorrencia(texto: str) -> dict:``` que extraia 'numero_bo', 'ano' e 'delegacia' de um texto procedural da PCDF e retorne um dicionario com essas chaves."
-          },
-          "assert": [
-            {
-              "type": "contains",
-              "value": "def parse_ocorrencia"
-            },
-            {
-              "type": "javascript",
-              "value": "output.includes('numero_bo') && output.includes('ano') && output.includes('delegacia')"
-            },
-            {
-              "type": "latency",
-              "threshold": 12000
-            }
-          ],
-          "options": {},
-          "metadata": {}
-        },
-        "testIdx": 3,
-        "tokenUsage": {
-          "prompt": 87,
-          "completion": 200,
-          "cached": 0,
-          "total": 287,
-          "numRequests": 1,
-          "completionDetails": {
-            "reasoning": 0,
-            "acceptedPrediction": 0,
-            "rejectedPrediction": 0,
-            "cacheReadInputTokens": 0,
-            "cacheCreationInputTokens": 0
-          },
-          "assertions": {
-            "total": 0,
-            "prompt": 0,
-            "completion": 0,
-            "cached": 0,
-            "numRequests": 0,
-            "completionDetails": {
-              "reasoning": 0,
-              "acceptedPrediction": 0,
-              "rejectedPrediction": 0,
-              "cacheReadInputTokens": 0,
-              "cacheCreationInputTokens": 0
-            }
-          }
-        },
-        "vars": {
-          "instrucao": "Escreva uma funcao ```python def parse_ocorrencia(texto: str) -> dict:``` que extraia 'numero_bo', 'ano' e 'delegacia' de um texto procedural da PCDF e retorne um dicionario com essas chaves."
-        },
-        "metadata": {
-          "http": {
-            "status": 200,
-            "statusText": "OK",
-            "headers": {
-              "content-security-policy": "frame-ancestors 'none'",
-              "content-type": "application/json",
-              "date": "Tue, 20 Oct 2026 13:00:24 GMT",
-              "vary": "Accept-Encoding",
-              "x-content-type-options": "nosniff",
-              "x-frame-options": "DENY",
-              "x-litellm-attempted-fallbacks": "0",
-              "x-litellm-attempted-retries": "0",
-              "x-litellm-call-id": "eaf9eafb-0edc-46be-bae7-cb3724e5c9ca",
-              "x-litellm-callback-duration-ms": "0.0",
-              "x-litellm-key-spend": "0.0",
-              "x-litellm-model-api-base": "http://127.0.0.1:11434",
-              "x-litellm-model-group": "zamora-executor-7b",
-              "x-litellm-model-id": "79b8cf66137cd37635efc8803fe8843dc150dcf0fde7998dbab15537001be839",
-              "x-litellm-model-name": "ollama_chat/qwen2.5-coder:7b",
-              "x-litellm-overhead-duration-ms": "11.373",
-              "x-litellm-response-duration-ms": "6641.506910324097",
-              "x-litellm-version": "1.106.0"
-            }
-          },
-          "_promptfooFileMetadata": {}
-        },
-        "failureReason": 0
-      },
-      {
-        "cost": 0,
-        "gradingResult": {
-          "pass": true,
-          "score": 1,
-          "reason": "All assertions passed",
-          "namedScores": {},
-          "tokensUsed": {
-            "total": 0,
-            "prompt": 0,
-            "completion": 0,
-            "cached": 0,
-            "numRequests": 0
-          },
-          "componentResults": [
-            {
-              "pass": true,
-              "score": 1,
-              "reason": "Assertion passed",
-              "assertion": {
-                "type": "not-contains",
-                "value": "# ... resto"
-              }
-            },
-            {
-              "pass": true,
-              "score": 1,
-              "reason": "Assertion passed",
-              "assertion": {
-                "type": "not-contains",
-                "value": "# existing code"
-              }
-            }
-          ]
-        },
-        "id": "e25af1a8-b23b-45d2-8355-7af86f303dbd",
-        "latencyMs": 5138,
-        "namedScores": {},
-        "prompt": {
-          "raw": "Escreva o codigo completo da classe ValidadorPolicial sem omitir nenhuma linha nem usar comentarios de resumo.",
-          "label": "{{instrucao}}",
-          "config": {}
-        },
-        "promptId": "9f091deefdef683790d5b41749e770d880c8f62d094b15fa905f78547ab6c6be",
-        "promptIdx": 1,
-        "provider": {
-          "id": "openai:chat:zamora-executor-7b",
-          "label": ""
-        },
-        "response": {
-          "output": "```java\npublic class ValidadorPolicial {\n\n    public boolean validar(String nome, int idade, String carteiraDeTrabalho) {\n        if (nome == null || nome.isEmpty()) {\n            return false;\n        }\n        if (idade < 18) {\n            return false;\n        }\n        if (carteiraDeTrabalho == null || !carteiraDeTrabalho.matches(\"\\\\d{11}\")) {\n            return false;\n        }\n        return true;\n    }\n\n}\n```",
-          "tokenUsage": {
-            "prompt": 55,
-            "completion": 107,
-            "cached": 0,
-            "total": 162,
-            "numRequests": 1,
-            "completionDetails": {
-              "reasoning": 0,
-              "acceptedPrediction": 0,
-              "rejectedPrediction": 0,
-              "cacheReadInputTokens": 0,
-              "cacheCreationInputTokens": 0
-            },
-            "assertions": {
-              "total": 0,
-              "prompt": 0,
-              "completion": 0,
-              "cached": 0,
-              "numRequests": 0,
-              "completionDetails": {
-                "reasoning": 0,
-                "acceptedPrediction": 0,
-                "rejectedPrediction": 0,
-                "cacheReadInputTokens": 0,
-                "cacheCreationInputTokens": 0
-              }
-            }
-          },
-          "cached": false,
-          "latencyMs": 5138,
+          "latencyMs": 3650,
           "finishReason": "stop",
           "guardrails": {
             "flagged": false
@@ -1835,21 +1457,21 @@
               "headers": {
                 "content-security-policy": "frame-ancestors 'none'",
                 "content-type": "application/json",
-                "date": "Tue, 20 Oct 2026 13:00:28 GMT",
+                "date": "Tue, 20 Oct 2026 13:03:54 GMT",
                 "vary": "Accept-Encoding",
                 "x-content-type-options": "nosniff",
                 "x-frame-options": "DENY",
                 "x-litellm-attempted-fallbacks": "0",
                 "x-litellm-attempted-retries": "0",
-                "x-litellm-call-id": "26854bce-4620-42f0-a26f-63942a74ff2e",
+                "x-litellm-call-id": "58b84ebf-b7ca-4f97-94aa-3d027c32a550",
                 "x-litellm-callback-duration-ms": "0.0",
                 "x-litellm-key-spend": "0.0",
                 "x-litellm-model-api-base": "http://127.0.0.1:11434",
-                "x-litellm-model-group": "zamora-executor-7b",
-                "x-litellm-model-id": "79b8cf66137cd37635efc8803fe8843dc150dcf0fde7998dbab15537001be839",
-                "x-litellm-model-name": "ollama_chat/qwen2.5-coder:7b",
-                "x-litellm-overhead-duration-ms": "8.0731",
-                "x-litellm-response-duration-ms": "5120.512008666992",
+                "x-litellm-model-group": "zamora-executor-local",
+                "x-litellm-model-id": "500ee7063aa19bb762bd1da9500bf375ed0ea1de0a05b6bebd79712e569a7d2a",
+                "x-litellm-model-name": "ollama_chat/qwen2.5-coder:32b",
+                "x-litellm-overhead-duration-ms": "9.3751",
+                "x-litellm-response-duration-ms": "3633.8090896606445",
                 "x-litellm-version": "1.106.0"
               }
             }
@@ -1859,27 +1481,31 @@
         "success": true,
         "testCase": {
           "vars": {
-            "instrucao": "Escreva o codigo completo da classe ValidadorPolicial sem omitir nenhuma linha nem usar comentarios de resumo."
+            "instrucao": "Escreva a funcao `def parse_ocorrencia(texto: str) -> dict:` que extraia 'numero_bo', 'ano' e 'delegacia' do texto e retorne um dicionario com essas chaves."
           },
           "assert": [
             {
-              "type": "not-contains",
-              "value": "# ... resto"
+              "type": "contains",
+              "value": "def parse_ocorrencia"
             },
             {
-              "type": "not-contains",
-              "value": "# existing code"
+              "type": "javascript",
+              "value": "output.includes('numero_bo') && output.includes('ano') && output.includes('delegacia')"
+            },
+            {
+              "type": "latency",
+              "threshold": 15000
             }
           ],
           "options": {},
           "metadata": {}
         },
-        "testIdx": 4,
+        "testIdx": 3,
         "tokenUsage": {
-          "prompt": 55,
-          "completion": 107,
+          "prompt": 129,
+          "completion": 112,
           "cached": 0,
-          "total": 162,
+          "total": 241,
           "numRequests": 1,
           "completionDetails": {
             "reasoning": 0,
@@ -1904,7 +1530,7 @@
           }
         },
         "vars": {
-          "instrucao": "Escreva o codigo completo da classe ValidadorPolicial sem omitir nenhuma linha nem usar comentarios de resumo."
+          "instrucao": "Escreva a funcao `def parse_ocorrencia(texto: str) -> dict:` que extraia 'numero_bo', 'ano' e 'delegacia' do texto e retorne um dicionario com essas chaves."
         },
         "metadata": {
           "http": {
@@ -1913,21 +1539,226 @@
             "headers": {
               "content-security-policy": "frame-ancestors 'none'",
               "content-type": "application/json",
-              "date": "Tue, 20 Oct 2026 13:00:28 GMT",
+              "date": "Tue, 20 Oct 2026 13:03:54 GMT",
               "vary": "Accept-Encoding",
               "x-content-type-options": "nosniff",
               "x-frame-options": "DENY",
               "x-litellm-attempted-fallbacks": "0",
               "x-litellm-attempted-retries": "0",
-              "x-litellm-call-id": "26854bce-4620-42f0-a26f-63942a74ff2e",
+              "x-litellm-call-id": "58b84ebf-b7ca-4f97-94aa-3d027c32a550",
+              "x-litellm-callback-duration-ms": "0.0",
+              "x-litellm-key-spend": "0.0",
+              "x-litellm-model-api-base": "http://127.0.0.1:11434",
+              "x-litellm-model-group": "zamora-executor-local",
+              "x-litellm-model-id": "500ee7063aa19bb762bd1da9500bf375ed0ea1de0a05b6bebd79712e569a7d2a",
+              "x-litellm-model-name": "ollama_chat/qwen2.5-coder:32b",
+              "x-litellm-overhead-duration-ms": "9.3751",
+              "x-litellm-response-duration-ms": "3633.8090896606445",
+              "x-litellm-version": "1.106.0"
+            }
+          },
+          "_promptfooFileMetadata": {}
+        },
+        "failureReason": 0
+      },
+      {
+        "cost": 0,
+        "gradingResult": {
+          "pass": true,
+          "score": 1,
+          "reason": "All assertions passed",
+          "namedScores": {},
+          "tokensUsed": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 0
+          },
+          "componentResults": [
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "contains",
+                "value": "def parse_ocorrencia"
+              }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "javascript",
+                "value": "output.includes('numero_bo') && output.includes('ano') && output.includes('delegacia')"
+              }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "latency",
+                "threshold": 15000
+              }
+            }
+          ]
+        },
+        "id": "4a845794-59ae-4424-9c17-a279266db6f0",
+        "latencyMs": 547,
+        "namedScores": {},
+        "prompt": {
+          "raw": "Você é um desenvolvedor cirúrgico da Estação ZAMORA. Responda APENAS com o código Python dentro do bloco ```python ... ``` sem texto introdutório nem explicativo.\n\nTAREFA: Escreva a funcao `def parse_ocorrencia(texto: str) -> dict:` que extraia 'numero_bo', 'ano' e 'delegacia' do texto e retorne um dicionario com essas chaves.",
+          "label": "Você é um desenvolvedor cirúrgico da Estação ZAMORA. Responda APENAS com o código Python dentro do bloco ```python ... ``` sem texto introdutório nem explicativo.\n\nTAREFA: {{instrucao}}",
+          "config": {}
+        },
+        "promptId": "b5f9e68a144038ccd3d9cb9969e8e16475ca96ca92ced1780ddea11f68c19f35",
+        "promptIdx": 1,
+        "provider": {
+          "id": "openai:chat:zamora-executor-7b",
+          "label": ""
+        },
+        "response": {
+          "output": "```python\nimport re\n\ndef parse_ocorrencia(texto: str) -> dict:\n    padrao = r'BO nº (\\d+) de (\\d{4}) - Delegacia: (.+)'\n    match = re.search(padrao, texto)\n    if match:\n        numero_bo = match.group(1)\n        ano = match.group(2)\n        delegacia = match.group(3)\n        return {'numero_bo': numero_bo, 'ano': ano, 'delegacia': delegacia}\n    else:\n        return {}\n```",
+          "tokenUsage": {
+            "prompt": 129,
+            "completion": 116,
+            "cached": 0,
+            "total": 245,
+            "numRequests": 1,
+            "completionDetails": {
+              "reasoning": 0,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0
+            },
+            "assertions": {
+              "total": 0,
+              "prompt": 0,
+              "completion": 0,
+              "cached": 0,
+              "numRequests": 0,
+              "completionDetails": {
+                "reasoning": 0,
+                "acceptedPrediction": 0,
+                "rejectedPrediction": 0,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0
+              }
+            }
+          },
+          "cached": false,
+          "latencyMs": 547,
+          "finishReason": "stop",
+          "guardrails": {
+            "flagged": false
+          },
+          "metadata": {
+            "http": {
+              "status": 200,
+              "statusText": "OK",
+              "headers": {
+                "content-security-policy": "frame-ancestors 'none'",
+                "content-type": "application/json",
+                "date": "Tue, 20 Oct 2026 13:03:58 GMT",
+                "vary": "Accept-Encoding",
+                "x-content-type-options": "nosniff",
+                "x-frame-options": "DENY",
+                "x-litellm-attempted-fallbacks": "0",
+                "x-litellm-attempted-retries": "0",
+                "x-litellm-call-id": "31d60aaa-d89a-4c46-991f-562dbb077572",
+                "x-litellm-callback-duration-ms": "0.0",
+                "x-litellm-key-spend": "0.0",
+                "x-litellm-model-api-base": "http://127.0.0.1:11434",
+                "x-litellm-model-group": "zamora-executor-7b",
+                "x-litellm-model-id": "79b8cf66137cd37635efc8803fe8843dc150dcf0fde7998dbab15537001be839",
+                "x-litellm-model-name": "ollama_chat/qwen2.5-coder:7b",
+                "x-litellm-overhead-duration-ms": "9.0292",
+                "x-litellm-response-duration-ms": "529.6430587768555",
+                "x-litellm-version": "1.106.0"
+              }
+            }
+          }
+        },
+        "score": 1,
+        "success": true,
+        "testCase": {
+          "vars": {
+            "instrucao": "Escreva a funcao `def parse_ocorrencia(texto: str) -> dict:` que extraia 'numero_bo', 'ano' e 'delegacia' do texto e retorne um dicionario com essas chaves."
+          },
+          "assert": [
+            {
+              "type": "contains",
+              "value": "def parse_ocorrencia"
+            },
+            {
+              "type": "javascript",
+              "value": "output.includes('numero_bo') && output.includes('ano') && output.includes('delegacia')"
+            },
+            {
+              "type": "latency",
+              "threshold": 15000
+            }
+          ],
+          "options": {},
+          "metadata": {}
+        },
+        "testIdx": 3,
+        "tokenUsage": {
+          "prompt": 129,
+          "completion": 116,
+          "cached": 0,
+          "total": 245,
+          "numRequests": 1,
+          "completionDetails": {
+            "reasoning": 0,
+            "acceptedPrediction": 0,
+            "rejectedPrediction": 0,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0
+          },
+          "assertions": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 0,
+            "completionDetails": {
+              "reasoning": 0,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0
+            }
+          }
+        },
+        "vars": {
+          "instrucao": "Escreva a funcao `def parse_ocorrencia(texto: str) -> dict:` que extraia 'numero_bo', 'ano' e 'delegacia' do texto e retorne um dicionario com essas chaves."
+        },
+        "metadata": {
+          "http": {
+            "status": 200,
+            "statusText": "OK",
+            "headers": {
+              "content-security-policy": "frame-ancestors 'none'",
+              "content-type": "application/json",
+              "date": "Tue, 20 Oct 2026 13:03:58 GMT",
+              "vary": "Accept-Encoding",
+              "x-content-type-options": "nosniff",
+              "x-frame-options": "DENY",
+              "x-litellm-attempted-fallbacks": "0",
+              "x-litellm-attempted-retries": "0",
+              "x-litellm-call-id": "31d60aaa-d89a-4c46-991f-562dbb077572",
               "x-litellm-callback-duration-ms": "0.0",
               "x-litellm-key-spend": "0.0",
               "x-litellm-model-api-base": "http://127.0.0.1:11434",
               "x-litellm-model-group": "zamora-executor-7b",
               "x-litellm-model-id": "79b8cf66137cd37635efc8803fe8843dc150dcf0fde7998dbab15537001be839",
               "x-litellm-model-name": "ollama_chat/qwen2.5-coder:7b",
-              "x-litellm-overhead-duration-ms": "8.0731",
-              "x-litellm-response-duration-ms": "5120.512008666992",
+              "x-litellm-overhead-duration-ms": "9.0292",
+              "x-litellm-response-duration-ms": "529.6430587768555",
               "x-litellm-version": "1.106.0"
             }
           },
@@ -1967,30 +1798,39 @@
                 "type": "not-contains",
                 "value": "# existing code"
               }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "contains",
+                "value": "class ValidadorPolicial"
+              }
             }
           ]
         },
-        "id": "5c97a406-0e94-41c4-b493-0e0ae19f7ecf",
-        "latencyMs": 28244,
+        "id": "4fc3de0b-8f57-4083-8a8f-7419ad450694",
+        "latencyMs": 1876,
         "namedScores": {},
         "prompt": {
-          "raw": "Escreva o codigo completo da classe ValidadorPolicial sem omitir nenhuma linha nem usar comentarios de resumo.",
-          "label": "{{instrucao}}",
+          "raw": "Você é um desenvolvedor cirúrgico da Estação ZAMORA. Responda APENAS com o código Python dentro do bloco ```python ... ``` sem texto introdutório nem explicativo.\n\nTAREFA: Escreva a classe `class ValidadorPolicial:` com metodo `def validar_acesso(self, usuario: str) -> bool:` completo sem omitir nenhuma linha.",
+          "label": "Você é um desenvolvedor cirúrgico da Estação ZAMORA. Responda APENAS com o código Python dentro do bloco ```python ... ``` sem texto introdutório nem explicativo.\n\nTAREFA: {{instrucao}}",
           "config": {}
         },
-        "promptId": "9f091deefdef683790d5b41749e770d880c8f62d094b15fa905f78547ab6c6be",
+        "promptId": "b5f9e68a144038ccd3d9cb9969e8e16475ca96ca92ced1780ddea11f68c19f35",
         "promptIdx": 0,
         "provider": {
           "id": "openai:chat:zamora-executor-local",
           "label": ""
         },
         "response": {
-          "output": "Claro, abaixo está o código completo da classe `ValidadorPolicial` sem nenhum comentário de resumo e sem omitir nenhuma linha. Note que, como não foi fornecido um contexto específico para essa classe, estou criando uma implementação genérica que pode incluir métodos comuns que um validador policial poderia ter, como validar a idade, verificar se a pessoa tem direito de dirigir, entre outros. Você pode ajustar conforme necessário para atender às suas necessidades específicas.\n\n```java\nimport java.time.LocalDate;\nimport java.time.Period;\n\npublic class ValidadorPolicial {\n\n    public boolean isMaiorDeIdade(LocalDate dataNascimento) {\n        Period idade = Period.between(dataNascimento, LocalDate.now());\n        return idade.getYears() >= 18;\n    }\n\n    public boolean podeDirigir(LocalDate dataNascimento) {\n        Period idade = Period.between(dataNascimento, LocalDate.now());\n        return idade.getYears() >= 18;\n    }\n\n    public boolean isCarteiraHabilitacaoValida(LocalDate dataEmissao, int validadeAnos) {\n        LocalDate dataExpiracao = dataEmissao.plusYears(validadeAnos);\n        return !LocalDate.now().isAfter(dataExpiracao);\n    }\n\n    public boolean isSuspeito(String nome, String[] listaSuspeitos) {\n        for (String suspeito : listaSuspeitos) {\n            if (suspeito.equalsIgnoreCase(nome)) {\n                return true;\n            }\n        }\n        return false;\n    }\n\n    public boolean isVeiculoRegularizado(String placa, String[] placasIrregulares) {\n        for",
+          "output": "```python\nclass ValidadorPolicial:\n    def validar_acesso(self, usuario: str) -> bool:\n        usuarios_autorizados = [\"policial1\", \"policial2\", \"comandante\"]\n        return usuario in usuarios_autorizados\n```",
           "tokenUsage": {
-            "prompt": 55,
-            "completion": 350,
+            "prompt": 115,
+            "completion": 55,
             "cached": 0,
-            "total": 405,
+            "total": 170,
             "numRequests": 1,
             "completionDetails": {
               "reasoning": 0,
@@ -2015,8 +1855,8 @@
             }
           },
           "cached": false,
-          "latencyMs": 28244,
-          "finishReason": "length",
+          "latencyMs": 1876,
+          "finishReason": "stop",
           "guardrails": {
             "flagged": false
           },
@@ -2027,21 +1867,21 @@
               "headers": {
                 "content-security-policy": "frame-ancestors 'none'",
                 "content-type": "application/json",
-                "date": "Tue, 20 Oct 2026 13:00:26 GMT",
+                "date": "Tue, 20 Oct 2026 13:03:58 GMT",
                 "vary": "Accept-Encoding",
                 "x-content-type-options": "nosniff",
                 "x-frame-options": "DENY",
                 "x-litellm-attempted-fallbacks": "0",
                 "x-litellm-attempted-retries": "0",
-                "x-litellm-call-id": "f33f7edc-ed5c-4cd5-992b-a74133c9976a",
+                "x-litellm-call-id": "d3d58529-a6b8-4bfb-9a85-f989c09626f6",
                 "x-litellm-callback-duration-ms": "0.0",
                 "x-litellm-key-spend": "0.0",
                 "x-litellm-model-api-base": "http://127.0.0.1:11434",
                 "x-litellm-model-group": "zamora-executor-local",
                 "x-litellm-model-id": "500ee7063aa19bb762bd1da9500bf375ed0ea1de0a05b6bebd79712e569a7d2a",
                 "x-litellm-model-name": "ollama_chat/qwen2.5-coder:32b",
-                "x-litellm-overhead-duration-ms": "9.5289",
-                "x-litellm-response-duration-ms": "28228.683948516846",
+                "x-litellm-overhead-duration-ms": "7.998",
+                "x-litellm-response-duration-ms": "1861.7169857025146",
                 "x-litellm-version": "1.106.0"
               }
             }
@@ -2051,7 +1891,7 @@
         "success": true,
         "testCase": {
           "vars": {
-            "instrucao": "Escreva o codigo completo da classe ValidadorPolicial sem omitir nenhuma linha nem usar comentarios de resumo."
+            "instrucao": "Escreva a classe `class ValidadorPolicial:` com metodo `def validar_acesso(self, usuario: str) -> bool:` completo sem omitir nenhuma linha."
           },
           "assert": [
             {
@@ -2061,6 +1901,10 @@
             {
               "type": "not-contains",
               "value": "# existing code"
+            },
+            {
+              "type": "contains",
+              "value": "class ValidadorPolicial"
             }
           ],
           "options": {},
@@ -2068,10 +1912,10 @@
         },
         "testIdx": 4,
         "tokenUsage": {
-          "prompt": 55,
-          "completion": 350,
+          "prompt": 115,
+          "completion": 55,
           "cached": 0,
-          "total": 405,
+          "total": 170,
           "numRequests": 1,
           "completionDetails": {
             "reasoning": 0,
@@ -2096,7 +1940,7 @@
           }
         },
         "vars": {
-          "instrucao": "Escreva o codigo completo da classe ValidadorPolicial sem omitir nenhuma linha nem usar comentarios de resumo."
+          "instrucao": "Escreva a classe `class ValidadorPolicial:` com metodo `def validar_acesso(self, usuario: str) -> bool:` completo sem omitir nenhuma linha."
         },
         "metadata": {
           "http": {
@@ -2105,21 +1949,226 @@
             "headers": {
               "content-security-policy": "frame-ancestors 'none'",
               "content-type": "application/json",
-              "date": "Tue, 20 Oct 2026 13:00:26 GMT",
+              "date": "Tue, 20 Oct 2026 13:03:58 GMT",
               "vary": "Accept-Encoding",
               "x-content-type-options": "nosniff",
               "x-frame-options": "DENY",
               "x-litellm-attempted-fallbacks": "0",
               "x-litellm-attempted-retries": "0",
-              "x-litellm-call-id": "f33f7edc-ed5c-4cd5-992b-a74133c9976a",
+              "x-litellm-call-id": "d3d58529-a6b8-4bfb-9a85-f989c09626f6",
               "x-litellm-callback-duration-ms": "0.0",
               "x-litellm-key-spend": "0.0",
               "x-litellm-model-api-base": "http://127.0.0.1:11434",
               "x-litellm-model-group": "zamora-executor-local",
               "x-litellm-model-id": "500ee7063aa19bb762bd1da9500bf375ed0ea1de0a05b6bebd79712e569a7d2a",
               "x-litellm-model-name": "ollama_chat/qwen2.5-coder:32b",
-              "x-litellm-overhead-duration-ms": "9.5289",
-              "x-litellm-response-duration-ms": "28228.683948516846",
+              "x-litellm-overhead-duration-ms": "7.998",
+              "x-litellm-response-duration-ms": "1861.7169857025146",
+              "x-litellm-version": "1.106.0"
+            }
+          },
+          "_promptfooFileMetadata": {}
+        },
+        "failureReason": 0
+      },
+      {
+        "cost": 0,
+        "gradingResult": {
+          "pass": true,
+          "score": 1,
+          "reason": "All assertions passed",
+          "namedScores": {},
+          "tokensUsed": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 0
+          },
+          "componentResults": [
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "not-contains",
+                "value": "# ... resto"
+              }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "not-contains",
+                "value": "# existing code"
+              }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "contains",
+                "value": "class ValidadorPolicial"
+              }
+            }
+          ]
+        },
+        "id": "c34c4ed2-2b8f-4744-a3de-16ab766f503f",
+        "latencyMs": 347,
+        "namedScores": {},
+        "prompt": {
+          "raw": "Você é um desenvolvedor cirúrgico da Estação ZAMORA. Responda APENAS com o código Python dentro do bloco ```python ... ``` sem texto introdutório nem explicativo.\n\nTAREFA: Escreva a classe `class ValidadorPolicial:` com metodo `def validar_acesso(self, usuario: str) -> bool:` completo sem omitir nenhuma linha.",
+          "label": "Você é um desenvolvedor cirúrgico da Estação ZAMORA. Responda APENAS com o código Python dentro do bloco ```python ... ``` sem texto introdutório nem explicativo.\n\nTAREFA: {{instrucao}}",
+          "config": {}
+        },
+        "promptId": "b5f9e68a144038ccd3d9cb9969e8e16475ca96ca92ced1780ddea11f68c19f35",
+        "promptIdx": 1,
+        "provider": {
+          "id": "openai:chat:zamora-executor-7b",
+          "label": ""
+        },
+        "response": {
+          "output": "```python\nclass ValidadorPolicial:\n    def validar_acesso(self, usuario: str) -> bool:\n        # Implementação do método de validação de acesso\n        # Exemplo simples: permitir acesso apenas para usuários com nomes que começam com 'P'\n        return usuario.startswith('P')\n```",
+          "tokenUsage": {
+            "prompt": 115,
+            "completion": 67,
+            "cached": 0,
+            "total": 182,
+            "numRequests": 1,
+            "completionDetails": {
+              "reasoning": 0,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0
+            },
+            "assertions": {
+              "total": 0,
+              "prompt": 0,
+              "completion": 0,
+              "cached": 0,
+              "numRequests": 0,
+              "completionDetails": {
+                "reasoning": 0,
+                "acceptedPrediction": 0,
+                "rejectedPrediction": 0,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0
+              }
+            }
+          },
+          "cached": false,
+          "latencyMs": 347,
+          "finishReason": "stop",
+          "guardrails": {
+            "flagged": false
+          },
+          "metadata": {
+            "http": {
+              "status": 200,
+              "statusText": "OK",
+              "headers": {
+                "content-security-policy": "frame-ancestors 'none'",
+                "content-type": "application/json",
+                "date": "Tue, 20 Oct 2026 13:04:01 GMT",
+                "vary": "Accept-Encoding",
+                "x-content-type-options": "nosniff",
+                "x-frame-options": "DENY",
+                "x-litellm-attempted-fallbacks": "0",
+                "x-litellm-attempted-retries": "0",
+                "x-litellm-call-id": "7c462cf0-517b-44ca-9eb2-88210a05b902",
+                "x-litellm-callback-duration-ms": "0.0",
+                "x-litellm-key-spend": "0.0",
+                "x-litellm-model-api-base": "http://127.0.0.1:11434",
+                "x-litellm-model-group": "zamora-executor-7b",
+                "x-litellm-model-id": "79b8cf66137cd37635efc8803fe8843dc150dcf0fde7998dbab15537001be839",
+                "x-litellm-model-name": "ollama_chat/qwen2.5-coder:7b",
+                "x-litellm-overhead-duration-ms": "8.5301",
+                "x-litellm-response-duration-ms": "328.9940357208252",
+                "x-litellm-version": "1.106.0"
+              }
+            }
+          }
+        },
+        "score": 1,
+        "success": true,
+        "testCase": {
+          "vars": {
+            "instrucao": "Escreva a classe `class ValidadorPolicial:` com metodo `def validar_acesso(self, usuario: str) -> bool:` completo sem omitir nenhuma linha."
+          },
+          "assert": [
+            {
+              "type": "not-contains",
+              "value": "# ... resto"
+            },
+            {
+              "type": "not-contains",
+              "value": "# existing code"
+            },
+            {
+              "type": "contains",
+              "value": "class ValidadorPolicial"
+            }
+          ],
+          "options": {},
+          "metadata": {}
+        },
+        "testIdx": 4,
+        "tokenUsage": {
+          "prompt": 115,
+          "completion": 67,
+          "cached": 0,
+          "total": 182,
+          "numRequests": 1,
+          "completionDetails": {
+            "reasoning": 0,
+            "acceptedPrediction": 0,
+            "rejectedPrediction": 0,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0
+          },
+          "assertions": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 0,
+            "completionDetails": {
+              "reasoning": 0,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0
+            }
+          }
+        },
+        "vars": {
+          "instrucao": "Escreva a classe `class ValidadorPolicial:` com metodo `def validar_acesso(self, usuario: str) -> bool:` completo sem omitir nenhuma linha."
+        },
+        "metadata": {
+          "http": {
+            "status": 200,
+            "statusText": "OK",
+            "headers": {
+              "content-security-policy": "frame-ancestors 'none'",
+              "content-type": "application/json",
+              "date": "Tue, 20 Oct 2026 13:04:01 GMT",
+              "vary": "Accept-Encoding",
+              "x-content-type-options": "nosniff",
+              "x-frame-options": "DENY",
+              "x-litellm-attempted-fallbacks": "0",
+              "x-litellm-attempted-retries": "0",
+              "x-litellm-call-id": "7c462cf0-517b-44ca-9eb2-88210a05b902",
+              "x-litellm-callback-duration-ms": "0.0",
+              "x-litellm-key-spend": "0.0",
+              "x-litellm-model-api-base": "http://127.0.0.1:11434",
+              "x-litellm-model-group": "zamora-executor-7b",
+              "x-litellm-model-id": "79b8cf66137cd37635efc8803fe8843dc150dcf0fde7998dbab15537001be839",
+              "x-litellm-model-name": "ollama_chat/qwen2.5-coder:7b",
+              "x-litellm-overhead-duration-ms": "8.5301",
+              "x-litellm-response-duration-ms": "328.9940357208252",
               "x-litellm-version": "1.106.0"
             }
           },
@@ -2129,14 +2178,14 @@
       }
     ],
     "stats": {
-      "successes": 7,
-      "failures": 3,
+      "successes": 10,
+      "failures": 0,
       "errors": 0,
       "tokenUsage": {
-        "prompt": 706,
-        "completion": 1265,
+        "prompt": 1162,
+        "completion": 595,
         "cached": 0,
-        "total": 1971,
+        "total": 1757,
         "numRequests": 10,
         "completionDetails": {
           "reasoning": 0,
@@ -2160,15 +2209,15 @@
           }
         }
       },
-      "durationMs": 37304,
-      "evaluationDurationMs": 37304
+      "durationMs": 11828,
+      "evaluationDurationMs": 11828
     }
   },
   "config": {
     "tags": {},
     "description": "Auditoria Pericial de Latencia, Acuracia e Qualidade - Estacao ZAMORA",
     "prompts": [
-      "{{instrucao}}"
+      "Você é um desenvolvedor cirúrgico da Estação ZAMORA. Responda APENAS com o código Python dentro do bloco ```python ... ``` sem texto introdutório nem explicativo.\n\nTAREFA: {{instrucao}}"
     ],
     "providers": [
       {
@@ -2186,14 +2235,14 @@
           "apiBaseUrl": "http://127.0.0.1:4000/v1",
           "apiKey": "[REDACTED]",
           "temperature": 0.1,
-          "max_tokens": 200
+          "max_tokens": 250
         }
       }
     ],
     "tests": [
       {
         "vars": {
-          "instrucao": "Escreva apenas um bloco ```python``` com a funcao `def limpar_documento(doc: str) -> str:` que remove qualquer caractere nao numerico."
+          "instrucao": "Escreva a funcao `def limpar_documento(doc: str) -> str:` que remove qualquer caractere nao numerico da string."
         },
         "assert": [
           {
@@ -2206,13 +2255,13 @@
           },
           {
             "type": "latency",
-            "threshold": 5000
+            "threshold": 8000
           }
         ]
       },
       {
         "vars": {
-          "instrucao": "Escreva apenas um bloco ```python``` com a funcao `def validar_data_br(data_str: str) -> bool:` que valida se a data esta no formato DD/MM/AAAA e se eh uma data valida."
+          "instrucao": "Escreva a funcao `def validar_data_br(data_str: str) -> bool:` que valida se a data esta no formato DD/MM/AAAA e se eh uma data valida."
         },
         "assert": [
           {
@@ -2231,7 +2280,7 @@
       },
       {
         "vars": {
-          "instrucao": "Escreva apenas um bloco ```python``` com a funcao `def gerar_hash_pericial(arquivo_bytes: bytes) -> str:` que calcule o hash SHA-256 em hexadecimal."
+          "instrucao": "Escreva a funcao `def gerar_hash_pericial(arquivo_bytes: bytes) -> str:` que calcule o hash SHA-256 em formato hexadecimal."
         },
         "assert": [
           {
@@ -2245,12 +2294,16 @@
           {
             "type": "contains",
             "value": "hexdigest"
+          },
+          {
+            "type": "latency",
+            "threshold": 8000
           }
         ]
       },
       {
         "vars": {
-          "instrucao": "Escreva uma funcao ```python def parse_ocorrencia(texto: str) -> dict:``` que extraia 'numero_bo', 'ano' e 'delegacia' de um texto procedural da PCDF e retorne um dicionario com essas chaves."
+          "instrucao": "Escreva a funcao `def parse_ocorrencia(texto: str) -> dict:` que extraia 'numero_bo', 'ano' e 'delegacia' do texto e retorne um dicionario com essas chaves."
         },
         "assert": [
           {
@@ -2263,13 +2316,13 @@
           },
           {
             "type": "latency",
-            "threshold": 12000
+            "threshold": 15000
           }
         ]
       },
       {
         "vars": {
-          "instrucao": "Escreva o codigo completo da classe ValidadorPolicial sem omitir nenhuma linha nem usar comentarios de resumo."
+          "instrucao": "Escreva a classe `class ValidadorPolicial:` com metodo `def validar_acesso(self, usuario: str) -> bool:` completo sem omitir nenhuma linha."
         },
         "assert": [
           {
@@ -2279,6 +2332,10 @@
           {
             "type": "not-contains",
             "value": "# existing code"
+          },
+          {
+            "type": "contains",
+            "value": "class ValidadorPolicial"
           }
         ]
       }
@@ -2289,7 +2346,9 @@
     ],
     "extensions": [],
     "metadata": {},
-    "evaluateOptions": {},
+    "evaluateOptions": {
+      "maxConcurrency": 1
+    },
     "basePath": "D:\\___SCRIPT\\Router-Tokens"
   },
   "shareableUrl": null,
@@ -2298,17 +2357,17 @@
     "nodeVersion": "v24.19.0",
     "platform": "win32",
     "arch": "x64",
-    "exportedAt": "2026-10-20T13:00:55.686Z",
-    "evaluationCreatedAt": "2026-10-20T13:00:18.262Z"
+    "exportedAt": "2026-10-20T13:04:01.957Z",
+    "evaluationCreatedAt": "2026-10-20T13:03:49.963Z"
   },
   "vars": [
     "instrucao"
   ],
   "runtimeOptions": {
-    "eventSource": "cli",
+    "maxConcurrency": 1,
     "showProgressBar": true,
+    "eventSource": "cli",
     "repeat": 1,
-    "maxConcurrency": 4,
-    "cache": true
+    "cache": false
   }
 }
