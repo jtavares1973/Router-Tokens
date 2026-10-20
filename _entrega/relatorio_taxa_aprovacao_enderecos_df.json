@@ -1,0 +1,190 @@
+{
+  "total_avaliados": 20,
+  "aprovados_primeira_vez": 20,
+  "taxa_aprovacao_primeira_pct": 100.0,
+  "tempo_medio_ms": 467.6,
+  "tempo_min_ms": 220,
+  "tempo_max_ms": 678,
+  "amostras": [
+    {
+      "caso": 1,
+      "entrada": "QNM 12 CONJUNTO A LOTE 5 CEILANDIA NORTE BRASILIA DF CEP 72210121",
+      "tempo_ms": 678,
+      "camada": "DEGRAU_1_RTX5090_LOCAL",
+      "aprovado_primeira": true,
+      "status": "EXECUTADO_LOCAL",
+      "preview_resposta": "Aqui está o endereço normalizado conforme o padrão dos Correios:  Logradouro: Conjunto A, "
+    },
+    {
+      "caso": 2,
+      "entrada": "SHIS QL 10 CONJUNTO 4 CASA 12 LAGO SUL BRASILIA DF 71630045",
+      "tempo_ms": 483,
+      "camada": "DEGRAU_1_RTX5090_LOCAL",
+      "aprovado_primeira": true,
+      "status": "EXECUTADO_LOCAL",
+      "preview_resposta": "Aqui está o endereço normalizado conforme o padrão dos Correios:  Logradouro: SHIS QL 10 C"
+    },
+    {
+      "caso": 3,
+      "entrada": "EQS 308/309 BLOCO A AP 204 ASA SUL BRASILIA DF 70355400",
+      "tempo_ms": 452,
+      "camada": "DEGRAU_1_RTX5090_LOCAL",
+      "aprovado_primeira": true,
+      "status": "EXECUTADO_LOCAL",
+      "preview_resposta": "Endereço normalizado:  Logradouro: Quadra Esportiva São Judas Tadeu (EQS) Número: 308/309 "
+    },
+    {
+      "caso": 4,
+      "entrada": "STN CONJUNTO J EDIFICIO CENTRO CLINICO NORTE SALA 110 ASA NORTE DF",
+      "tempo_ms": 298,
+      "camada": "DEGRAU_1_RTX5090_LOCAL",
+      "aprovado_primeira": true,
+      "status": "EXECUTADO_LOCAL",
+      "preview_resposta": "STN Conjunto J, Edifício Centro Clínico Norte, Sala 110, Asa Norte, Brasília, DF, CEP: 700"
+    },
+    {
+      "caso": 5,
+      "entrada": "QUADRA 103 CONJUNTO 2 LOTE 15 RECANTO DAS EMAS DF 72601102",
+      "tempo_ms": 498,
+      "camada": "DEGRAU_1_RTX5090_LOCAL",
+      "aprovado_primeira": true,
+      "status": "EXECUTADO_LOCAL",
+      "preview_resposta": "Aqui está o endereço normalizado de acordo com o padrão formal dos Correios:  Logradouro: "
+    },
+    {
+      "caso": 6,
+      "entrada": "AVENIDA CASTANHEIRAS LOTE 1060 APTO 1402 AGUAS CLARAS BRASILIA DF 71900100",
+      "tempo_ms": 451,
+      "camada": "DEGRAU_1_RTX5090_LOCAL",
+      "aprovado_primeira": true,
+      "status": "EXECUTADO_LOCAL",
+      "preview_resposta": "Aqui está o endereço normalizado conforme o padrão dos Correios:  Avenida Castanheiras, Lo"
+    },
+    {
+      "caso": 7,
+      "entrada": "QSC 19 CHACARA 26 CONJUNTO B CASA 3 TAGUATINGA SUL DF",
+      "tempo_ms": 485,
+      "camada": "DEGRAU_1_RTX5090_LOCAL",
+      "aprovado_primeira": true,
+      "status": "EXECUTADO_LOCAL",
+      "preview_resposta": "Aqui está o endereço normalizado de acordo com o padrão dos Correios:  Logradouro: QSC 19 "
+    },
+    {
+      "caso": 8,
+      "entrada": "SMPW QUADRA 17 CONJUNTO 3 LOTE 8 PARK WAY BRASILIA DF 71745103",
+      "tempo_ms": 244,
+      "camada": "DEGRAU_1_RTX5090_LOCAL",
+      "aprovado_primeira": true,
+      "status": "EXECUTADO_LOCAL",
+      "preview_resposta": "SMPW Quadra 17, Conjunto 3, Lote 8 - Park Way, Brasília, DF, CEP 71745-103"
+    },
+    {
+      "caso": 9,
+      "entrada": "SETOR COMERCIAL SUL QUADRA 4 BLOCO A EDIFICIO EMBAIXADOR SALA 401 BRASILIA DF",
+      "tempo_ms": 350,
+      "camada": "DEGRAU_1_RTX5090_LOCAL",
+      "aprovado_primeira": true,
+      "status": "EXECUTADO_LOCAL",
+      "preview_resposta": "SETOR COMERCIAL SUL, QUADRA 4, BLOCO A, EDIFICIO EMBAIXADOR, SALA 401, BRASÍLIA, DF, CEP: "
+    },
+    {
+      "caso": 10,
+      "entrada": "QNQ 4 CONJUNTO 12 CASA 18 CEILANDIA DF",
+      "tempo_ms": 621,
+      "camada": "DEGRAU_1_RTX5090_LOCAL",
+      "aprovado_primeira": true,
+      "status": "EXECUTADO_LOCAL",
+      "preview_resposta": "Aqui está o endereço normalizado de acordo com o padrão dos Correios:  Logradouro: Quadra "
+    },
+    {
+      "caso": 11,
+      "entrada": "QR 406 CONJUNTO 8 CASA 2 SAMAMBAIA NORTE DF 72318508",
+      "tempo_ms": 220,
+      "camada": "DEGRAU_1_RTX5090_LOCAL",
+      "aprovado_primeira": true,
+      "status": "EXECUTADO_LOCAL",
+      "preview_resposta": "QR 406 Conjunto 8 Casa 2 - Samambaia Norte, DF - CEP 72318-508"
+    },
+    {
+      "caso": 12,
+      "entrada": "SIA TRECHO 3 LOTES 625/695 GUARA BRASILIA DF 71200030",
+      "tempo_ms": 445,
+      "camada": "DEGRAU_1_RTX5090_LOCAL",
+      "aprovado_primeira": true,
+      "status": "EXECUTADO_LOCAL",
+      "preview_resposta": "Aqui está o endereço normalizado conforme o padrão dos Correios:  Logradouro: SIA Trecho 3"
+    },
+    {
+      "caso": 13,
+      "entrada": "SHCN CL QUADRA 116 BLOCO B SALA 201 ASA NORTE BRASILIA DF 70775520",
+      "tempo_ms": 409,
+      "camada": "DEGRAU_1_RTX5090_LOCAL",
+      "aprovado_primeira": true,
+      "status": "EXECUTADO_LOCAL",
+      "preview_resposta": "Aqui está o endereço normalizado no padrão formal dos Correios:  Logradouro: Quadra 116 Co"
+    },
+    {
+      "caso": 14,
+      "entrada": "QUADRA 2 CONJUNTO A LOTE 12 VILA ESTRUTURAL DF",
+      "tempo_ms": 651,
+      "camada": "DEGRAU_1_RTX5090_LOCAL",
+      "aprovado_primeira": true,
+      "status": "EXECUTADO_LOCAL",
+      "preview_resposta": "Aqui está o endereço normalizado de acordo com o padrão dos Correios:  Logradouro: Quadra "
+    },
+    {
+      "caso": 15,
+      "entrada": "COLONIA AGRICOLA SAMAMBAIA CHACARA 120 LOTE 4 VICENTE PIRES DF 72007620",
+      "tempo_ms": 538,
+      "camada": "DEGRAU_1_RTX5090_LOCAL",
+      "aprovado_primeira": true,
+      "status": "EXECUTADO_LOCAL",
+      "preview_resposta": "Aqui está o endereço normalizado conforme o padrão dos Correios:  Logradouro: Rua Vicente "
+    },
+    {
+      "caso": 16,
+      "entrada": "QI 23 CONJUNTO 5 CASA 14 GUARA II DF 71050051",
+      "tempo_ms": 496,
+      "camada": "DEGRAU_1_RTX5090_LOCAL",
+      "aprovado_primeira": true,
+      "status": "EXECUTADO_LOCAL",
+      "preview_resposta": "Aqui está o endereço normalizado conforme o padrão dos Correios:  Logradouro: Conjunto 5, "
+    },
+    {
+      "caso": 17,
+      "entrada": "CONDOMINIO ALTO DA BOA VISTA QUADRA 103 CONJUNTO A LOTE 1 SOBRADINHO DF 73010703",
+      "tempo_ms": 523,
+      "camada": "DEGRAU_1_RTX5090_LOCAL",
+      "aprovado_primeira": true,
+      "status": "EXECUTADO_LOCAL",
+      "preview_resposta": "Aqui está o endereço normalizado conforme o padrão dos Correios:  Logradouro: Condomínio A"
+    },
+    {
+      "caso": 18,
+      "entrada": "QUADRA 35 LOTE 8 SETOR CENTRAL GAMA DF 72405350",
+      "tempo_ms": 449,
+      "camada": "DEGRAU_1_RTX5090_LOCAL",
+      "aprovado_primeira": true,
+      "status": "EXECUTADO_LOCAL",
+      "preview_resposta": "Aqui está o endereço normalizado conforme o padrão dos Correios:  Logradouro: Quadra 35 Lo"
+    },
+    {
+      "caso": 19,
+      "entrada": "SCS QUADRA 7 BLOCO A TORRE DO PATIO BRASIL SALA 905 ASA SUL DF",
+      "tempo_ms": 616,
+      "camada": "DEGRAU_1_RTX5090_LOCAL",
+      "aprovado_primeira": true,
+      "status": "EXECUTADO_LOCAL",
+      "preview_resposta": "Aqui está o endereço normalizado conforme o padrão dos Correios:  Logradouro: SCS Quadra 7"
+    },
+    {
+      "caso": 20,
+      "entrada": "QNL 2 CONJUNTO A CASA 15 TAGUATINGA NORTE BRASILIA DF 72150011",
+      "tempo_ms": 446,
+      "camada": "DEGRAU_1_RTX5090_LOCAL",
+      "aprovado_primeira": true,
+      "status": "EXECUTADO_LOCAL",
+      "preview_resposta": "Aqui está o endereço normalizado de acordo com o padrão formal dos Correios:  Logradouro: "
+    }
+  ]
+}

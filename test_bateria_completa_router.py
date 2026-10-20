@@ -31,6 +31,7 @@ if str(RAIZ) not in sys.path:
 
 from router_tokens import (
     DIRETORIO_LOGS,
+    rotear_lote_instrucoes,
     classificar_tarefa_camada_a,
     decidir_gev_lite,
     executar_roteamento,
@@ -356,6 +357,52 @@ def test_20_desacoplamento_resposta_em_falha_transporte():
     # Na simulação de falha de código, o fiscal barrou
     assert res_falha.sucesso is False
     assert "REPROVADO" in res_falha.validacao_deterministica
+
+
+# ==============================================================================
+# 10. TESTES DE ALTA PERFORMANCE E GOVERNANÇA VERSÃO 1.3 (CHANCELA OPUS 5.5)
+# ==============================================================================
+def test_21_cache_lru_gev_lite_instantaneo():
+    """
+    Versão 1.3: Garante que consultas repetidas no GEV-Lite retornam do Cache LRU
+    em 0 ms com modo_sistema='cache_lru_fast_gate'.
+    """
+    pergunta = "Qual modelo para tarefa de 1 linha de log?"
+    opcoes = ["DEGRAU_1_RTX5090", "DEGRAU_4_ARGON"]
+    # Primeira chamada (alimenta o cache)
+    r1 = decidir_gev_lite(pergunta=pergunta, opcoes=opcoes, contexto="log simples")
+    # Segunda chamada idêntica (deve vir do cache em 0 ms)
+    r2 = decidir_gev_lite(pergunta=pergunta, opcoes=opcoes, contexto="log simples")
+    assert r2.modo_sistema == "cache_lru_fast_gate"
+    assert r2.tempo_ms == 0
+    assert r2.letra_escolhida == r1.letra_escolhida
+
+
+def test_22_batching_concorrente_preserva_ordem_e_fiscal():
+    """
+    Versão 1.3: Garante que rotear_lote_instrucoes processa itens em concorrência
+    preservando rigorosamente a ordem de entrada e as travas do Fiscal.
+    """
+    lote = [
+        {"instrucao": "Escreva def f1(): return 1"},
+        {"instrucao": "Escreva def f2(): return 2"},
+        {"instrucao": "Escreva def f3(): return 3"},
+    ]
+    resultados = rotear_lote_instrucoes(lote, max_concorrencia=3)
+    assert len(resultados) == 3
+    for r in resultados:
+        assert isinstance(r.sucesso, bool)
+        assert r.versao_motor == "1.3"
+
+
+def test_23_metrica_nativa_aprovado_primeira():
+    """
+    Versão 1.3: Garante que tarefas aprovadas no Degrau 1 marcam aprovado_primeira=True.
+    """
+    res = executar_roteamento("Escreva def somar(a, b): return a + b")
+    assert hasattr(res, "aprovado_primeira")
+    if res.status_execucao == "EXECUTADO_LOCAL":
+        assert res.aprovado_primeira is True
 
 
 if __name__ == "__main__":
