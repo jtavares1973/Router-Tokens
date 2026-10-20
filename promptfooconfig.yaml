@@ -1,0 +1,90 @@
+# ==============================================================================
+# CONFIGURACAO DE AVALIACAO PROMPTFOO - ESTACAO ZAMORA
+# AVALIACAO DO LITELLM PROXY (PORTA 4000) E MODELOS NA RTX 5090
+# ==============================================================================
+
+description: "Auditoria Pericial de Latencia, Acuracia e Qualidade - Estacao ZAMORA"
+
+prompts:
+  - "{{instrucao}}"
+
+providers:
+  # Provedor 1: Executor Local Qwen 32B na RTX 5090 via LiteLLM
+  - id: "openai:chat:zamora-executor-local"
+    config:
+      apiBaseUrl: "http://127.0.0.1:4000/v1"
+      apiKey: "sk-zamora-pericial-5090"
+      temperature: 0.1
+      max_tokens: 350
+
+  # Provedor 2: Executor Rapido Qwen 7B na RTX 5090 via LiteLLM
+  - id: "openai:chat:zamora-executor-7b"
+    config:
+      apiBaseUrl: "http://127.0.0.1:4000/v1"
+      apiKey: "sk-zamora-pericial-5090"
+      temperature: 0.1
+      max_tokens: 200
+
+tests:
+  # ----------------------------------------------------------------------------
+  # CASO 1: LEVE - FORMATACAO E NORMALIZACAO DE STRING
+  # ----------------------------------------------------------------------------
+  - vars:
+      instrucao: "Escreva apenas um bloco ```python``` com a funcao `def limpar_documento(doc: str) -> str:` que remove qualquer caractere nao numerico."
+    assert:
+      - type: contains
+        value: "def limpar_documento"
+      - type: javascript
+        value: "output.includes('isdigit') || output.includes('re.sub') || output.includes('filter')"
+      - type: latency
+        threshold: 5000
+
+  # ----------------------------------------------------------------------------
+  # CASO 2: MEDIO - REGEX DE DATA NO PADRAO BRASILEIRO (DD/MM/AAAA)
+  # ----------------------------------------------------------------------------
+  - vars:
+      instrucao: "Escreva apenas um bloco ```python``` com a funcao `def validar_data_br(data_str: str) -> bool:` que valida se a data esta no formato DD/MM/AAAA e se eh uma data valida."
+    assert:
+      - type: contains
+        value: "def validar_data_br"
+      - type: javascript
+        value: "output.includes('datetime') || output.includes('strptime') || output.includes('re.')"
+      - type: latency
+        threshold: 8000
+
+  # ----------------------------------------------------------------------------
+  # CASO 3: MEDIO - CALCULO CRIPTOGRAFICO HASH SHA-256
+  # ----------------------------------------------------------------------------
+  - vars:
+      instrucao: "Escreva apenas um bloco ```python``` com a funcao `def gerar_hash_pericial(arquivo_bytes: bytes) -> str:` que calcule o hash SHA-256 em hexadecimal."
+    assert:
+      - type: contains
+        value: "def gerar_hash_pericial"
+      - type: contains
+        value: "hashlib"
+      - type: contains
+        value: "hexdigest"
+
+  # ----------------------------------------------------------------------------
+  # CASO 4: PESADO - EXTRACAO ESTRUTURADA DE OCORRENCIA POLICIAL
+  # ----------------------------------------------------------------------------
+  - vars:
+      instrucao: "Escreva uma funcao ```python def parse_ocorrencia(texto: str) -> dict:``` que extraia 'numero_bo', 'ano' e 'delegacia' de um texto procedural da PCDF e retorne um dicionario com essas chaves."
+    assert:
+      - type: contains
+        value: "def parse_ocorrencia"
+      - type: javascript
+        value: "output.includes('numero_bo') && output.includes('ano') && output.includes('delegacia')"
+      - type: latency
+        threshold: 12000
+
+  # ----------------------------------------------------------------------------
+  # CASO 5: BLINDAGEM - IMPEDIMENTO DE PREGUICA DE CODIGO
+  # ----------------------------------------------------------------------------
+  - vars:
+      instrucao: "Escreva o codigo completo da classe ValidadorPolicial sem omitir nenhuma linha nem usar comentarios de resumo."
+    assert:
+      - type: not-contains
+        value: "# ... resto"
+      - type: not-contains
+        value: "# existing code"
