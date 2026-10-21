@@ -36,6 +36,27 @@ URL_OLLAMA_GENERATE = "http://127.0.0.1:11434/api/generate"
 DIRETORIO_LOGS = Path(__file__).resolve().parent / "_entrega"
 LETRAS_DECISAO = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
+# ============================================================================
+# 0. POLITICA DE QUALIDADE PRIMEIRO (v1.4)
+# Objetivo prioritario: QUALIDADE, nao economia.
+#   - Topo da escada: Gemini 4.0 Argon (nivel Opus 5.5). Define criterio de
+#     aceite e revisa mudancas nao triviais.
+#   - Executores locais (Degrau 1) apenas para tarefas mecanicas de baixo
+#     risco (regex, renomeacao, docstring, lint, typo, log, traducao).
+#   - Escalonamento ocorre por falha de teste ou reprovacao na revisao,
+#     nunca por custo.
+#   - Setar POLITICA_QUALIDADE_PRIMEIRO = False restaura o modo legado
+#     90/10 para avaliacao comparativa (aprovado-na-primeira vs Opus).
+# ============================================================================
+POLITICA_QUALIDADE_PRIMEIRO: bool = True
+MODELO_TOPO_QUALIDADE: str = "gemini-4-argon"
+GATILHOS_MECANICOS: list = [
+    "docstring", "comentari", "renome", "indentac", "pep8", "lint",
+    "typo", "traduzi", "converter encoding", "regex", "formatar",
+    "adicionar log", "print de debug"
+]
+
+
 MODELOS_DISPONIVEIS = {
     "degrau_1_local_7b": "qwen2.5-coder:7b",
     "degrau_1_local_27b": "qwen3.8-32k:latest",
@@ -79,7 +100,7 @@ class ResultadoRoteamento:
     custo_estimado_usd: float
     resposta: str
     aprovado_primeira: bool = False
-    versao_motor: str = "1.3"
+    versao_motor: str = "1.4"
 
 
 # =====================================================================================
@@ -292,10 +313,25 @@ def classificar_tarefa_camada_a(
             return "DEGRAU_3_GEMINI_38_FLASH", "gemini-3.8-flash", f"Decisão GEV-Lite ({decisao.tempo_ms}ms): Degrau 3"
 
     # Degrau 1 Padrão (>= 90% das tarefas): RTX 5090 Local a Custo Zero
+    if POLITICA_QUALIDADE_PRIMEIRO:
+        eh_mecanica = any(g in texto_limpo for g in GATILHOS_MECANICOS)
+        if eh_mecanica:
+            return (
+                "DEGRAU_1_RTX5090_LOCAL",
+                "qwen2.5-coder:7b",
+                "Politica Qualidade Primeiro: tarefa mecanica de baixo risco executada localmente a custo zero.",
+            )
+        return (
+            "DEGRAU_4_ARGON_ORQUESTRADOR",
+            MODELO_TOPO_QUALIDADE,
+            "Politica Qualidade Primeiro: tarefa nao mecanica delegada ao topo (Gemini 4.0 Argon / nivel Opus 5.5) para definir criterio de aceite e revisar.",
+        )
+
+    # Modo legado 90/10 (avaliacao comparativa)
     return (
         "DEGRAU_1_RTX5090_LOCAL",
         "qwen2.5-coder:7b",
-        "Tarefa contida de arquivo único/função/script: execução local a custo zero na RTX 5090.",
+        "Tarefa contida de arquivo unico/funcao/script: execucao local a custo zero na RTX 5090.",
     )
 
 
@@ -719,7 +755,7 @@ def executar_roteamento(
         custo_estimado_usd=0.0,
         resposta=resp,
         aprovado_primeira=True,
-        versao_motor="1.3",
+        versao_motor="1.4",
     )
     registrar_auditoria(res_ok)
     return res_ok
@@ -760,10 +796,12 @@ def rotear_lote_instrucoes(
         instr = payload.get("instrucao", "")
         arqs = payload.get("arquivos_envolvidos", 1)
         teste = payload.get("codigo_teste_assert", None)
+        fc = payload.get("forcar_camada", None)
         res = executar_roteamento(
             instrucao=instr,
             arquivos_envolvidos=arqs,
             codigo_teste_assert=teste,
+            forcar_camada=fc,
         )
         return indice, res
 

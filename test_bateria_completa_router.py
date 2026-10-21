@@ -29,6 +29,8 @@ RAIZ = Path(__file__).resolve().parent
 if str(RAIZ) not in sys.path:
     sys.path.insert(0, str(RAIZ))
 
+import router_tokens
+
 from router_tokens import (
     DIRETORIO_LOGS,
     rotear_lote_instrucoes,
@@ -128,21 +130,32 @@ def test_06_furo_bloqueio_input_interativo():
 # ==============================================================================
 def test_07_escada_4_degraus_completa():
     """Verifica o roteamento exato para cada um dos 4 degraus da arquitetura."""
-    # Degrau 1: 1 arquivo simples
-    d1, m1, _ = classificar_tarefa_camada_a("Criar função de formatação de data", arquivos_envolvidos=1)
-    assert d1 == "DEGRAU_1_RTX5090_LOCAL"
+    # Politica Qualidade Primeiro: tarefa mecanica de baixo risco -> Degrau 1 local
+    dm, mm, _ = classificar_tarefa_camada_a(
+        "Renomear variaveis internas e ajustar indentacao do modulo", arquivos_envolvidos=1
+    )
+    assert dm == "DEGRAU_1_RTX5090_LOCAL"
+    assert mm == "qwen2.5-coder:7b"
+
+    # Politica Qualidade Primeiro: tarefa nao mecanica -> topo Argon por padrao
+    dtopo, mtopo, motivo = classificar_tarefa_camada_a(
+        "Criar funcao de formatacao de data", arquivos_envolvidos=1
+    )
+    assert dtopo == "DEGRAU_4_ARGON_ORQUESTRADOR"
+    assert mtopo == "gemini-4-argon"
+    assert "Qualidade Primeiro" in motivo
 
     # Degrau 2: 2 arquivos ou algoritmo complexo
     d2, m2, _ = classificar_tarefa_camada_a("Realizar cruzamento relacional complexo", arquivos_envolvidos=2)
     assert d2 == "DEGRAU_2_DEEPSEEK_763B"
 
-    # Degrau 3: 3 ou 4 arquivos -> Escudo barato Gemini 3.8 Flash
-    d3, m3, _ = classificar_tarefa_camada_a("Ajustar módulos de serviço", arquivos_envolvidos=3)
+    # Degrau 3: 3 ou 4 arquivos -> Escudo Gemini 3.8 Flash
+    d3, m3, _ = classificar_tarefa_camada_a("Ajustar modulos de servico", arquivos_envolvidos=3)
     assert d3 == "DEGRAU_3_GEMINI_38_FLASH"
     assert m3 == "gemini-3.8-flash"
 
     # Degrau 4: 5+ arquivos ou arquitetura global -> Orquestrador Argon
-    d4, m4, _ = classificar_tarefa_camada_a("Mudança de arquitetura global do sistema", arquivos_envolvidos=6)
+    d4, m4, _ = classificar_tarefa_camada_a("Mudanca de arquitetura global do sistema", arquivos_envolvidos=6)
     assert d4 == "DEGRAU_4_ARGON_ORQUESTRADOR"
     assert m4 == "gemini-4-argon"
 
@@ -202,6 +215,7 @@ def test_09_cascata_real_fim_a_fim():
         ),
         arquivos_envolvidos=1,
         codigo_teste_assert="assert limpar_matricula('Matr: 23.654-A') == '23654'",
+        forcar_camada="DEGRAU_1_RTX5090_LOCAL",
     )
     assert res.sucesso is True
     assert "APROVADO_TOTAL" in res.validacao_deterministica
@@ -217,7 +231,7 @@ def test_10_contrato_estrito_resultado_roteamento():
     Garante que o contrato de saída `ResultadoRoteamento` jamais aceita campos nulos críticos,
     tempos negativos ou inconsistência entre `sucesso` e `submeter_ao_argon`.
     """
-    res_ok = executar_roteamento("Criar constante X = 1", arquivos_envolvidos=1)
+    res_ok = executar_roteamento("Criar constante X = 1", arquivos_envolvidos=1, forcar_camada="DEGRAU_1_RTX5090_LOCAL")
     assert isinstance(res_ok.sucesso, bool)
     assert res_ok.tempo_ms >= 0
     assert res_ok.tokens_entrada >= 0 and res_ok.tokens_saida >= 0
@@ -353,7 +367,7 @@ def test_20_desacoplamento_resposta_em_falha_transporte():
     """
     Versão 1.2 (Ponto 2): Garante que quando o transporte falha, o campo resposta fica vazio.
     """
-    res_falha = executar_roteamento("Função teste", simular_falha_local=True)
+    res_falha = executar_roteamento("Função teste", forcar_camada="DEGRAU_1_RTX5090_LOCAL", simular_falha_local=True)
     # Na simulação de falha de código, o fiscal barrou
     assert res_falha.sucesso is False
     assert "REPROVADO" in res_falha.validacao_deterministica
@@ -384,25 +398,60 @@ def test_22_batching_concorrente_preserva_ordem_e_fiscal():
     preservando rigorosamente a ordem de entrada e as travas do Fiscal.
     """
     lote = [
-        {"instrucao": "Escreva def f1(): return 1"},
-        {"instrucao": "Escreva def f2(): return 2"},
-        {"instrucao": "Escreva def f3(): return 3"},
+        {"instrucao": "Escreva def f1(): return 1", "forcar_camada": "DEGRAU_1_RTX5090_LOCAL"},
+        {"instrucao": "Escreva def f2(): return 2", "forcar_camada": "DEGRAU_1_RTX5090_LOCAL"},
+        {"instrucao": "Escreva def f3(): return 3", "forcar_camada": "DEGRAU_1_RTX5090_LOCAL"},
     ]
     resultados = rotear_lote_instrucoes(lote, max_concorrencia=3)
     assert len(resultados) == 3
     for r in resultados:
         assert isinstance(r.sucesso, bool)
-        assert r.versao_motor == "1.3"
+        assert r.versao_motor == "1.4"
 
 
 def test_23_metrica_nativa_aprovado_primeira():
     """
     Versão 1.3: Garante que tarefas aprovadas no Degrau 1 marcam aprovado_primeira=True.
     """
-    res = executar_roteamento("Escreva def somar(a, b): return a + b")
+    res = executar_roteamento("Escreva def somar(a, b): return a + b", forcar_camada="DEGRAU_1_RTX5090_LOCAL")
     assert hasattr(res, "aprovado_primeira")
     if res.status_execucao == "EXECUTADO_LOCAL":
         assert res.aprovado_primeira is True
+
+
+
+
+# ============================================================================
+# 11. POLITICA QUALIDADE PRIMEIRO (v1.4)
+# ============================================================================
+def test_24_politica_qualidade_default_topo_argon():
+    """v1.4: tarefa nao mecanica vai direto ao topo (Gemini 4.0 Argon)."""
+    camada, modelo, motivo = classificar_tarefa_camada_a(
+        "Criar funcao que calcula juros compostos", arquivos_envolvidos=1
+    )
+    assert camada == "DEGRAU_4_ARGON_ORQUESTRADOR"
+    assert modelo == "gemini-4-argon"
+    assert "Qualidade Primeiro" in motivo
+
+def test_25_politica_qualidade_mecanica_local():
+    """v1.4: apenas tarefas mecanicas de baixo risco ficam no Degrau 1 local."""
+    camada, modelo, _ = classificar_tarefa_camada_a(
+        "Renomear variaveis e corrigir typo no docstring", arquivos_envolvidos=1
+    )
+    assert camada == "DEGRAU_1_RTX5090_LOCAL"
+    assert modelo == "qwen2.5-coder:7b"
+
+def test_26_modo_legado_90_10_avaliacao_comparativa():
+    """v1.4: desligar POLITICA_QUALIDADE_PRIMEIRO restaura o legado 90/10."""
+    original = router_tokens.POLITICA_QUALIDADE_PRIMEIRO
+    try:
+        router_tokens.POLITICA_QUALIDADE_PRIMEIRO = False
+        camada, _, _ = classificar_tarefa_camada_a(
+            "Criar funcao que calcula juros compostos", arquivos_envolvidos=1
+        )
+        assert camada == "DEGRAU_1_RTX5090_LOCAL"
+    finally:
+        router_tokens.POLITICA_QUALIDADE_PRIMEIRO = original
 
 
 if __name__ == "__main__":

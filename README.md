@@ -38,3 +38,21 @@ pip install pytest hypothesis mcp
 ```powershell
 python test_bateria_completa_router.py
 ```
+
+
+---
+
+# 3. POLITICA QUALIDADE PRIMEIRO (v1.4)
+
+Objetivo prioritario: **qualidade, nao economia**.
+
+- **Topo da escada: Gemini 4.0 Argon** (nivel Opus 5.5; alternativa: Opus 4.5 via Antigravity).
+- Argon **define o criterio de aceite** e **revisa mudancas nao triviais**.
+- Executores locais (RTX/Ollama) ficam **apenas para tarefas mecanicas de baixo risco**
+  (regex, renomeacao, docstring, lint, typo, log, traducao, conversao de encoding).
+- Escalonamento ocorre por **falha de teste ou reprovacao na revisao**, nunca por custo.
+- A validacao vai alem de `ast.parse`: assercoes funcionais sobre as tarefas reais
+  (`codigo_teste_assert` executado com timeout).
+- Metrica alvo: **aprovado-na-primeira e retrabalho**, comparados com Opus isolado
+  nas mesmas tarefas. Desligue `POLITICA_QUALIDADE_PRIMEIRO` para reproduzir o
+  modo legado 90/10 e rodar a comparacao.

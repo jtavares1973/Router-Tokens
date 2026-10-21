@@ -48,3 +48,38 @@
 * **Aprovação de Primeira Passagem:** **100%** de acerto retido no Degrau 1 (RTX 5090 local a custo zero);
 * **Telemetria de Hardware:** 48°C | 36,6W | 24 GB de VRAM livres;
 * **Chancela de Governança:** Homologação pericial plena pelo Auditor Chefe Opus 5.5 e Orquestrador Chefe Argon.
+
+
+---
+
+## Laudo de Sessão — 21/10/2026 (Auditoria do Antigravity e Variáveis do Windows)
+
+**Diagnóstico:** Windows saudável (SSD Corsair MP700 Elite "Healthy", PATH sem duplicatas). Não há necessidade de reinstalação.
+
+**Causas encontradas:**
+- Pasta `_teste_litellm_isolado` apagada → MCP `litellm-executor` quebrado.
+- 4 desligamentos inesperados (Kernel-Power 41): 11/10 15:26, 13/10 22:40, 17/10 17:01 e 17/10 22:24. Suspeita de energia/travamento (verificar cabo 12V-2x6 / fonte se repetir).
+- 7 quedas do language_server do Antigravity (14/10 a 21/10).
+- 8 falhas do WSLService por tempo esgotado (afeta `agentmemory`).
+- Ollama alertava biblioteca incompatível `ggml-base.dll` do llama.cpp (WinGet) no PATH.
+
+**Correções aplicadas:**
+1. `mcp_config.json`: `litellm-executor` com `"disabled": true` (backup `mcp_config.json.bak_20261021`).
+2. Plugin `science` (40 skills) desativado via `JetboxWriteState`.
+3. Variável de usuário `PYTHONUTF8=1` criada.
+4. GitHub CLI instalado (`gh version 2.102.1`). Pendente: `gh auth login`.
+5. Pasta do llama.cpp removida do PATH do usuário (20 → 19 entradas; backup em `_entrega/backup_PATH_usuario_20261021.txt`).
+6. Ollama (11434) e LiteLLM (4000) religados via WMI (`Win32_Process.Create`) — processos lançados pelo terminal do agente morrem ao fim do comando. Prova: 8 modelos no proxy; `zamora-executor-7b` respondeu "OK" em 2.470 ms.
+
+**Pendência exata para o próximo turno:** após reiniciar o Antigravity, conferir se `notebooks`, `visualization` e `data-agent-kit` sobem; confirmar `gh auth status`.
+
+**Complemento 21/10 (restabelecimento do ambiente):**
+- Bancos são contêineres Docker: `dev-postgres` (postgis 17-3.5, porta 5432) estava parado desde 24/09 (código 255, desligamento brusco) — religado, recuperação automática do PostgreSQL OK, política alterada de `no` para `unless-stopped`. `dev-sqlserver` (porta 1433) já era `unless-stopped`. Prova via MCP: `devdb` com PostGIS e 40 tabelas; SQL Server com banco `ARCGIS`.
+- Ollama e LiteLLM não tinham inicialização automática (causa de ficarem fora após cada queda). Criados atalhos na pasta Inicializar: `Ollama.lnk` e `ZAMORA LiteLLM Proxy 4000.lnk` (minimizado).
+- Fonte do PC é de 850 W — principal suspeita das 10 quedas abruptas (RTX 5090 575 W + 7950X 230 W). Investigação de hardware adiada a pedido do usuário.
+- MCP `notebooks`/`visualization`/`data-agent-kit` usam argumentos `*-antigravityide` (extensão da IDE antiga) e não sobem no Antigravity 2.24.
+
+**Complemento 21/10 11:32 (GitHub CLI):**
+- `gh auth login` concluído pelo fluxo de código no navegador. Prova: `gh auth status` → conta `jtavares1973` (keyring), protocolo https, escopos `gist`, `read:org`, `repo`; `gh api user` respondeu `jtavares1973`.
+- O terminal do agente ainda não encontra `gh` pelo nome (o processo do Antigravity foi aberto antes da mudança no PATH). Até reiniciar a IDE, use o caminho completo `C:\Program Files\GitHub CLI\gh.exe`.
+- **Pendência:** reiniciar o Antigravity por completo e confirmar que `gh --version` funciona pelo nome.
